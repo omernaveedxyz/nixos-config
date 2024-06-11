@@ -1,6 +1,48 @@
 {
   "nodes": {
+    "ez-configs": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1706611666,
+        "narHash": "sha256-N+SyoAEqf3QIXMYZ81kuxrOP6b0692M+hbGLHU9wf1I=",
+        "owner": "ehllie",
+        "repo": "ez-configs",
+        "rev": "84c60a73eba0b5405943580d52b1581de5b1ee7c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ehllie",
+        "repo": "ez-configs",
+        "type": "github"
+      }
+    },
     "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "ez-configs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1698882062,
+        "narHash": "sha256-HkhafUayIqxXyHH1X8d9RDl1M2CkFgZLjKD3MzabiEo=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "8c9fa2545007b49a5db5f650ae91f227672c3877",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
@@ -48,7 +90,8 @@
     },
     "root": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "ez-configs": "ez-configs",
+        "flake-parts": "flake-parts_2",
         "nixpkgs": "nixpkgs"
       }
     }
