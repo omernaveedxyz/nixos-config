@@ -19,6 +19,8 @@
 
           packages.default = config.packages.hello;
 
+          devShells.default = pkgs.mkShell { packages = with pkgs; [ ]; };
+
           formatter = pkgs.nixfmt-rfc-style;
         };
     };
