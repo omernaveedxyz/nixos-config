@@ -9,6 +9,7 @@
     # A flake-parts module for simple nixos, darwin and home-manager configurations
     ez-configs.url = "github:ehllie/ez-configs";
     ez-configs.inputs.nixpkgs.follows = "nixpkgs";
+    ez-configs.inputs.flake-parts.follows = "flake-parts";
 
     # Manage a user environment using Nix
     home-manager.url = "github:nix-community/home-manager/release-24.05";
