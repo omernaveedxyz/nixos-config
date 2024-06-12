@@ -95,10 +95,6 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
   programs.neovim = {
     enable = true;
     defaultEditor = true;

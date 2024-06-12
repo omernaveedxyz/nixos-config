@@ -3,6 +3,7 @@
     ./hardware/systemd-boot.nix
 
     ./programs/colmena.nix
+    ./programs/nix.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
