@@ -19,11 +19,21 @@
   };
 
   outputs =
-    inputs@{ flake-parts, ez-configs, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      flake-parts,
+      ez-configs,
+      colmena-flake,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
-      imports = [ ez-configs.flakeModule ];
+      imports = [
+        ez-configs.flakeModule
+        colmena-flake.flakeModules.default
+      ];
 
       ezConfigs = {
         # The root from which configurations and modules should be searched
@@ -41,6 +51,12 @@
           };
         };
       };
+
+      colmena-flake.deployment = nixpkgs.lib.mapAttrs (_: _: {
+        allowLocalDeployment = true;
+        targetUser = "colmena";
+        buildOnTarget = true;
+      }) (self.nixosConfigurations);
 
       perSystem =
         { pkgs, ... }:
