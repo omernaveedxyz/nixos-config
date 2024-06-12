@@ -1,4 +1,10 @@
 {
+  # Modify and extend existing Nixpkgs collection
+  nixpkgs.overlays = with (import ./overlays); [
+    additions
+    modifications
+  ];
+
   # It is occasionally necessary for Home Manager to change configuration defaults 
   # in a way that is incompatible with stateful data. This could, for example, include 
   # switching the default data format or location of a file.
