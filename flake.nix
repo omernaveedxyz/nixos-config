@@ -12,12 +12,7 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      flake-parts,
-      ez-configs,
-      ...
-    }:
+    inputs@{ flake-parts, ez-configs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
@@ -34,7 +29,7 @@
       };
 
       perSystem =
-        { config, pkgs, ... }:
+        { pkgs, ... }:
         {
           # Run a bash shell that provides the build environment of a derivation
           devShells.default = pkgs.mkShell { packages = with pkgs; [ ]; };
