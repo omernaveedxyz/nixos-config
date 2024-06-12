@@ -1,5 +1,9 @@
 {
-  imports = [ ./programs/colmena.nix ];
+  imports = [
+    ./hardware/systemd-boot.nix
+
+    ./programs/colmena.nix
+  ];
 
   # Modify and extend existing Nixpkgs collection
   nixpkgs.overlays = with (import ./overlays); [
