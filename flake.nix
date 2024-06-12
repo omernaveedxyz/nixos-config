@@ -30,6 +30,13 @@
         globalArgs = {
           inherit inputs;
         };
+
+        # Settings for creating nixosConfigurations
+        nixos.hosts = {
+          omer-laptop = {
+            userHomeModules = [ "omer" ];
+          };
+        };
       };
 
       perSystem =
