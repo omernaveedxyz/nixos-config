@@ -13,6 +13,9 @@
     # Manage a user environment using Nix
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # A `flake-parts` module for colmena deployment tool
+    colmena-flake.url = "github:juspay/colmena-flake";
   };
 
   outputs =
