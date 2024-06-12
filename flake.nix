@@ -28,6 +28,7 @@
       flake-parts,
       ez-configs,
       colmena-flake,
+      nixos-hardware,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -44,7 +45,7 @@
 
         # Extra arguments to pass to all configurations
         globalArgs = {
-          inherit inputs;
+          inherit nixos-hardware;
         };
 
         # Settings for creating nixosConfigurations
