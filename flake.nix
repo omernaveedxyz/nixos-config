@@ -16,6 +16,9 @@
 
     # A `flake-parts` module for colmena deployment tool
     colmena-flake.url = "github:juspay/colmena-flake";
+
+    # A collection of NixOS modules covering hardware quirks
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs =
