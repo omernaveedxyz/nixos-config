@@ -1,5 +1,6 @@
 {
   imports = [
+    ./hardware/networking.nix
     ./hardware/systemd-boot.nix
 
     ./programs/colmena.nix

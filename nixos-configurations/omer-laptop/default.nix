@@ -29,6 +29,8 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
+  networking.hostName = "omer-laptop";
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/d79d9ed3-f639-4219-a7b9-08ac0292f92a";
     fsType = "ext4";
@@ -42,15 +44,6 @@
       "dmask=0022"
     ];
   };
-
-  # Enable networking
-  networking.hostName = "omer-laptop"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
