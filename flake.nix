@@ -72,7 +72,12 @@
         { pkgs, ... }:
         {
           # Run a bash shell that provides the build environment of a derivation
-          devShells.default = pkgs.mkShell { packages = with pkgs; [ colmena ]; };
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              colmena
+              just
+            ];
+          };
 
           # Reformat your code in the standard style
           formatter = pkgs.nixfmt-rfc-style;
