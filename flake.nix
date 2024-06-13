@@ -97,6 +97,7 @@
               colmena
               just
               sbctl
+              sops
             ];
           };
 
