@@ -8,6 +8,7 @@
 
     ./programs/colmena.nix
     ./programs/nix.nix
+    ./programs/sops.nix
     ./programs/users.nix
   ];
 

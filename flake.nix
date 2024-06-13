@@ -45,6 +45,7 @@
       nixos-hardware,
       disko,
       lanzaboote,
+      sops-nix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -66,6 +67,7 @@
             nixos-hardware
             disko
             lanzaboote
+            sops-nix
             ;
         };
 
