@@ -56,6 +56,9 @@
 
         # Settings for creating nixosConfigurations
         nixos.hosts = {
+          omer-desktop = {
+            userHomeModules = [ "omer" ];
+          };
           omer-laptop = {
             userHomeModules = [ "omer" ];
           };
