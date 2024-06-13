@@ -1,7 +1,11 @@
+{ nixpkgs, ... }:
 {
   nix = {
     # Whether to enable Nix
     enable = true;
+
+    # The default Nix expression search path
+    nixPath = [ "nixpkgs=${nixpkgs}" ];
 
     # Configuration for Nix
     settings = {

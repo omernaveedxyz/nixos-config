@@ -51,7 +51,7 @@
 
         # Extra arguments to pass to all configurations
         globalArgs = {
-          inherit nixos-hardware disko;
+          inherit nixpkgs nixos-hardware disko;
         };
 
         # Settings for creating nixosConfigurations
