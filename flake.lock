@@ -316,7 +316,8 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -341,6 +342,29 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718137936,
+        "narHash": "sha256-psA+1Q5fPaK6yI3vzlLINNtb6EeXj111zQWnZYyJS9c=",
+        "owner": "mic92",
+        "repo": "sops-nix",
+        "rev": "c279dec105dd53df13a5e57525da97905cc0f0d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },
