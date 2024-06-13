@@ -20,6 +20,10 @@
 
     # A collection of NixOS modules covering hardware quirks
     nixos-hardware.url = "github:nixos/nixos-hardware";
+
+    # Declarative disk partitioning and formatting using nix
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -30,6 +34,7 @@
       ez-configs,
       colmena-flake,
       nixos-hardware,
+      disko,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -46,7 +51,7 @@
 
         # Extra arguments to pass to all configurations
         globalArgs = {
-          inherit nixos-hardware;
+          inherit nixos-hardware disko;
         };
 
         # Settings for creating nixosConfigurations
