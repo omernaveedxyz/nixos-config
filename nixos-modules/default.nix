@@ -1,5 +1,6 @@
 {
   imports = [
+    ./hardware/disko.nix
     ./hardware/networking.nix
     ./hardware/systemd-boot.nix
 

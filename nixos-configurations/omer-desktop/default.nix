@@ -40,19 +40,22 @@
   # The name of the machine
   networking.hostName = "omer-desktop";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d79d9ed3-f639-4219-a7b9-08ac0292f92a";
-    fsType = "ext4";
-  };
+  # Additional arguments passed to each module
+  _module.args.device = "/dev/nvme0n1";
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6C96-EA1C";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
+  # fileSystems."/" = {
+  #   device = "/dev/disk/by-uuid/d79d9ed3-f639-4219-a7b9-08ac0292f92a";
+  #   fsType = "ext4";
+  # };
+
+  # fileSystems."/boot" = {
+  #   device = "/dev/disk/by-uuid/6C96-EA1C";
+  #   fsType = "vfat";
+  #   options = [
+  #     "fmask=0022"
+  #     "dmask=0022"
+  #   ];
+  # };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
