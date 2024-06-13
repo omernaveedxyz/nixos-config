@@ -3,6 +3,7 @@
     ./hardware/disko.nix
     ./hardware/networking.nix
     ./hardware/systemd-boot.nix
+    ./hardware/systemd.nix
 
     ./programs/colmena.nix
     ./programs/nix.nix
