@@ -29,7 +29,7 @@
               content = {
                 type = "luks";
                 name = "${config.networking.hostName}";
-		extraOpenArgs = [ "--allow-discards" ];
+                extraOpenArgs = [ "--allow-discards" ];
                 passwordFile = "/tmp/disk.key";
                 content = {
                   type = "zfs";
@@ -44,10 +44,10 @@
     zpool = {
       "${config.networking.hostName}" = {
         type = "zpool";
-	rootFsOptions = {
-	  canmount = "off";
-	  mountpoint = "none";
-	};
+        rootFsOptions = {
+          canmount = "off";
+          mountpoint = "none";
+        };
         datasets = {
           root = {
             type = "zfs_fs";
