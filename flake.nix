@@ -24,6 +24,10 @@
     # Declarative disk partitioning and formatting using nix
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Secure Boot for NixOS
+    lanzaboote.url = "github:nix-community/lanzaboote";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -35,6 +39,7 @@
       colmena-flake,
       nixos-hardware,
       disko,
+      lanzaboote,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -51,7 +56,7 @@
 
         # Extra arguments to pass to all configurations
         globalArgs = {
-          inherit nixpkgs nixos-hardware disko;
+          inherit nixpkgs nixos-hardware disko lanzaboote;
         };
 
         # Settings for creating nixosConfigurations
