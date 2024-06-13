@@ -28,6 +28,11 @@
     # Secure Boot for NixOS
     lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Atomic secret provisioning for NixOS based on sops
+    sops-nix.url = "github:mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
   };
 
   outputs =
