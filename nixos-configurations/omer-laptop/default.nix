@@ -84,19 +84,6 @@
     pulse.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.omer = {
-    isNormalUser = true;
-    description = "Omer Naveed";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
-  };
-
   # Install firefox.
   programs.firefox.enable = true;
 

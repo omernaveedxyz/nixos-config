@@ -8,6 +8,7 @@
 
     ./programs/colmena.nix
     ./programs/nix.nix
+    ./programs/users.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
