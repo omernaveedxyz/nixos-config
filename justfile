@@ -22,7 +22,7 @@ install config device:
 
 	# Install NixOS to the host system
 	nix run github:nix-community/nixos-anywhere -- \
-		--disk-encryption-keys /tmp/disk.key <(echo -n password) \
+		--disk-encryption-keys /tmp/disk.key <(sops --extract '["luks_passphrase"]' -d nixos-configurations/{{config}}/secrets.yaml) \
 		--extra-files "$temp" \
 		--flake '.#{{config}}' \
 		'{{device}}'

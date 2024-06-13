@@ -1,0 +1,11 @@
+keys:
+  - &omer 0eefa4cacf0b32cbab38bb06f478b0d65409a857
+creation_rules:
+  - path_regex: nixos-configurations/omer-desktop/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+        - *omer
+  - path_regex: nixos-configurations/omer-laptop/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+        - *omer
