@@ -89,6 +89,7 @@
             packages = with pkgs; [
               colmena
               just
+              sbctl
             ];
           };
 
