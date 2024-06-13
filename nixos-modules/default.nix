@@ -1,8 +1,9 @@
 {
   imports = [
     ./hardware/disko.nix
+    ./hardware/lanzaboote.nix
     ./hardware/networking.nix
-    ./hardware/systemd-boot.nix
+    # ./hardware/systemd-boot.nix
     ./hardware/systemd.nix
 
     ./programs/colmena.nix
