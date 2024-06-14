@@ -8,7 +8,7 @@ update-all:
 
 # Update a single Nix Flake input and commit changes
 update input:
-	nix flake lock --commit-lock-file --update-input {{input}}
+	nix flake lock --commit-lock-file --update-input "{{input}}"
 
 # Install a specific NixOS configuration to a device
 install config device:
@@ -23,10 +23,10 @@ install config device:
 
 	# Install NixOS to the host system
 	nix run github:nix-community/nixos-anywhere -- \
-		--disk-encryption-keys /tmp/disk.key <(sops --extract '["luks_passphrase"]' -d nixos-configurations/{{config}}/secrets.yaml) \
+		--disk-encryption-keys /tmp/disk.key <(sops --extract '["luks_passphrase"]' -d "nixos-configurations/{{config}}/secrets.yaml") \
 		--extra-files "$temp" \
-		--flake '.#{{config}}' \
-		'{{device}}'
+		--flake ".#{{config}}" \
+		"{{device}}"
 	
 	# Delete temporary directory
 	rm -rf "$temp"
