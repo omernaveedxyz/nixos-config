@@ -33,6 +33,9 @@
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
+
+    # Modules to help you handle persistent state on systems with ephemeral root storage
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs =
@@ -46,6 +49,7 @@
       disko,
       lanzaboote,
       sops-nix,
+      impermanence,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -68,6 +72,7 @@
             disko
             lanzaboote
             sops-nix
+            impermanence
             ;
         };
 
