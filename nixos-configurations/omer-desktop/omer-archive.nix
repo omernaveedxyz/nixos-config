@@ -43,4 +43,7 @@
   environment.etc."crypttab".text = ''
     omer-archive PARTLABEL=disk-omer-archive-root /etc/keyfile
   '';
+
+  # Name of GUID of extra ZFS pools that you wish to import during boot
+  boot.zfs.extraPools = [ "omer-archive" ];
 }

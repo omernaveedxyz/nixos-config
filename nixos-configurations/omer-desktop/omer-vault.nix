@@ -47,4 +47,7 @@
   environment.etc."crypttab".text = ''
     omer-vault PARTLABEL=disk-omer-vault-root /etc/keyfile
   '';
+
+  # Name of GUID of extra ZFS pools that you wish to import during boot
+  boot.zfs.extraPools = [ "omer-vault" ];
 }

@@ -40,6 +40,9 @@
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/mnt/media";
+            postCreateHook = ''
+              zfs allow ${toString config.users.users.syncoid.uid} bookmark,hold,send,snapshot,destroy,mount ${config.networking.hostName}/root
+            '';
           };
         };
       };
