@@ -17,4 +17,17 @@
       editor = false;
     };
   };
+
+  # Files and directories to persistent across ephemeral boots
+  environment.persistence."/persistent" = {
+    # All directories you want to link or bind to persistent storage
+    directories = [
+      {
+        directory = "/etc/secureboot";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
+    ];
+  };
 }
