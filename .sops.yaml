@@ -1,11 +1,33 @@
 keys:
   - &omer 0eefa4cacf0b32cbab38bb06f478b0d65409a857
+  - &omer-desktop 1006a2311963ffc89e466187c07932b76d01cf5f
+  - &omer-laptop 130f3d4eb9a45c073fcd85278cdb01cb9aa61fc8
 creation_rules:
   - path_regex: nixos-configurations/omer-desktop/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - pgp:
         - *omer
+        - *omer-desktop
   - path_regex: nixos-configurations/omer-laptop/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - pgp:
         - *omer
+        - *omer-laptop
+  - path_regex: nixos-modules/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+        - *omer
+        - *omer-desktop
+        - *omer-laptop
+  - path_regex: home-configurations/omer/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+        - *omer
+        - *omer-desktop
+        - *omer-laptop
+  - path_regex: home-modules/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+        - *omer
+        - *omer-desktop
+        - *omer-laptop
