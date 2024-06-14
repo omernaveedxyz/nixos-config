@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   users = {
     # If set to true, you are free to add new users and groups to the system
@@ -18,8 +19,8 @@
         # Indicates whether this is an account for a "real" user
         isNormalUser = true;
 
-        # The fulll path to a file that contains the hash of the user's passwod
-        initialPassword = "password";
+        # The full path to a file that contains the hash of the user's passwod
+        hashedPasswordFile = config.sops.secrets."users/users/omer/hashedPasswordFile".path;
 
         # The user's auxiliary groups
         extraGroups = [
@@ -28,5 +29,11 @@
         ];
       };
     };
+  };
+
+  # Specify encrypted sops secret to access
+  sops.secrets."users/users/omer/hashedPasswordFile" = {
+    sopsFile = ../secrets.yaml;
+    neededForUsers = true;
   };
 }
