@@ -48,3 +48,16 @@ post-install:
 post-install-lanzaboote:
 	# Enroll Secure Boot keys
 	sudo sbctl enroll-keys --microsoft
+
+# Set a permanent device MAC address for a specific network
+trust-network ssid:
+	#!/usr/bin/env sh
+	
+	UUID=$(nmcli c | grep "{{ssid}}" | awk '{print $2}')
+	if [ ! -z "$UUID" ]; then
+		nmcli c modify $UUID 802-11-wireless.cloned-mac-address permanent
+		nmcli c down $UUID
+		nmcli c up $UUID
+	else
+		echo "Unable to find specified SSID." && exit 1
+	fi
