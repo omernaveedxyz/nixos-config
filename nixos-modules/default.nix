@@ -1,5 +1,6 @@
 {
   imports = [
+    ./hardware/bluetooth.nix
     ./hardware/disko.nix
     ./hardware/impermanence.nix
     ./hardware/lanzaboote.nix
