@@ -33,4 +33,17 @@ in
       "10.0.0.3" = [ "omer-laptop" ];
     };
   };
+
+  # Files and directories to persistent across ephemeral boots
+  environment.persistence."/persistent" = {
+    # All directories you want to link or bind to persistent storage
+    directories = [
+      {
+        directory = "/etc/NetworkManager/system-connections";
+        user = "root";
+        group = "root";
+        mode = "0700";
+      }
+    ];
+  };
 }
