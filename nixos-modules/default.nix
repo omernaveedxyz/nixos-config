@@ -7,6 +7,7 @@
     ./hardware/networking.nix
     # ./hardware/systemd-boot.nix
     ./hardware/systemd.nix
+    ./hardware/virtualisation.nix
     ./hardware/zfs.nix
 
     ./programs/colmena.nix
