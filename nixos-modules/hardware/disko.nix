@@ -47,6 +47,7 @@
         rootFsOptions = {
           canmount = "off";
           mountpoint = "none";
+          acltype = "posixacl";
         };
         datasets = {
           root = {
