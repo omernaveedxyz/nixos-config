@@ -40,22 +40,15 @@
   # The name of the machine
   networking.hostName = "omer-desktop";
 
+  # The 32-bit host ID of the machine, formatted as 8 hexadecimal characters
+  networking.hostId = "001aa168";
+
   # Additional arguments passed to each module
   _module.args.device = "/dev/nvme0n1";
 
-  # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/d79d9ed3-f639-4219-a7b9-08ac0292f92a";
-  #   fsType = "ext4";
-  # };
-
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-uuid/6C96-EA1C";
-  #   fsType = "vfat";
-  #   options = [
-  #     "fmask=0022"
-  #     "dmask=0022"
-  #   ];
-  # };
+  ###
+  ###
+  ###
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -98,5 +91,4 @@
     enableSSHSupport = true;
   };
   services.pcscd.enable = true;
-  networking.hostId = "12345678";
 }
