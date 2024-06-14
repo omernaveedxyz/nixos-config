@@ -19,6 +19,7 @@
     ./services/pcscd.nix
     ./services/pipewire.nix
     ./services/sanoid.nix
+    ./services/syncoid.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
