@@ -42,7 +42,7 @@
             options.mountpoint = "legacy";
             mountpoint = "/mnt/media";
             postCreateHook = ''
-              zfs allow ${toString config.users.users.syncoid.uid} bookmark,hold,send,snapshot,destroy,mount ${config.networking.hostName}/root
+              zfs allow ${toString config.users.users.syncoid.uid} bookmark,hold,send,snapshot,destroy,mount omer-media/root
             '';
           };
         };
