@@ -16,6 +16,7 @@
     ./programs/users.nix
 
     ./services/openssh.nix
+    ./services/pipewire.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
