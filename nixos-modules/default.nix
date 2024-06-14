@@ -18,6 +18,7 @@
     ./services/openssh.nix
     ./services/pcscd.nix
     ./services/pipewire.nix
+    ./services/sanoid.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
