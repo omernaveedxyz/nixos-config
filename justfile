@@ -20,13 +20,25 @@ install config device:
 	# Copy files to the temporary directory
 	just install-lanzaboote "$temp"
 	just install-openssh "$temp" "{{config}}"
+	if [ "{{config}}" = "omer-desktop" ]; then
+		just install-keyfile "$temp"
+	fi
 
 	# Install NixOS to the host system
-	nix run github:nix-community/nixos-anywhere -- \
-		--disk-encryption-keys /tmp/disk.key <(sops --extract '["luks_passphrase"]' -d "nixos-configurations/{{config}}/secrets.yaml") \
-		--extra-files "$temp" \
-		--flake ".#{{config}}" \
-		"{{device}}"
+	if [ "{{config}}" = "omer-desktop" ]; then
+		nix run github:nix-community/nixos-anywhere -- \
+			--disk-encryption-keys /tmp/disk.key <(sops --extract '["luks_passphrase"]' -d "nixos-configurations/{{config}}/secrets.yaml") \
+			--disk-encryption-keys /etc/keyfile <(sops --extract '["keyfile"]' -d "nixos-configurations/{{config}}/secrets.yaml") \
+			--extra-files "$temp" \
+			--flake ".#{{config}}" \
+			"{{device}}"
+	else
+		nix run github:nix-community/nixos-anywhere -- \
+			--disk-encryption-keys /tmp/disk.key <(sops --extract '["luks_passphrase"]' -d "nixos-configurations/{{config}}/secrets.yaml") \
+			--extra-files "$temp" \
+			--flake ".#{{config}}" \
+			"{{device}}"
+	fi
 	
 	# Delete temporary directory
 	rm -rf "$temp"
@@ -59,6 +71,19 @@ install-openssh tempdir config:
 	chmod 0644 "{{tempdir}}/etc/ssh/ssh_host_rsa_key.pub"
 
 	cp -r "{{tempdir}}/etc/ssh" "{{tempdir}}/persistent/etc"
+
+[private]
+install-keyfile tempdir:
+	# Create the directories to copy to host machine
+	install -d -m755 "{{tempdir}}/etc"
+	install -d -m755 "{{tempdir}}/persistent/etc"
+
+	# Decrypt SSH keys using sops and store in temporary directory
+	sops --extract '["keyfile"]' -d "nixos-configurations/omer-desktop/secrets.yaml" > "{{tempdir}}/etc/keyfile"
+
+	chmod 0600 "{{tempdir}}/etc/keyfile"
+
+	cp "{{tempdir}}/etc/keyfile" "{{tempdir}}/persistent/etc"
 
 # Commands to run post-installation
 post-install:

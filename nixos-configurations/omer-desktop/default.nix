@@ -13,6 +13,10 @@
 
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
+
+    ./omer-media.nix
+    ./omer-vault.nix
+    ./omer-archive.nix
   ];
 
   # The set of kernel modules in the initial ramdisk used during the boot process
@@ -45,6 +49,21 @@
 
   # Additional arguments passed to each module
   _module.args.device = "/dev/nvme0n1";
+
+  # Modules to help you handle persistent state on systems with ephemeral root storage
+  environment.persistence."/persistent" = {
+    # All files you want to link or bind to persistent storage
+    files = [
+      {
+        file = "/etc/keyfile";
+        parentDirectory = {
+          user = "root";
+          group = "root";
+          mode = "0755";
+        };
+      }
+    ];
+  };
 
   ###
   ###
