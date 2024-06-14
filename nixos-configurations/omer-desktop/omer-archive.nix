@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   disko.devices = {
     disk = {
@@ -35,6 +36,9 @@
           mountpoint = "none";
           acltype = "posixacl";
         };
+        postCreateHook = ''
+          zfs allow ${toString config.users.users.syncoid.uid} change-key,compression,create,mount,mountpoint,receive,rollback,destroy omer-archive
+        '';
       };
     };
   };

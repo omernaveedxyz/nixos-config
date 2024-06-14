@@ -37,7 +37,8 @@
           acltype = "posixacl";
         };
         postCreateHook = ''
-          zfs allow ${toString config.users.users.syncoid.uid} change-key,compression,create,mount,mountpoint,receive,rollback,destroy ${config.networking.hostName}
+          zfs allow ${toString config.users.users.syncoid.uid} bookmark,hold,send,snapshot,destroy,mount omer-vault
+          zfs allow ${toString config.users.users.syncoid.uid} change-key,compression,create,mount,mountpoint,receive,rollback,destroy omer-vault
         '';
       };
     };

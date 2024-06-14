@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   disko.devices = {
     disk = {

@@ -31,28 +31,6 @@ in
       "--sshoption=StrictHostKeyChecking=off"
     ];
 
-    # Permissions granted for the services.syncoid.user user for local source datasets
-    localSourceAllow = [
-      "bookmark"
-      "hold"
-      "send"
-      "snapshot"
-      "destroy"
-      "mount"
-    ];
-
-    # Permissions granted for the services.syncoid.user user for local target datasets
-    localTargetAllow = [
-      "change-key"
-      "compression"
-      "create"
-      "mount"
-      "mountpoint"
-      "receive"
-      "rollback"
-      "destroy"
-    ];
-
     # Syncoid commands to run
     commands =
       listToAttrs (
@@ -63,11 +41,22 @@ in
             target = "omer-vault/${device}";
           };
         }) (attrNames (readDir ../../nixos-configurations))
+        ++ map (device: {
+          name = "syncoid@omer-desktop:omer-vault/${device}";
+          value = {
+            # Target ZFS dataset
+            target = "omer-archive/${device}";
+          };
+        }) (attrNames (readDir ../../nixos-configurations))
       )
       // {
-        "omer-media/root" = {
+        "syncoid@omer-desktop:omer-media/root" = {
           # Target ZFS dataset
           target = "omer-vault/omer-media";
+        };
+        "syncoid@omer-desktop:omer-vault/omer-media" = {
+          # Target ZFS dataset
+          target = "omer-archive/omer-media";
         };
       };
   };
@@ -96,6 +85,28 @@ in
           yearly = 0;
         };
       }) (attrNames (readDir ../../nixos-configurations))
+      ++ map (name: {
+        name = "omer-archive/${name}";
+        value = {
+          # Whether to automatically prune old snapshots
+          autoprune = true;
+
+          # Whether to automatically take snapshots
+          autosnap = false;
+
+          # Number of hourly snapshots
+          hourly = 360;
+
+          # Number of daily snapshots
+          daily = 30;
+
+          # Number of monthly snapshots
+          monthly = 0;
+
+          # Number of yearly snapshots
+          yearly = 0;
+        };
+      }) (attrNames (readDir ../../nixos-configurations))
     )
     // {
       "omer-vault/omer-media" = {
@@ -110,6 +121,25 @@ in
 
         # Number of daily snapshots
         daily = 15;
+
+        # Number of monthly snapshots
+        monthly = 0;
+
+        # Number of yearly snapshots
+        yearly = 0;
+      };
+      "omer-archive/omer-media" = {
+        # Whether to automatically prune old snapshots
+        autoprune = true;
+
+        # Whether to automatically take snapshots
+        autosnap = false;
+
+        # Number of hourly snapshots
+        hourly = 360;
+
+        # Number of daily snapshots
+        daily = 30;
 
         # Number of monthly snapshots
         monthly = 0;
