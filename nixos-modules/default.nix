@@ -11,6 +11,8 @@
     ./programs/nix.nix
     ./programs/sops.nix
     ./programs/users.nix
+
+    ./services/openssh.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
