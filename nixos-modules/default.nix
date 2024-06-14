@@ -16,6 +16,7 @@
     ./programs/users.nix
 
     ./services/openssh.nix
+    ./services/pcscd.nix
     ./services/pipewire.nix
   ];
 
