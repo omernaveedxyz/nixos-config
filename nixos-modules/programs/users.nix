@@ -26,6 +26,7 @@
         extraGroups = [
           "wheel"
           "networkmanager"
+          "libvirtd"
         ];
       };
     };
