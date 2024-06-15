@@ -1,24 +1,17 @@
 {
-  config,
-  impermanence,
-  stylix,
-  ...
-}:
-{
   imports = [
-    impermanence.nixosModules.home-manager.impermanence
-    stylix.homeManagerModules.stylix
-
     ./programs/bash.nix
     ./programs/direnv.nix
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/gpg.nix
+    ./programs/impermanence.nix
     ./programs/lf.nix
     ./programs/neovim.nix
     ./programs/nix.nix
     ./programs/qutebrowser.nix
     ./programs/ssh.nix
+    ./programs/stylix.nix
     ./programs/sway.nix
     ./programs/tmux.nix
     ./programs/xdg.nix
@@ -33,18 +26,6 @@
     additions
     modifications
   ];
-
-  stylix = {
-    # Wallpaper image
-    image = ../home-configurations/${config.home.username}/wallpaper.png;
-
-    # Use this option to force a light or dark theme
-    polarity = "dark";
-  };
-
-  # Allows other users, such asa root, to access files through the bind
-  # mounted directories listed in directories
-  home.persistence."/persistent/home/${config.home.username}".allowOther = true;
 
   # It is occasionally necessary for Home Manager to change configuration defaults 
   # in a way that is incompatible with stateful data. This could, for example, include 
