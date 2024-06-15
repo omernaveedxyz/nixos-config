@@ -17,6 +17,7 @@
     ./programs/lf.nix
     ./programs/neovim.nix
     ./programs/nix.nix
+    ./programs/qutebrowser.nix
     ./programs/ssh.nix
     ./programs/sway.nix
     ./programs/tmux.nix
