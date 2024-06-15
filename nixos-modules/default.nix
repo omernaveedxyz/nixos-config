@@ -17,6 +17,7 @@
     ./programs/sops.nix
     ./programs/users.nix
 
+    ./services/greetd.nix
     ./services/openssh.nix
     ./services/pcscd.nix
     ./services/pipewire.nix
