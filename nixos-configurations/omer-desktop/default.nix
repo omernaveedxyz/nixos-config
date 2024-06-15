@@ -47,6 +47,9 @@
   # The 32-bit host ID of the machine, formatted as 8 hexadecimal characters
   networking.hostId = "001aa168";
 
+  # The time zone used when displaying times and dates
+  time.timeZone = "America/Chicago";
+
   # Additional arguments passed to each module
   _module.args.device = "/dev/nvme0n1";
 
