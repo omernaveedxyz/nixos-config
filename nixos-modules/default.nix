@@ -18,6 +18,7 @@
     ./programs/sops.nix
     ./programs/users.nix
 
+    ./services/dbus.nix
     ./services/greetd.nix
     ./services/openssh.nix
     ./services/pcscd.nix
