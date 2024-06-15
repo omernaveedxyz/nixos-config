@@ -22,6 +22,7 @@
     ./programs/sway.nix
     ./programs/tmux.nix
     ./programs/xdg.nix
+    ./programs/yubikey.nix
 
     ./services/gpg-agent.nix
     ./services/wireplumber.nix
