@@ -1,7 +1,13 @@
-{ config, impermanence, ... }:
+{
+  config,
+  impermanence,
+  stylix,
+  ...
+}:
 {
   imports = [
     impermanence.nixosModules.home-manager.impermanence
+    stylix.homeManagerModules.stylix
 
     ./programs/bash.nix
     ./programs/direnv.nix
@@ -25,6 +31,14 @@
     additions
     modifications
   ];
+
+  stylix = {
+    # Wallpaper image
+    image = ../home-configurations/${config.home.username}/wallpaper.png;
+
+    # Use this option to force a light or dark theme
+    polarity = "dark";
+  };
 
   # Allows other users, such asa root, to access files through the bind
   # mounted directories listed in directories
