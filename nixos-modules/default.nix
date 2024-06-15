@@ -24,7 +24,6 @@
     ./services/pipewire.nix
     ./services/sanoid.nix
     ./services/syncoid.nix
-    ./services/timezone.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
