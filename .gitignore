@@ -1,2 +1,5 @@
 # Nix build repository
 /result
+
+# Nix-direnv cache directory
+.direnv/
