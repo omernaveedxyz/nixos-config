@@ -104,4 +104,4 @@ trust-network ssid:
 
 # Enroll FIDO2 YubiKey to decrypt specified LUKS partition
 enroll-fido2 partition:
-	systemd-cryptenroll --fido2-device=auto "{{partition}}"
+	sudo systemd-cryptenroll --fido2-device=auto "{{partition}}"
