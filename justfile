@@ -1,6 +1,6 @@
 # List all available commands using Just
 default:
-	just --list
+	just --list --unsorted
 
 # Update all Nix Flake inputs and commit changes
 update-all:
