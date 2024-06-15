@@ -9,7 +9,6 @@
     ./programs/lf.nix
     ./programs/neovim.nix
     ./programs/nix.nix
-    ./programs/qutebrowser.nix
     ./programs/ssh.nix
     ./programs/stylix.nix
     ./programs/sway.nix
