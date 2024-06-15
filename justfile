@@ -85,13 +85,8 @@ install-keyfile tempdir:
 
 	cp "{{tempdir}}/etc/keyfile" "{{tempdir}}/persistent/etc"
 
-# Commands to run post-installation
-post-install:
-	just post-install-lanzaboote
-
-[private]
-post-install-lanzaboote:
-	# Enroll Secure Boot keys
+# Enroll Secure Boot keys
+enroll-secureboot:
 	sudo sbctl enroll-keys --microsoft
 
 # Set a permanent device MAC address for a specific network
@@ -106,3 +101,7 @@ trust-network ssid:
 	else
 		echo "Unable to find specified SSID." && exit 1
 	fi
+
+# Enroll FIDO2 YubiKey to decrypt specified LUKS partition
+enroll-fido2 partition:
+	systemd-cryptenroll --fido2-device=auto "{{partition}}"
