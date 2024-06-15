@@ -2,6 +2,7 @@
   imports = [
     ./programs/bash.nix
     ./programs/direnv.nix
+    ./programs/firefox.nix
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/gpg.nix
