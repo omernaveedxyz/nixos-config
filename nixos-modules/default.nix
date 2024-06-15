@@ -5,6 +5,7 @@
     ./hardware/impermanence.nix
     ./hardware/lanzaboote.nix
     ./hardware/networking.nix
+    ./hardware/opengl.nix
     # ./hardware/systemd-boot.nix
     ./hardware/systemd.nix
     ./hardware/virtualisation.nix
