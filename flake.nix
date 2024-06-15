@@ -36,6 +36,11 @@
 
     # Modules to help you handle persistent state on systems with ephemeral root storage
     impermanence.url = "github:nix-community/impermanence";
+
+    # System-wide colorscheming and typography for NixOS
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.home-manager.follows = "home-manager";
   };
 
   outputs =
@@ -50,6 +55,7 @@
       lanzaboote,
       sops-nix,
       impermanence,
+      stylix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -73,6 +79,7 @@
             lanzaboote
             sops-nix
             impermanence
+            stylix
             ;
         };
 
