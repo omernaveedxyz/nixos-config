@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 let
-  inherit (lib) getExe;
+  inherit (builtins) readDir;
+  inherit (lib) getExe attrNames;
 in
 {
   users.users.colmena = {
@@ -12,6 +13,12 @@ in
 
     # The path to the user's shell
     shell = getExe pkgs.bash;
+
+    # A list of files each containing one OpenSSH public key that should be added
+    # to the user's authorized keys
+    openssh.authorizedKeys.keyFiles = map (name: ../../home-configurations/${name}/pubkey.asc) (
+      attrNames (readDir ../../home-configurations)
+    );
   };
 
   # Additional group to be created

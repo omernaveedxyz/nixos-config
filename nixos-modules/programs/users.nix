@@ -1,4 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  inherit (lib) optionals;
+in
 {
   users = {
     # If set to true, you are free to add new users and groups to the system
@@ -23,11 +26,14 @@
         hashedPasswordFile = config.sops.secrets."users/users/omer/hashedPasswordFile".path;
 
         # The user's auxiliary groups
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-          "libvirtd"
-        ];
+        extraGroups =
+          [ "wheel" ]
+          ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
+          ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" ];
+
+        # A list of files each containing one OpenSSH public key that should be
+        # added to the user's authorized keys
+        openssh.authorizedKeys.keyFiles = [ ../../home-configurations/omer/id_rsa.pub ];
       };
     };
   };

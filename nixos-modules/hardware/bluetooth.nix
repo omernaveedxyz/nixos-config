@@ -5,6 +5,13 @@
 
     # Whether to power up the default Bluetooth controller on boot
     powerOnBoot = true;
+
+    # Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf)
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
   };
 
   # Files and directories to persistent across ephemeral boots

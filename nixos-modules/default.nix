@@ -11,6 +11,7 @@
     ./hardware/zfs.nix
 
     ./programs/colmena.nix
+    ./programs/fuse.nix
     ./programs/nix.nix
     ./programs/sops.nix
     ./programs/users.nix
