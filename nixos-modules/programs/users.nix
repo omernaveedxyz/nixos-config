@@ -38,6 +38,15 @@ in
     };
   };
 
+  # A set of shell script fragments that are executed when a NixOS system configuration is activated
+  system.activationScripts."create-persistent-home@omer".text = ''
+      	if [ ! -d /persistent/home/omer ]; then
+    		mkdir -p /persistent/home/omer
+    		chmod 0700 /persistent/home/omer
+    		chown -R 1000:100 /persistent/home/omer
+    	fi
+  '';
+
   # Specify encrypted sops secret to access
   sops.secrets."users/users/omer/hashedPasswordFile" = {
     sopsFile = ../secrets.yaml;
