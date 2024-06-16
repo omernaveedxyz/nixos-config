@@ -105,3 +105,7 @@ trust-network ssid:
 # Enroll FIDO2 YubiKey to decrypt specified LUKS partition
 enroll-fido2 partition:
 	sudo systemd-cryptenroll --fido2-device=auto "{{partition}}"
+
+# Load GnuPG private key stubs
+enroll-gnupg:
+	gpg --card-status
