@@ -37,4 +37,10 @@ in
         trust = 1;
       }) (attrNames (readDir ../../nixos-configurations)));
   };
+
+  # Files and directories to persistent across ephemeral boots
+  home.persistence."/persistent/home/${config.home.username}" = {
+    # All directories you want to link or bind to persistent storage
+    directories = [ ".local/share/gnupg" ];
+  };
 }
