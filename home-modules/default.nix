@@ -3,6 +3,7 @@
     ./programs/bash.nix
     ./programs/direnv.nix
     ./programs/firefox.nix
+    ./programs/foot.nix
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/gpg.nix
