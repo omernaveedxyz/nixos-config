@@ -17,7 +17,7 @@
       package = pkgs.bibata-cursors;
 
       # The cursor name within the package
-      name = "Bibata-Modern-Amber";
+      name = "Bibata-Modern-Ice";
 
       # The cursor size
       size = 24;
