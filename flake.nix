@@ -41,6 +41,9 @@
     stylix.url = "github:danth/stylix/73c6955b4572346cc10f43a459949fe646efbde0";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
+
+    # Nix User Repository: User contributed nix packages
+    nur.url = "github:nix-community/nur";
   };
 
   outputs =
@@ -56,6 +59,7 @@
       sops-nix,
       impermanence,
       stylix,
+      nur,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -80,6 +84,7 @@
             sops-nix
             impermanence
             stylix
+            nur
             ;
         };
 
