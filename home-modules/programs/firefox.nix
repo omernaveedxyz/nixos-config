@@ -753,7 +753,7 @@
         # "security.nocertdb" = true; //
         # -------------------------------------
         # Disable favicons in history and bookmarks
-        "browser.chrome.site_icons" = false;
+        "browser.chrome.site_icons" = true;
         # -------------------------------------
         # Exclude "Undo Closed Tabs" in Session Restore
         # "browser.sessionstore.max_tabs_undo" = 0;
