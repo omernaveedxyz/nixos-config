@@ -11,7 +11,6 @@
     ./programs/neovim.nix
     ./programs/nix.nix
     ./programs/ssh.nix
-    ./programs/stylix.nix
     ./programs/sway.nix
     ./programs/tmux.nix
     ./programs/xdg.nix
