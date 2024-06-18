@@ -25,6 +25,7 @@
     ./services/swayidle.nix
     ./services/swaync.nix
     ./services/wireplumber.nix
+    ./services/xdg-portals.nix
   ];
 
   # Modify and extend existing Nixpkgs collection
