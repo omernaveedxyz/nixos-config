@@ -18,6 +18,7 @@
     ./programs/tmux.nix
     ./programs/waybar.nix
     ./programs/xdg.nix
+    ./programs/yt-dlp.nix
     ./programs/yubikey.nix
 
     ./services/gpg-agent.nix
