@@ -20,6 +20,7 @@
 
     ./services/gpg-agent.nix
     ./services/swayidle.nix
+    ./services/swaync.nix
     ./services/wireplumber.nix
   ];
 
