@@ -19,6 +19,7 @@
     ./programs/yubikey.nix
 
     ./services/gpg-agent.nix
+    ./services/swayidle.nix
     ./services/wireplumber.nix
   ];
 
