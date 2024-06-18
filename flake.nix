@@ -38,7 +38,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # System-wide colorscheming and typography for NixOS
-    stylix.url = "github:danth/stylix/73c6955b4572346cc10f43a459949fe646efbde0";
+    stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
 
