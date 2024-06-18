@@ -9,6 +9,7 @@
     ./programs/gpg.nix
     ./programs/impermanence.nix
     ./programs/lf.nix
+    ./programs/mpv.nix
     ./programs/neovim.nix
     ./programs/nix.nix
     ./programs/ssh.nix
