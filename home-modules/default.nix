@@ -16,6 +16,7 @@
     ./programs/sway.nix
     ./programs/swaylock.nix
     ./programs/tmux.nix
+    ./programs/waybar.nix
     ./programs/xdg.nix
     ./programs/yubikey.nix
 
