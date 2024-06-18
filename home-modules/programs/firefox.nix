@@ -1004,7 +1004,7 @@
         "dom.push.userAgentID" = "";
         # -------------------------------------
         # Disable WebRTC (Web Real-Time Communication)
-        "media.peerconnection.enabled" = false;
+        "media.peerconnection.enabled" = true;
         # -------------------------------------
         # Enable GPC (Global Privacy Control) in non-PB windows
         # "privacy.globalprivacycontrol.enabled" = true;
