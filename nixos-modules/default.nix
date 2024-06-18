@@ -15,6 +15,7 @@
     ./programs/dconf.nix
     ./programs/fuse.nix
     ./programs/nix.nix
+    ./programs/pam.nix
     ./programs/sops.nix
     ./programs/users.nix
 

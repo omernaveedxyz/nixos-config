@@ -13,6 +13,7 @@
     ./programs/nix.nix
     ./programs/ssh.nix
     ./programs/sway.nix
+    ./programs/swaylock.nix
     ./programs/tmux.nix
     ./programs/xdg.nix
     ./programs/yubikey.nix
