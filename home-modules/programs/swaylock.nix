@@ -1,8 +1,11 @@
-{ lib, ... }:
+{ pkgs, ... }:
 {
   programs.swaylock = {
     # Whether to enable swaylock
     enable = true;
+
+    # The swaylock package to use
+    package = pkgs.swaylock-effects;
 
     # Default arguments to swaylock
     settings = {
@@ -12,8 +15,8 @@
       # Sets the indicator radius
       indicator-radius = 120;
 
-      # Sets the color of the inside of the indicator
-      inside-color = lib.mkForce "00000000";
+      # Show a clock in the indicator
+      clock = true;
     };
   };
 }

@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  inherit (lib) getExe;
+in
 {
   wayland.windowManager.sway = {
     # Whether to enable sway wayland compositor
@@ -120,7 +123,7 @@
           "Shift+XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +1%";
           "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-          "${modifier}+Shift+m" = "exec ${pkgs.swaylock}/bin/swaylock -fF";
+          "${modifier}+Shift+m" = "exec ${getExe config.programs.swaylock.package} -fF";
         };
 
       # An attribute set that assigns keypress to an action using key code
