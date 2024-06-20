@@ -1133,6 +1133,7 @@
         # >>>>>>>>>>>>>>>>>>>>>
         "general.smoothScroll" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
+        "ui.key.menuAccessKeyFocuses" = false;
       };
     };
   };
