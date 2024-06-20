@@ -1,4 +1,12 @@
-{ config, nur, ... }:
+{
+  config,
+  lib,
+  nur,
+  ...
+}:
+let
+  inherit (lib) mkIf mkOptionDefault getExe;
+in
 {
   imports = [ nur.hmModules.nur ];
 
@@ -1149,4 +1157,14 @@
       }
     }
   '';
+
+  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
+    # Sway configuration options
+    config = {
+      # An attribute set that assigns a key press to an action using a key symbol
+      keybindings = mkOptionDefault {
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package}";
+      };
+    };
+  };
 }
