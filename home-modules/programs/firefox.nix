@@ -1058,13 +1058,13 @@
         #
         # WARNINGS
         #
-        "browser.tabs.warnOnClose" = false; # [DEFAULT: false FF94+]
-        "browser.tabs.warnOnCloseOtherTabs" = false;
+        "browser.tabs.warnOnClose" = true; # [DEFAULT: false FF94+]
+        "browser.tabs.warnOnCloseOtherTabs" = true;
         "browser.tabs.warnOnOpen" = false;
-        "browser.warnOnQuitShortcut" = false; # [FF94+]
+        "browser.warnOnQuitShortcut" = true; # [FF94+]
         "full-screen-api.warning.delay" = 0;
         "full-screen-api.warning.timeout" = 0;
-        "browser.warnOnQuit" = false;
+        "browser.warnOnQuit" = true;
         #
         # UPDATES
         #
