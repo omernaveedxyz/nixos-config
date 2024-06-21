@@ -17,6 +17,7 @@
     ./programs/neovim
     ./programs/nix
     ./programs/ssh
+    ./programs/stylix
     ./programs/sway
     ./programs/swaylock
     ./programs/tmux
