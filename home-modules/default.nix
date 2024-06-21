@@ -11,6 +11,7 @@
     ./programs/gpg
     ./programs/gtk
     ./programs/impermanence
+    ./programs/kitty
     ./programs/lf
     ./programs/mpv
     ./programs/neovim
