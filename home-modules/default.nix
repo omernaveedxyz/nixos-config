@@ -9,6 +9,7 @@
     ./programs/fzf
     ./programs/git
     ./programs/gpg
+    ./programs/gtk
     ./programs/impermanence
     ./programs/lf
     ./programs/mpv
