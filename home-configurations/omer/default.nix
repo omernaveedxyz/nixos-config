@@ -1,7 +1,7 @@
 {
   imports = [
-    ./programs/git.nix
-    ./programs/stylix.nix
+    ./programs/git
+    ./programs/stylix
   ];
 
   # The user’s username
