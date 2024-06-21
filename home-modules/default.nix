@@ -1,5 +1,6 @@
 {
   imports = [
+    ./programs/alacritty
     ./programs/bash
     ./programs/direnv
     ./programs/firefox
