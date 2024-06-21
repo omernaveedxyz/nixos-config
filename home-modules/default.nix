@@ -26,6 +26,7 @@
     ./programs/yt-dlp
     ./programs/yubikey
 
+    ./services/gammastep
     ./services/gpg-agent
     ./services/swayidle
     ./services/swaync
