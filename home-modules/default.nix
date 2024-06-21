@@ -6,7 +6,6 @@
     ./programs/btop
     ./programs/chromium
     ./programs/direnv
-    ./programs/feh
     ./programs/firefox
     ./programs/foot
     ./programs/fzf
@@ -24,6 +23,7 @@
     ./programs/sway
     ./programs/swaylock
     ./programs/tmux
+    ./programs/vimiv
     ./programs/waybar
     ./programs/xdg
     ./programs/yt-dlp
