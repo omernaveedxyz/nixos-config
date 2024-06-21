@@ -1,31 +1,31 @@
 {
   imports = [
-    ./programs/bash.nix
-    ./programs/direnv.nix
-    ./programs/firefox.nix
-    ./programs/foot.nix
-    ./programs/fzf.nix
-    ./programs/git.nix
-    ./programs/gpg.nix
-    ./programs/impermanence.nix
-    ./programs/lf.nix
-    ./programs/mpv.nix
-    ./programs/neovim.nix
-    ./programs/nix.nix
-    ./programs/ssh.nix
-    ./programs/sway.nix
-    ./programs/swaylock.nix
-    ./programs/tmux.nix
-    ./programs/waybar.nix
-    ./programs/xdg.nix
-    ./programs/yt-dlp.nix
-    ./programs/yubikey.nix
+    ./programs/bash
+    ./programs/direnv
+    ./programs/firefox
+    ./programs/foot
+    ./programs/fzf
+    ./programs/git
+    ./programs/gpg
+    ./programs/impermanence
+    ./programs/lf
+    ./programs/mpv
+    ./programs/neovim
+    ./programs/nix
+    ./programs/ssh
+    ./programs/sway
+    ./programs/swaylock
+    ./programs/tmux
+    ./programs/waybar
+    ./programs/xdg
+    ./programs/yt-dlp
+    ./programs/yubikey
 
-    ./services/gpg-agent.nix
-    ./services/swayidle.nix
-    ./services/swaync.nix
-    ./services/wireplumber.nix
-    ./services/xdg-portals.nix
+    ./services/gpg-agent
+    ./services/swayidle
+    ./services/swaync
+    ./services/wireplumber
+    ./services/xdg-portals
   ];
 
   # Modify and extend existing Nixpkgs collection
