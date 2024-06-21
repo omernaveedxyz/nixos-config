@@ -1158,6 +1158,9 @@ in
     }
   '';
 
+  # The Firefox profile names to apply styling on
+  stylix.targets.firefox.profileNames = [ "Default" ];
+
   wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
     # Sway configuration options
     config = {
