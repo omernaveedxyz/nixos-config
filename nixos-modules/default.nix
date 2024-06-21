@@ -26,7 +26,11 @@
     ./services/pipewire.nix
     ./services/sanoid.nix
     ./services/syncoid.nix
+    ./services/udisks2.nix
   ];
+
+  # List of directories to be symlinked in /run/current-system/sw
+  environment.pathsToLink = [ "/share/bash-completion" ];
 
   # On activation move existing files by appending the given file extension 
   # rather than exiting with an error
