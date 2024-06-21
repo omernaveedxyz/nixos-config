@@ -16,8 +16,8 @@ in
 
     # A list of files each containing one OpenSSH public key that should be added
     # to the user's authorized keys
-    openssh.authorizedKeys.keyFiles = map (name: ../../home-configurations/${name}/id_rsa.pub) (
-      attrNames (readDir ../../home-configurations)
+    openssh.authorizedKeys.keyFiles = map (name: ../../../home-configurations/${name}/id_rsa.pub) (
+      attrNames (readDir ../../../home-configurations)
     );
   };
 

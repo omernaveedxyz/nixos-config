@@ -1,32 +1,32 @@
 {
   imports = [
-    ./hardware/bluetooth.nix
-    ./hardware/disko.nix
-    ./hardware/impermanence.nix
-    ./hardware/lanzaboote.nix
-    ./hardware/networking.nix
-    ./hardware/opengl.nix
-    # ./hardware/systemd-boot.nix
-    ./hardware/systemd.nix
-    ./hardware/virtualisation.nix
-    ./hardware/zfs.nix
+    ./hardware/bluetooth
+    ./hardware/disko
+    ./hardware/impermanence
+    ./hardware/lanzaboote
+    ./hardware/networking
+    ./hardware/opengl
+    # ./hardware/systemd-boot
+    ./hardware/systemd
+    ./hardware/virtualisation
+    ./hardware/zfs
 
-    ./programs/colmena.nix
-    ./programs/dconf.nix
-    ./programs/fuse.nix
-    ./programs/nix.nix
-    ./programs/pam.nix
-    ./programs/sops.nix
-    ./programs/users.nix
+    ./programs/colmena
+    ./programs/dconf
+    ./programs/fuse
+    ./programs/nix
+    ./programs/pam
+    ./programs/sops
+    ./programs/users
 
-    ./services/dbus.nix
-    ./services/greetd.nix
-    ./services/openssh.nix
-    ./services/pcscd.nix
-    ./services/pipewire.nix
-    ./services/sanoid.nix
-    ./services/syncoid.nix
-    ./services/udisks2.nix
+    ./services/dbus
+    ./services/greetd
+    ./services/openssh
+    ./services/pcscd
+    ./services/pipewire
+    ./services/sanoid
+    ./services/syncoid
+    ./services/udisks2
   ];
 
   # List of directories to be symlinked in /run/current-system/sw
