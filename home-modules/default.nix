@@ -2,6 +2,7 @@
   imports = [
     ./programs/alacritty
     ./programs/bash
+    ./programs/btop
     ./programs/chromium
     ./programs/direnv
     ./programs/feh
