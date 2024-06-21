@@ -1,21 +1,30 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkOrder mkIf;
 in
 {
   programs.bash = {
     # Whether to enable GNU Bourne-Again SHell
     enable = true;
 
+    # Controlling how commands are saved on the history list
+    historyControl = [ "ignoredups" ];
+
     # Whether to enable Bash completion for all interactive Bash shells
     enableCompletion = true;
 
     # Location of the bash history file
-    historyFile = "/home/${config.home.username}/.local/share/bash/history";
+    historyFile = "${config.xdg.dataHome}/bash/history";
 
     # Extra commands that should be run when initializing an interactive shell
-    initExtra = ''
-      PS1='\[\e[32;1m\][\u@\h:\w] \[\e[39m\]\$ \[\e[0m\]'
+    initExtra = mkOrder 100 ''
+      source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
+      PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\[\e[38;5;208;1m\][\u@\h:\w]\[\e[92m\]''${PS1_CMD1}\[\e[38;5;208m\] \$ \[\e[0m\]'
     '';
 
     # Environment variables that will be sest for the Bash session
@@ -27,8 +36,7 @@ in
     shellOptions = [ "histappend" ];
   };
 
-  # The activation scripts blocks to run when activating a Home Manager
-  # generation
+  # The activation scripts blocks to run when activating a Home Manager generation
   home.activation.createBashHistoryDirectoryAndFile =
     mkIf (config.programs.bash.historyFile != null)
       (

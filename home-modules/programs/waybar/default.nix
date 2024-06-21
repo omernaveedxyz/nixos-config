@@ -1,5 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+
+  inherit (lib) getExe;
 
   waybar-module-custom-uptime = pkgs.writeShellScriptBin "waybar-module-custom-uptime" ''
     ${pkgs.gawk}/bin/awk \
@@ -35,6 +42,7 @@ in
 
         # Modules that will be displayed on the right
         modules-right = [
+          "idle_inhibitor"
           "custom/uptime"
           "backlight"
           "wireplumber"
@@ -85,13 +93,26 @@ in
           format = "{:%a, %b %d %H:%M}";
         };
 
+        # The idle_inhibitor module can inhibit idle behavior such as screen blanking, 
+        # locking, and screensaving, also known as "presentation mode"
+        "idle_inhibitor" = {
+          # The format, how the state should be displayed
+          format = "{status} {icon}";
+
+          # Based on the current state, the corresponding icon gets selected
+          format-icons = {
+            "activated" = "  ";
+            "deactivated" = "  ";
+          };
+        };
+
         # The uptime module displays the total uptime of the system
         "custom/uptime" = {
           # The path to a script which executes and outputs
           exec = "${waybar-module-custom-uptime}/bin/waybar-module-custom-uptime";
 
           # The format, how information should be displayed
-          format = "{}  ";
+          format = "{}   ";
 
           # The interval (in seconds) in which the information gets polled
           interval = 60;
@@ -137,7 +158,7 @@ in
           };
 
           # Command to execute when clicked on the module
-          on-click = "${pkgs.foot}/bin/foot --title ncpamixer -e ${pkgs.ncpamixer}/bin/ncpamixer";
+          on-click = "${config.home.sessionVariables.TERMINAL} --title ncpamixer -e ${getExe pkgs.ncpamixer}";
         };
 
         # The memory module displays the current RAM and swap utilization
@@ -245,6 +266,11 @@ in
 
       .modules-left #window {
         background: transparent;
+      }
+
+      .modules-right #idle_inhibitor {
+        background: transparent;
+        color: @base07;
       }
 
       .modules-right #backlight {

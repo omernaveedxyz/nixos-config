@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkOptionDefault getExe;
+  inherit (lib) mkIf mkOptionDefault;
 in
 {
   programs.lf = {
@@ -18,7 +18,7 @@ in
     config = {
       # An attribute set that assigns a key press to an action using a key symbol
       keybindings = mkOptionDefault {
-        "${config.wayland.windowManager.sway.config.modifier}+Shift+f" = "exec ${getExe config.programs.foot.package} -e lf";
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+f" = "exec ${config.home.sessionVariables.TERMINAL} -e lf";
       };
     };
   };

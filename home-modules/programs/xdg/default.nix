@@ -1,6 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   inherit (builtins) replaceStrings;
+  inherit (lib) mkIf;
 in
 {
   xdg = {
@@ -17,20 +18,22 @@ in
   };
 
   # Files and directories to persistent across ephemeral boots
-  home.persistence."/persistent/home/${config.home.username}" = {
-    # All directories you want to link or bind to persistent storage
-    directories = map (name: replaceStrings [ "${config.home.homeDirectory}/" ] [ "" ] name) (
-      with config.xdg.userDirs;
-      [
-        desktop
-        documents
-        download
-        music
-        pictures
-        publicShare
-        templates
-        videos
-      ]
-    );
-  };
+  home.persistence."/persistent/home/${config.home.username}" =
+    mkIf (config._module.args.impermanence)
+      {
+        # All directories you want to link or bind to persistent storage
+        directories = map (name: replaceStrings [ "${config.home.homeDirectory}/" ] [ "" ] name) (
+          with config.xdg.userDirs;
+          [
+            desktop
+            documents
+            download
+            music
+            pictures
+            publicShare
+            templates
+            videos
+          ]
+        );
+      };
 }

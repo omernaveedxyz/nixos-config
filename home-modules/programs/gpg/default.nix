@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (builtins) readDir;
-  inherit (lib) attrNames;
+  inherit (lib) attrNames mkIf;
 in
 {
   programs.gpg = {
@@ -28,19 +28,21 @@ in
     publicKeys =
       [
         {
-          source = ../../home-configurations/${config.home.username}/pubkey.asc;
+          source = ../../../home-configurations/${config.home.username}/pubkey.asc;
           trust = 5;
         }
       ]
       ++ (map (name: {
-        source = ../../nixos-configurations/${name}/pubkey.asc;
+        source = ../../../nixos-configurations/${name}/pubkey.asc;
         trust = 1;
-      }) (attrNames (readDir ../../nixos-configurations)));
+      }) (attrNames (readDir ../../../nixos-configurations)));
   };
 
   # Files and directories to persistent across ephemeral boots
-  home.persistence."/persistent/home/${config.home.username}" = {
-    # All directories you want to link or bind to persistent storage
-    directories = [ ".local/share/gnupg" ];
-  };
+  home.persistence."/persistent/home/${config.home.username}" =
+    mkIf (config._module.args.impermanence)
+      {
+        # All directories you want to link or bind to persistent storage
+        directories = [ ".local/share/gnupg" ];
+      };
 }

@@ -10,7 +10,7 @@ in
 {
   programs.swaylock = {
     # Whether to enable swaylock
-    enable = true;
+    enable = config.wayland.windowManager.sway.enable;
 
     # The swaylock package to use
     package = pkgs.swaylock-effects;

@@ -5,12 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkOptionDefault;
+  inherit (lib) mkOptionDefault getExe;
 in
 {
   wayland.windowManager.sway = {
     # Whether to enable sway wayland compositor
-    enable = true;
+    enable = config._module.args.desktop == "sway";
 
     # Sway configuration options
     config = {
@@ -103,26 +103,22 @@ in
       };
 
       # An attribute set that assigns a key press to an action using a key symbol
-      keybindings =
-        let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-          pactl = "${pkgs.pulseaudio}/bin/pactl";
-          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-        in
-        mkOptionDefault {
-          "XF86MonBrightnessDown" = "exec ${brightnessctl} set 5%-";
-          "XF86MonBrightnessUp" = "exec ${brightnessctl} set 5%+";
-          "Shift+XF86MonBrightnessDown" = "exec ${brightnessctl} set 1%-";
-          "Shift+XF86MonBrightnessUp" = "exec ${brightnessctl} set 1%+";
-          "${modifier}+Shift+XF86MonBrightnessDown" = "exec ${brightnessctl} set 0%";
-          "${modifier}+Shift+XF86MonBrightnessUp" = "exec ${brightnessctl} set 100%";
+      keybindings = mkOptionDefault {
+        "XF86MonBrightnessDown" = "exec ${getExe pkgs.brightnessctl} set 5%-";
+        "XF86MonBrightnessUp" = "exec ${getExe pkgs.brightnessctl} set 5%+";
+        "Shift+XF86MonBrightnessDown" = "exec ${getExe pkgs.brightnessctl} set 1%-";
+        "Shift+XF86MonBrightnessUp" = "exec ${getExe pkgs.brightnessctl} set 1%+";
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+XF86MonBrightnessDown" = "exec ${getExe pkgs.brightnessctl} set 0%";
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+XF86MonBrightnessUp" = "exec ${getExe pkgs.brightnessctl} set 100%";
 
-          "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
-          "Shift+XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -1%";
-          "Shift+XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +1%";
-          "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
-        };
+        "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "Shift+XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -1%";
+        "Shift+XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1%";
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ 0%";
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ 100%";
+        "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+      };
 
       # An attribute set that assigns keypress to an action using key code
       keycodebindings = { };

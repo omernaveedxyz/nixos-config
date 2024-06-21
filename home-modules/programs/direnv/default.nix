@@ -1,4 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+in
 {
   programs.direnv = {
     # Whether to enable direnv, the environment switcher
@@ -12,8 +15,10 @@
   };
 
   # Files and directories to persistent across ephemeral boots
-  home.persistence."/persistent/home/${config.home.username}" = {
-    # All directories you want to link or bind to persistent storage
-    directories = [ ".local/share/direnv" ];
-  };
+  home.persistence."/persistent/home/${config.home.username}" =
+    mkIf (config._module.args.impermanence)
+      {
+        # All directories you want to link or bind to persistent storage
+        directories = [ ".local/share/direnv" ];
+      };
 }

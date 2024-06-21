@@ -12,7 +12,7 @@ in
 
   programs.firefox = {
     # Whether to enable Firefox
-    enable = true;
+    enable = config._module.args.browser == "firefox";
 
     # Attribute set of Firefox profiles
     profiles."Default" = {
@@ -1161,13 +1161,20 @@ in
   # The Firefox profile names to apply styling on
   stylix.targets.firefox.profileNames = [ "Default" ];
 
-  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
-    # Sway configuration options
-    config = {
-      # An attribute set that assigns a key press to an action using a key symbol
-      keybindings = mkOptionDefault {
-        "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package}";
-      };
-    };
+  # Environment variables to always set at login
+  home.sessionVariables = mkIf (config.programs.firefox.enable) {
+    BROWSER = "${getExe config.programs.firefox.package}";
   };
+
+  wayland.windowManager.sway =
+    mkIf (config.wayland.windowManager.sway.enable && config.programs.firefox.enable)
+      {
+        # Sway configuration options
+        config = {
+          # An attribute set that assigns a key press to an action using a key symbol
+          keybindings = mkOptionDefault {
+            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package}";
+          };
+        };
+      };
 }
