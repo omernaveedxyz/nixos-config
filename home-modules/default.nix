@@ -3,6 +3,7 @@
     ./programs/alacritty
     ./programs/bash
     ./programs/direnv
+    ./programs/feh
     ./programs/firefox
     ./programs/foot
     ./programs/fzf
