@@ -32,25 +32,25 @@ in
           name = "syncoid@${device}:${device}/persistent";
           value = {
             # Target ZFS dataset
-            target = "omer-vault/${device}";
+            target = "syncoid@omer-desktop:omer-vault/${device}";
           };
         }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
         ++ map (device: {
           name = "syncoid@omer-desktop:omer-vault/${device}";
           value = {
             # Target ZFS dataset
-            target = "omer-archive/${device}";
+            target = "syncoid@omer-desktop:omer-archive/${device}";
           };
         }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
       )
       // {
         "syncoid@omer-desktop:omer-media/root" = {
           # Target ZFS dataset
-          target = "omer-vault/omer-media";
+          target = "syncoid@omer-desktop:omer-vault/omer-media";
         };
         "syncoid@omer-desktop:omer-vault/omer-media" = {
           # Target ZFS dataset
-          target = "omer-archive/omer-media";
+          target = "syncoid@omer-desktop:omer-archive/omer-media";
         };
       };
   };
