@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault mkIf;
 in
 {
   networking = {
@@ -35,7 +35,7 @@ in
   };
 
   # Files and directories to persistent across ephemeral boots
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # All directories you want to link or bind to persistent storage
     directories = [
       {

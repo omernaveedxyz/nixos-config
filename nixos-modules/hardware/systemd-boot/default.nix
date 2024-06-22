@@ -1,5 +1,9 @@
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+in
 {
-  boot.loader = {
+  boot.loader = mkIf (!config._module.args.secureboot) {
     systemd-boot = {
       # Whether to enable the systemd-boot (formerly gummiboot) EFI boot manager
       enable = true;

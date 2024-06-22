@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkIf;
 in
@@ -24,7 +24,7 @@ in
   };
 
   # Files and directories to persistent across ephemeral boots
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # All files you want to link or bind to persistent storage
     files = [
       {

@@ -1,8 +1,16 @@
-{ lanzaboote, ... }:
+{
+  config,
+  lib,
+  lanzaboote,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
 {
   imports = [ lanzaboote.nixosModules.lanzaboote ];
 
-  boot.lanzaboote = {
+  boot.lanzaboote = mkIf (config._module.args.secureboot) {
     # Whether to enable Lanzaboote
     enable = true;
 
@@ -19,15 +27,17 @@
   };
 
   # Files and directories to persistent across ephemeral boots
-  environment.persistence."/persistent" = {
-    # All directories you want to link or bind to persistent storage
-    directories = [
+  environment.persistence."/persistent" =
+    mkIf (config._module.args.impermanence && config._module.args.secureboot)
       {
-        directory = "/etc/secureboot";
-        user = "root";
-        group = "root";
-        mode = "0755";
-      }
-    ];
-  };
+        # All directories you want to link or bind to persistent storage
+        directories = [
+          {
+            directory = "/etc/secureboot";
+            user = "root";
+            group = "root";
+            mode = "0755";
+          }
+        ];
+      };
 }

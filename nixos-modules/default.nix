@@ -6,7 +6,7 @@
     ./hardware/lanzaboote
     ./hardware/networking
     ./hardware/opengl
-    # ./hardware/systemd-boot
+    ./hardware/systemd-boot
     ./hardware/systemd
     ./hardware/virtualisation
     ./hardware/zfs

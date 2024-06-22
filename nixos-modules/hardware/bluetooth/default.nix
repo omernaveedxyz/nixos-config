@@ -1,3 +1,7 @@
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+in
 {
   hardware.bluetooth = {
     # Whether to enable support for Bluetooth
@@ -15,7 +19,7 @@
   };
 
   # Files and directories to persistent across ephemeral boots
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # All directories you want to link or bind to persistent storage
     directories = [
       {

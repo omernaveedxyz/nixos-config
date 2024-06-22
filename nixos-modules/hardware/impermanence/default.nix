@@ -52,7 +52,7 @@ in
 {
   imports = [ impermanence.nixosModules.impermanence ];
 
-  boot.initrd = {
+  boot.initrd = mkIf (config._module.args.impermanence) {
     # Names of supported filesystem types in the initial ramdisk
     supportedFilesystems = [ "zfs" ];
 
@@ -111,7 +111,7 @@ in
   fileSystems."/persistent".neededForBoot = true;
 
   # Files and directories to persistent across ephemeral boots
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # Allows you to specify whether to hide the bind mounts from showing up as
     # mounted drives in the file manager. If enabled, it sets the mount option
     # x-gvfs-hide on all bind mounts

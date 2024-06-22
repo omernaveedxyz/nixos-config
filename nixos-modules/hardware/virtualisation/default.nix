@@ -1,4 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
 {
   # This option enables libvirtd, a daemon that manages virtual machines
   virtualisation.libvirtd.enable = true;
@@ -13,7 +21,7 @@
   environment.systemPackages = with pkgs; [ virtiofsd ];
 
   # Files and directories to persistent across ephemeral boots
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # All directories you want to link or bind to persistent storage
     directories = [
       {
