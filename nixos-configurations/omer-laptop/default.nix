@@ -6,7 +6,6 @@
   nixos-hardware,
   ...
 }:
-
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -47,5 +46,9 @@
   time.timeZone = "America/Chicago";
 
   # Additional arguments passed to each module
-  _module.args.device = "/dev/nvme0n1";
+  _module.args = {
+    device = "/dev/nvme0n1";
+    secureboot = true;
+    impermanence = true;
+  };
 }

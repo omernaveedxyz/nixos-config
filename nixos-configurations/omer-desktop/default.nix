@@ -6,7 +6,9 @@
   nixos-hardware,
   ...
 }:
-
+let
+  inherit (lib) mkIf;
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -51,10 +53,14 @@
   time.timeZone = "America/Chicago";
 
   # Additional arguments passed to each module
-  _module.args.device = "/dev/nvme0n1";
+  _module.args = {
+    device = "/dev/nvme0n1";
+    secureboot = true;
+    impermanence = true;
+  };
 
   # Modules to help you handle persistent state on systems with ephemeral root storage
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # All files you want to link or bind to persistent storage
     files = [
       {
