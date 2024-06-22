@@ -63,7 +63,7 @@ if [ $# -eq 3 ]; then
 	# Copy files to the temporary directory
 	lanzaboote
 	openssh
-	if [ "$keyfile" = "true" ]; then keyfile; fi
+	[ "$keyfile" = "true" ] && keyfile
 
 	# Install NixOS to the host system
 	if [ "$keyfile" = "true" ]; then
