@@ -13,6 +13,6 @@ in
 
   # Environment variables to always set at login
   home.sessionVariables = mkIf (config.programs.foot.enable) {
-    TERMINAL = "${getExe config.programs.alacritty.package}";
+    TERMINAL = "${getExe config.programs.foot.package}";
   };
 }
