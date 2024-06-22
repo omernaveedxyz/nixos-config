@@ -29,7 +29,7 @@ in
 
     # Locally defined maps of hostnames to IP addresses
     hosts = {
-      "10.0.0.2" = [ "omer-desktop" ];
+      "10.0.0.238" = [ "omer-desktop" ];
       "10.0.0.3" = [ "omer-laptop" ];
     };
   };
