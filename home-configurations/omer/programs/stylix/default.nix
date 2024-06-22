@@ -1,6 +1,14 @@
-{ pkgs, ... }:
 {
-  stylix = {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+{
+  stylix = mkIf (config.stylix.enable) {
     # A scheme following the base16 standard
     base16Scheme = "${pkgs.base16-schemes}/share/themes/helios.yaml";
 

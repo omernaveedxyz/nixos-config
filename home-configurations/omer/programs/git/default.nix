@@ -1,5 +1,9 @@
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+in
 {
-  programs.git = {
+  programs.git = mkIf (config.programs.git.enable) {
     # Default user email to use
     userEmail = "me@omernaveed.dev";
 
