@@ -1,15 +1,12 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+in
 {
-  services.sanoid = {
-    # Whether to enable Sanoid ZFS snapshotting services
-    enable = config._module.args.impermanence;
-
-    # Run sanoid at this interval
-    interval = "hourly";
-
+  services.sanoid = mkIf (config.services.sanoid.enable) {
     # Attribute set of (dataset/template options)
     datasets = {
-      "${config.networking.hostName}/persistent" = {
+      "omer-media/root" = {
         # Whether to automatically prune old snapshots
         autoprune = true;
 

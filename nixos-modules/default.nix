@@ -11,7 +11,6 @@
     ./hardware/virtualisation
     ./hardware/zfs
 
-    ./programs/colmena
     ./programs/dconf
     ./programs/fuse
     ./programs/nix
@@ -25,7 +24,6 @@
     ./services/pcscd
     ./services/pipewire
     ./services/sanoid
-    ./services/syncoid
     ./services/udisks2
   ];
 

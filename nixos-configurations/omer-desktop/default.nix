@@ -17,6 +17,9 @@ in
     nixos-hardware.nixosModules.common-pc-ssd
 
     ./hardware/mounts
+
+    ./services/sanoid
+    ./services/syncoid
   ];
 
   # The set of kernel modules in the initial ramdisk used during the boot process
