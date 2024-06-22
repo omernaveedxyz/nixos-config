@@ -44,6 +44,11 @@
 
     # Nix User Repository: User contributed nix packages
     nur.url = "github:nix-community/nur";
+
+    # Configure Neovim with Nix
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.home-manager.follows = "home-manager";
   };
 
   outputs =
@@ -60,6 +65,7 @@
       impermanence,
       stylix,
       nur,
+      nixvim,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -85,6 +91,7 @@
             impermanence
             stylix
             nur
+            nixvim
             ;
           relativeToRoot = nixpkgs.lib.path.append ./.;
         };
