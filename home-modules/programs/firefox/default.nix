@@ -1146,17 +1146,8 @@ in
     };
   };
 
-  # Text of the file
-  home.file.".mozilla/firefox/Default/extension-preferences.json".text = ''
-    {
-      "uBlock0@raymondhill.net": {
-        "permissions": [
-          "internal:privateBrowsingAllowed"
-        ],
-        "origins": []
-      }
-    }
-  '';
+  # Path of the source file or directory
+  home.file.".mozilla/firefox/Default/extension-preferences.json".source = ./extension-preferences.json;
 
   # The Firefox profile names to apply styling on
   stylix.targets.firefox.profileNames = [ "Default" ];
