@@ -5,7 +5,7 @@ in
 {
   services.sanoid = {
     # Whether to enable Sanoid ZFS snapshotting services
-    enable = true;
+    enable = config._module.args.impermanence;
 
     # Run sanoid at this interval
     interval = "hourly";

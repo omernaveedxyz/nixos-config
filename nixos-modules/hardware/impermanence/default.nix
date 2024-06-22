@@ -108,7 +108,7 @@ in
   };
 
   # If set, this file system will be mounted in the initial ramdisk
-  fileSystems."/persistent".neededForBoot = true;
+  fileSystems."/persistent".neededForBoot = config._module.args.impermanence;
 
   # Files and directories to persistent across ephemeral boots
   environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {

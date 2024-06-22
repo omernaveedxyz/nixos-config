@@ -18,7 +18,7 @@ in
 {
   services.syncoid = mkIf (config.networking.hostName == "omer-desktop") {
     # Whether to enable Syncoid ZFS synchronization services
-    enable = true;
+    enable = config._module.args.impermanence;
 
     # Run syncoid at this interval
     interval = "hourly";

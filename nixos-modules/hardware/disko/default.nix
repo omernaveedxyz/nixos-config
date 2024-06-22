@@ -1,9 +1,13 @@
 {
   config,
+  lib,
   disko,
   device,
   ...
 }:
+let
+  inherit (lib) mkIf;
+in
 {
   imports = [ disko.nixosModules.disko ];
 
@@ -61,7 +65,7 @@
             options.mountpoint = "legacy";
             mountpoint = "/nix";
           };
-          persistent = {
+          persistent = mkIf (config._module.args.impermanence) {
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/persistent";
