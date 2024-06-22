@@ -18,6 +18,7 @@
     ./programs/mpv
     ./programs/neovim
     ./programs/nix
+    ./programs/proton
     ./programs/ssh
     ./programs/stylix
     ./programs/sway
