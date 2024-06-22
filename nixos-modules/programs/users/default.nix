@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  relativeToRoot,
+  ...
+}:
 let
   inherit (lib) optionals;
 in
@@ -33,7 +38,7 @@ in
 
         # A list of files each containing one OpenSSH public key that should be
         # added to the user's authorized keys
-        openssh.authorizedKeys.keyFiles = [ ../../../home-configurations/omer/id_rsa.pub ];
+        openssh.authorizedKeys.keyFiles = [ (relativeToRoot "home-configurations/omer/id_rsa.pub") ];
       };
     };
   };
@@ -49,7 +54,7 @@ in
 
   # Specify encrypted sops secret to access
   sops.secrets."users/users/omer/hashedPasswordFile" = {
-    sopsFile = ../../secrets.yaml;
+    sopsFile = relativeToRoot "nixos-modules/secrets.yaml";
     neededForUsers = true;
   };
 }

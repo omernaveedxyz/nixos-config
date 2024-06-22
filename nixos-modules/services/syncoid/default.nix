@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  relativeToRoot,
   ...
 }:
 let
@@ -40,14 +41,14 @@ in
             # Target ZFS dataset
             target = "omer-vault/${device}";
           };
-        }) (attrNames (readDir ../../../nixos-configurations))
+        }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
         ++ map (device: {
           name = "syncoid@omer-desktop:omer-vault/${device}";
           value = {
             # Target ZFS dataset
             target = "omer-archive/${device}";
           };
-        }) (attrNames (readDir ../../../nixos-configurations))
+        }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
       )
       // {
         "syncoid@omer-desktop:omer-media/root" = {
@@ -84,7 +85,7 @@ in
           # Number of yearly snapshots
           yearly = 0;
         };
-      }) (attrNames (readDir ../../../nixos-configurations))
+      }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
       ++ map (name: {
         name = "omer-archive/${name}";
         value = {
@@ -106,7 +107,7 @@ in
           # Number of yearly snapshots
           yearly = 0;
         };
-      }) (attrNames (readDir ../../../nixos-configurations))
+      }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
     )
     // {
       "omer-vault/omer-media" = {
@@ -153,7 +154,7 @@ in
   # A list of files each containing one OpenSSH public key that should be added
   # to the user's authorized keys
   users.users.syncoid.openssh.authorizedKeys.keyFiles = [
-    ../../../nixos-configurations/omer-desktop/syncoid.pub
+    (relativeToRoot "nixos-configurations/omer-desktop/syncoid.pub")
   ];
 
   # Additional user accounts to be created automatically by the system.
@@ -193,7 +194,7 @@ in
 
   # Specify encrypted sops secret to access
   sops.secrets."services/syncoid/sshKey" = mkIf (config.networking.hostName == "omer-desktop") {
-    sopsFile = ../../../nixos-configurations/${config.networking.hostName}/secrets.yaml;
+    sopsFile = relativeToRoot "nixos-configurations/${config.networking.hostName}/secrets.yaml";
     owner = "syncoid";
     group = "syncoid";
     mode = "0600";

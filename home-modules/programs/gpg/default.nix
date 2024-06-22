@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  relativeToRoot,
+  ...
+}:
 let
   inherit (builtins) readDir;
   inherit (lib) attrNames mkIf;
@@ -28,14 +33,14 @@ in
     publicKeys =
       [
         {
-          source = ../../../home-configurations/${config.home.username}/pubkey.asc;
+          source = relativeToRoot "home-configurations/${config.home.username}/pubkey.asc";
           trust = 5;
         }
       ]
       ++ (map (name: {
-        source = ../../../nixos-configurations/${name}/pubkey.asc;
+        source = relativeToRoot "nixos-configurations/${name}/pubkey.asc";
         trust = 1;
-      }) (attrNames (readDir ../../../nixos-configurations)));
+      }) (attrNames (readDir (relativeToRoot "nixos-configurations"))));
   };
 
   # Files and directories to persistent across ephemeral boots

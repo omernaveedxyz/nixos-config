@@ -86,6 +86,7 @@
             stylix
             nur
             ;
+          relativeToRoot = nixpkgs.lib.path.append ./.;
         };
 
         # Settings for creating nixosConfigurations

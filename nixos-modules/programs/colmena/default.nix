@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  relativeToRoot,
+  ...
+}:
 let
   inherit (builtins) readDir;
   inherit (lib) getExe attrNames;
@@ -16,9 +21,9 @@ in
 
     # A list of files each containing one OpenSSH public key that should be added
     # to the user's authorized keys
-    openssh.authorizedKeys.keyFiles = map (name: ../../../home-configurations/${name}/id_rsa.pub) (
-      attrNames (readDir ../../../home-configurations)
-    );
+    openssh.authorizedKeys.keyFiles = map (
+      name: relativeToRoot "home-configurations/${name}/id_rsa.pub"
+    ) (attrNames (readDir (relativeToRoot "home-configurations")));
   };
 
   # Additional group to be created
