@@ -16,9 +16,7 @@ in
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
 
-    ./hardware/omer-media.nix
-    ./hardware/omer-vault.nix
-    ./hardware/omer-archive.nix
+    ./hardware/mounts
   ];
 
   # The set of kernel modules in the initial ramdisk used during the boot process
