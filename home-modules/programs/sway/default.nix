@@ -118,6 +118,9 @@ in
         "${config.wayland.windowManager.sway.config.modifier}+Shift+XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ 0%";
         "${config.wayland.windowManager.sway.config.modifier}+Shift+XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ 100%";
         "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+v" = "exec ${pkgs.libnotify}/bin/notify-send 'Starting VPN' && sudo ${pkgs.systemd}/bin/systemctl start wg-quick-wg0.service";
+        "${config.wayland.windowManager.sway.config.modifier}+v" = "exec ${pkgs.libnotify}/bin/notify-send 'Stopping VPN' && sudo ${pkgs.systemd}/bin/systemctl stop wg-quick-wg0.service";
       };
 
       # An attribute set that assigns keypress to an action using key code
