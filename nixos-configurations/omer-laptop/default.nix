@@ -12,6 +12,8 @@
 
     nixos-hardware.nixosModules.dell-xps-15-7590
     nixos-hardware.nixosModules.common-gpu-nvidia-disable
+
+    ./hardware/wireguard
   ];
 
   # The set of kernel modules in the initial ramdisk used during the boot process
