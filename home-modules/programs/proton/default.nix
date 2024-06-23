@@ -12,7 +12,6 @@ in
   home.packages = with pkgs; [
     protonmail-desktop
     proton-pass
-    protonvpn-gui
   ];
 
   # Files and directories to persistent across ephemeral boots
@@ -21,7 +20,6 @@ in
       {
         # All directories you want to link or bind to persistent storage
         directories = [
-          ".config/Proton"
           ".config/Proton Mail"
           ".config/Proton Pass"
         ];
