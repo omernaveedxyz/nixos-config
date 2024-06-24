@@ -1037,7 +1037,7 @@ in
         # "media.video_stats.enabled" = false;
         # "webgl.enable-debug-renderer-info" = false;
         "ui.use_standins_for_native_colors" = true;
-        "browser.display.use_document_fonts" = 0;
+        # "browser.display.use_document_fonts" = 0;
         "device.sensors.enabled" = false;
         "dom.gamepad.enabled" = false;
         "dom.netinfo.enabled" = false;
