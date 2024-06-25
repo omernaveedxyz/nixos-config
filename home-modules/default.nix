@@ -37,6 +37,7 @@
     ./services/flameshot
     ./services/gammastep
     ./services/gpg-agent
+    ./services/hypridle
     ./services/swayidle
     ./services/swaync
     ./services/wireplumber
