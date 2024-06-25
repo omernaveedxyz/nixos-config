@@ -14,6 +14,7 @@
     ./programs/gtk
     ./programs/hyprland
     ./programs/hyprlock
+    ./programs/hyprpicker
     ./programs/impermanence
     ./programs/kitty
     ./programs/lf
