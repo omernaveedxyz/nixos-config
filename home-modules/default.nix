@@ -12,6 +12,7 @@
     ./programs/git
     ./programs/gpg
     ./programs/gtk
+    ./programs/hyprland
     ./programs/impermanence
     ./programs/kitty
     ./programs/lf

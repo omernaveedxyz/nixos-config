@@ -8,7 +8,7 @@
       default_session = initial_session;
       initial_session = {
         user = "omer";
-        command = "sway";
+        command = "Hyprland";
       };
     };
   };

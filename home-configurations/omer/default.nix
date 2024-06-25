@@ -7,7 +7,7 @@
   # Additional arguments passed to each module
   _module.args = {
     impermanence = true;
-    desktop = "sway";
+    desktop = "hyprland";
     terminal = "foot";
     browser = "firefox";
   };
