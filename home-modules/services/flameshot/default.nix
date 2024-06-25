@@ -90,12 +90,29 @@ in
     };
   };
 
-  # Environment variables to always set at login
-  home.sessionVariables = mkIf (config.wayland.windowManager.sway.enable) {
-    SDL_VIDEODRIVER = "wayland";
-    _JAVA_AWT_WM_NONREPARENTING = "1";
-    QT_QPA_PLATFORM = "wayland";
-    XDG_CURRENT_DESKTOP = "sway";
-    XDG_SESSION_DESKTOP = "sway";
+  # Hyprland configuration written in Nix
+  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
+    settings = {
+      bind = [
+        ", Print, exec, ${getExe screenshot} gui"
+        "Shift, Print, exec, ${getExe screenshot} full"
+      ];
+
+      windowrulev2 = [
+        "float, title:^(flameshot)"
+        "center, title:^(flameshot)"
+      ];
+    };
   };
+
+  # Environment variables to always set at login
+  home.sessionVariables =
+    mkIf (config.wayland.windowManager.sway.enable || config.wayland.windowManager.hyprland.enable)
+      {
+        SDL_VIDEODRIVER = "wayland";
+        _JAVA_AWT_WM_NONREPARENTING = "1";
+        QT_QPA_PLATFORM = "wayland";
+        XDG_CURRENT_DESKTOP = "sway";
+        XDG_SESSION_DESKTOP = "sway";
+      };
 }

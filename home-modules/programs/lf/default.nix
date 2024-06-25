@@ -58,4 +58,9 @@ in
       };
     };
   };
+
+  # An attribute set that assigns a key press to an action using a key symbol
+  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
+    settings.bind = [ "$Mod Shift, f, exec, ${config.home.sessionVariables.TERMINAL} -e lf" ];
+  };
 }

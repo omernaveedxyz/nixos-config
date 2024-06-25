@@ -25,8 +25,13 @@ in
         config = {
           # An attribute set that assigns a key press to an action using a key symbol
           keybindings = mkOptionDefault {
-            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package}";
+            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.chromium.package}";
           };
         };
       };
+
+  # An attribute set that assigns a key press to an action using a key symbol
+  wayland.windowManager.hyprland = mkIf (
+    config.wayland.windowManager.hyprland.enable && config.programs.chromium.enable
+  ) { settings.bind = [ "$Mod Shift, b, exec, ${getExe config.programs.chromium.package}" ]; };
 }
