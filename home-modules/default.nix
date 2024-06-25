@@ -13,6 +13,7 @@
     ./programs/gpg
     ./programs/gtk
     ./programs/hyprland
+    ./programs/hyprlock
     ./programs/impermanence
     ./programs/kitty
     ./programs/lf
