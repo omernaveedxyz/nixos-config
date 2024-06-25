@@ -33,8 +33,8 @@ in
 
         # Modules that will be displayed on the left
         modules-left = [
-          "sway/workspaces"
-          "sway/window"
+          "${config._module.args.desktop}/workspaces"
+          "${config._module.args.desktop}/window"
         ];
 
         # Modules that will be displayed in the center
@@ -78,8 +78,37 @@ in
           };
         };
 
+        # The workspaces module displays the currently used workspaces in hyprland compositor
+        "hyprland/workspaces" = {
+          # The format, how information should be displayed
+          format = "{icon}";
+
+          # If set to false workspaces group will be shown only in assigned output. Otherwise all workspace groups are shown
+          all-outputs = false;
+
+          # Based on the workspace name and state, the corresponding icon gets selected
+          format-icons = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            "10" = "0";
+          };
+        };
+
         # The window module displays the title of the currently focused window in sway
         "sway/window" = {
+          # The format, how information should be displayed
+          format = "";
+        };
+
+        # The window module displays the title of the currently focused window of Hyprland
+        "hyprland/window" = {
           # The format, how information should be displayed
           format = "";
         };
@@ -323,7 +352,7 @@ in
       enable = true;
 
       # The systemd target that will automatically start the Waybar service
-      target = "sway-session.target";
+      target = "${config._module.args.desktop}-session.target";
     };
   };
 
