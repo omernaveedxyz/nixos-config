@@ -182,6 +182,10 @@ in
       ## monitor=name,resolution,position,scale
       monitor = ",preferred,auto,1";
 
+      # Animations are declared with the animation keyword
+      ## animation=NAME,ONOFF,SPEED,CURVE[,STYLE]
+      animation = "global,1,3,default";
+
       master = {
         # Master split factor, the ratio of master split
         mfact = 0.5;
