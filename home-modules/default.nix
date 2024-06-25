@@ -33,6 +33,7 @@
     ./programs/yt-dlp
     ./programs/yubikey
 
+    ./services/clipman
     ./services/flameshot
     ./services/gammastep
     ./services/gpg-agent
