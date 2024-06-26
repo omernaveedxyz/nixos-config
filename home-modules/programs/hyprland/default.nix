@@ -14,7 +14,7 @@ in
 
     # Hyprland configuration written in Nix
     settings = {
-      exec = [ "${getExe pkgs.waybar}" ];
+      exec-once = [ "${getExe pkgs.waybar}" ];
 
       general = {
         # Size of the border around windows
@@ -178,6 +178,12 @@ in
         ## 1 - takes over
         ## 2 - unfullscreen the current fullscreen window
         new_window_takes_over_fullscreen = 2;
+
+        # Enable window swallowing
+        enable_swallow = true;
+
+        # The class regex to be used for windows that should be swallowed
+        swallow_regex = "^(${config._module.args.terminal})$";
       };
 
       # The general config of a monitor
