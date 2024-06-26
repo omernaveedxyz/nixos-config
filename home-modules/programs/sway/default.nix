@@ -18,7 +18,7 @@ in
       assigns = { };
 
       # Sway bars settings blocks
-      bars = [ ];
+      bars = [ { command = "${getExe pkgs.waybar}"; } ];
 
       # Whether to make use of --to-code in keybindings
       bindkeysToCode = false;

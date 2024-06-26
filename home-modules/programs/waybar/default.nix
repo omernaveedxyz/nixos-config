@@ -46,6 +46,7 @@ in
           "custom/uptime"
           "backlight"
           "wireplumber"
+          "disk"
           "memory"
           "cpu"
           "battery"
@@ -190,6 +191,21 @@ in
           on-click = "${config.home.sessionVariables.TERMINAL} --title ncpamixer -e ${getExe pkgs.ncpamixer}";
         };
 
+        # The disk module tracks the usage of filesystems and partitions
+        "disk" = {
+          # The interval in which the information gets polled
+          interval = 60;
+
+          # The format, how information should be displayed
+          format = "{specific_used:0.2f} GiB / {specific_total:0.2f} GiB 󱛟 ";
+
+          # Used to specify unit for specific_total, specific_used, and specific_free. Accepts B, kB, kiB, MB, MiB, GB, GiB, TB, TiB. Defaults to Bytes
+          unit = "GiB";
+
+          # Command to execute when clicked on the module
+          on-click = "${config.home.sessionVariables.TERMINAL} --title bashmount -e ${getExe pkgs.bashmount}";
+        };
+
         # The memory module displays the current RAM and swap utilization
         "memory" = {
           # The format, how information should be displayed
@@ -260,96 +276,101 @@ in
 
     # CSS style of the bar
     style = ''
-      * {
-        font-weight: bold;
-      }
+            * {
+              font-weight: bold;
+            }
 
-      window#waybar > box {
-        margin: 0 4px;
-      }
+            window#waybar > box {
+              margin: 0 4px;
+            }
 
-      window#waybar.empty {
-        background: transparent;
-      }
+            window#waybar.empty {
+              background: transparent;
+            }
 
-      window .modules-left #workspaces button {
-        background: transparent;
-        color: @base03;
-        padding: 0;
-        margin: 6px 4px 6px 0;
-        border-radius: 100%;
-        min-width: 20px;
-        min-height: 20px;
-      }
+            window .modules-left #workspaces button {
+              background: transparent;
+              color: @base03;
+              padding: 0;
+              margin: 6px 4px 6px 0;
+              border-radius: 100%;
+              min-width: 20px;
+              min-height: 20px;
+            }
 
-      .modules-left #workspaces button.focused,
-      .modules-left #workspaces button.active {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-left #workspaces button.focused,
+            .modules-left #workspaces button.active {
+              background: transparent;
+              color: @base07;
+            }
 
-      .modules-left #workspaces button.urgent {
-        background: transparent;
-        color: @base08;
-      }
+            .modules-left #workspaces button.urgent {
+              background: transparent;
+              color: @base08;
+            }
 
-      .modules-left #window {
-        background: transparent;
-      }
+            .modules-left #window {
+              background: transparent;
+            }
 
-      .modules-right #idle_inhibitor {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-right #idle_inhibitor {
+              background: transparent;
+              color: @base07;
+            }
 
-      .modules-right #backlight {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-right #backlight {
+              background: transparent;
+              color: @base07;
+            }
 
-      .modules-right #wireplumber,
-      .modules-right #pulseaudio,
-      .modules-right #sndio {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-right #wireplumber,
+            .modules-right #pulseaudio,
+            .modules-right #sndio {
+              background: transparent;
+              color: @base07;
+            }
 
-      .modules-right #wireplumber.muted,
-      .modules-right #pulseaudio.muted,
-      .modules-right #sndio.muted {
-        background: transparent;
-      }
+            .modules-right #wireplumber.muted,
+            .modules-right #pulseaudio.muted,
+            .modules-right #sndio.muted {
+              background: transparent;
+            }
 
-      .modules-right #memory {
-          background: transparent;
-          color: @base07;
-      }
+            .modules-right #disk {
+                background: transparent;
+      	  color: @base07;
+            }
 
-      .modules-right #cpu {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-right #memory {
+                background: transparent;
+                color: @base07;
+            }
 
-      .modules-center #clock {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-right #cpu {
+              background: transparent;
+              color: @base07;
+            }
 
-      .modules-right #upower,
-      .modules-right #battery {
-        background: transparent;
-        color: @base07;
-      }
+            .modules-center #clock {
+              background: transparent;
+              color: @base07;
+            }
 
-      .modules-right #upower.charging,
-      .modules-right #battery.Charging {
-        background: transparent;
-      }
+            .modules-right #upower,
+            .modules-right #battery {
+              background: transparent;
+              color: @base07;
+            }
+
+            .modules-right #upower.charging,
+            .modules-right #battery.Charging {
+              background: transparent;
+            }
     '';
 
     systemd = {
       # Whether to enable Waybar systemd integration
-      enable = true;
+      enable = false;
 
       # The systemd target that will automatically start the Waybar service
       target = "${config._module.args.desktop}-session.target";
