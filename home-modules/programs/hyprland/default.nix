@@ -50,7 +50,7 @@ in
 
       decoration = {
         # Rounded corners’ radius
-        rounding = 8;
+        rounding = 0;
 
         # Opacity of active windows
         active_opacity = 1.0;
@@ -129,10 +129,10 @@ in
 
       animations = {
         # Enable animations
-        enabled = true;
+        enabled = false;
 
         # Enable first launch animation
-        first_launch_animation = true;
+        first_launch_animation = false;
       };
 
       input = {
