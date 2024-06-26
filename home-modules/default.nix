@@ -41,6 +41,7 @@
     ./services/swayidle
     ./services/swaync
     ./services/wireplumber
+    ./services/wob
     ./services/xdg-portals
   ];
 

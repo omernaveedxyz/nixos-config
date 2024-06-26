@@ -263,21 +263,21 @@ in
         "$Mod, v, exec, ${pkgs.libnotify}/bin/notify-send 'Stopping VPN' && sudo ${pkgs.systemd}/bin/systemctl stop wg-quick-wg0.service"
 
         # Brightness
-        ", XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 5%-"
-        ", XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set 5%+"
-        "Shift, XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 1%-"
-        "Shift, XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set 1%+"
-        "$Mod Shift, XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 0%"
-        "$Mod Shift, XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set 100%"
+        ", XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 5%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > /run/user/1000/wob.sock"
+        ", XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set 5%+ | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > /run/user/1000/wob.sock"
+        "Shift, XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 1%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > /run/user/1000/wob.sock"
+        "Shift, XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set 1%+ | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > /run/user/1000/wob.sock"
+        "$Mod Shift, XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 0% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > /run/user/1000/wob.sock"
+        "$Mod Shift, XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set 100% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > /run/user/1000/wob.sock"
 
         # Audio
-        ", XF86AudioLowerVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"
-        ", XF86AudioRaiseVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%"
-        "Shift, XF86AudioLowerVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -1%"
-        "Shift, XF86AudioRaiseVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1%"
-        "$Mod Shift, XF86AudioLowerVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ 0%"
-        "$Mod Shift, XF86AudioRaiseVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ 100%"
-        ", XF86AudioMute, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"
+        ", XF86AudioLowerVolume, exec, ${getExe pkgs.pamixer} --decrease 5 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+        ", XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} --increase 5 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+        "Shift, XF86AudioLowerVolume, exec, ${getExe pkgs.pamixer} --decrease 1 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+        "Shift, XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} --increase 1 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+        "$Mod Shift, XF86AudioLowerVolume, exec, ${getExe pkgs.pamixer} --set-volume 0 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+        "$Mod Shift, XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} --set-volume 100 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+        ", XF86AudioMute, exec, ${getExe pkgs.pamixer} --toggle-mute && ( [ \"$(${getExe pkgs.pamixer} --get-mute)\" = \"true\" ] && echo 0 > /run/user/1000/wob.sock ) || ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
       ];
 
       bindm = [
