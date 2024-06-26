@@ -1165,12 +1165,18 @@ in
           # An attribute set that assigns a key press to an action using a key symbol
           keybindings = mkOptionDefault {
             "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package}";
+            "Ctrl+${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package} --private-window";
           };
         };
       };
 
   # An attribute set that assigns a key press to an action using a key symbol
-  wayland.windowManager.hyprland = mkIf (
-    config.wayland.windowManager.hyprland.enable && config.programs.firefox.enable
-  ) { settings.bind = [ "$Mod Shift, b, exec, ${getExe config.programs.firefox.package}" ]; };
+  wayland.windowManager.hyprland =
+    mkIf (config.wayland.windowManager.hyprland.enable && config.programs.firefox.enable)
+      {
+        settings.bind = [
+          "$Mod Shift, b, exec, ${getExe config.programs.firefox.package}"
+          "Ctrl $Mod Shift, b, exec, ${getExe config.programs.firefox.package} --private-window"
+        ];
+      };
 }
