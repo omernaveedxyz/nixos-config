@@ -295,6 +295,19 @@ in
       windowrulev2 = [
         "float, title:^(ncpamixer)"
         "center, title:^(ncpamixer)"
+        "size 50% 50%, title:^(ncpamixer)"
+        "pin, title:^(ncpamixer)"
+        "stayfocused, title:^(ncpamixer)"
+        "suppressevent fullscreen maximize active activatefocus, title:^(ncpamixer)"
+        "dimaround, title:^(ncpamixer)"
+
+        "float, title:^(bashmount)"
+        "center, title:^(bashmount)"
+        "size 50% 50%, title:^(bashmount)"
+        "pin, title:^(bashmount)"
+        "stayfocused, title:^(bashmount)"
+        "suppressevent fullscreen maximize active activatefocus, title:^(bashmount)"
+        "dimaround, title:^(bashmount)"
       ];
     };
   };
