@@ -45,7 +45,7 @@ in
           "idle_inhibitor"
           "custom/uptime"
           "backlight"
-          "wireplumber"
+          "pulseaudio"
           "disk"
           "memory"
           "cpu"
@@ -170,8 +170,8 @@ in
           tooltip = false;
         };
 
-        # The wireplumber module displays the current volume reported by WirePlumber
-        "wireplumber" = {
+        # The pulseaudio module displays the current volume reported by pulseaudio
+        "pulseaudio" = {
           # The format, how information should be displayed
           format = "{volume}% {icon}";
 
