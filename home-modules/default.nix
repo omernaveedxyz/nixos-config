@@ -28,6 +28,7 @@
     ./programs/swaylock
     ./programs/tmux
     ./programs/vimiv
+    ./programs/virt-manager
     ./programs/waybar
     ./programs/xdg
     ./programs/yt-dlp
