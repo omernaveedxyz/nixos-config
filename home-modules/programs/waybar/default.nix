@@ -46,7 +46,7 @@ in
           "custom/uptime"
           "backlight"
           "pulseaudio"
-          "disk"
+          "custom/disk"
           "memory"
           "cpu"
           "battery"
@@ -192,15 +192,9 @@ in
         };
 
         # The disk module tracks the usage of filesystems and partitions
-        "disk" = {
-          # The interval in which the information gets polled
-          interval = 60;
-
-          # The format, how information should be displayed
-          format = "{specific_used:0.2f} GiB / {specific_total:0.2f} GiB 󱛟 ";
-
-          # Used to specify unit for specific_total, specific_used, and specific_free. Accepts B, kB, kiB, MB, MiB, GB, GiB, TB, TiB. Defaults to Bytes
-          unit = "GiB";
+        "custom/disk" = {
+          # The path to a script which executes and outputs
+          exec = "${pkgs.zfs}/bin/zpool list -H $(${pkgs.nettools}/bin/hostname) | ${getExe pkgs.gawk} '{print $3 \"iB / \" $2 \"iB 󱛟 \"}'";
 
           # Command to execute when clicked on the module
           on-click = "${config.home.sessionVariables.TERMINAL} --title bashmount -e ${getExe pkgs.bashmount}";
