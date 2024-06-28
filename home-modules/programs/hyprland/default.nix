@@ -14,8 +14,6 @@ in
 
     # Hyprland configuration written in Nix
     settings = {
-      exec-once = [ "${getExe pkgs.waybar}" ];
-
       general = {
         # Size of the border around windows
         border_size = 2;

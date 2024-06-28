@@ -364,7 +364,7 @@ in
 
     systemd = {
       # Whether to enable Waybar systemd integration
-      enable = false;
+      enable = true;
 
       # The systemd target that will automatically start the Waybar service
       target = "${config._module.args.desktop}-session.target";

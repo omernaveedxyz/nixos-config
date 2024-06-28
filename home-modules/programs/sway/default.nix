@@ -21,7 +21,7 @@ in
       menu = "${getExe config.programs.rofi.package} -show drun";
 
       # Sway bars settings blocks
-      bars = [ { command = "${getExe pkgs.waybar}"; } ];
+      bars = [ ];
 
       # Whether to make use of --to-code in keybindings
       bindkeysToCode = false;
