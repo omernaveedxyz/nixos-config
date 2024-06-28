@@ -22,6 +22,7 @@
     ./programs/neovim
     ./programs/nix
     ./programs/proton
+    ./programs/rofi
     ./programs/ssh
     ./programs/stylix
     ./programs/sway

@@ -217,7 +217,7 @@ in
         # General
         "$Mod, return, exec, ${config.home.sessionVariables.TERMINAL}"
         "$Mod Shift, q, killactive, "
-        "$Mod, d, exec, ${pkgs.dmenu}/bin/dmenu_path |${pkgs.dmenu}/bin/dmenu"
+        "$Mod, d, exec, ${getExe config.programs.rofi.package} -show drun"
         "$Mod Shift, c, exit, "
 
         # Focus

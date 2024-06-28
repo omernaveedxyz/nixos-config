@@ -17,6 +17,9 @@ in
       # An attribute set that assigns applications to workspaces based on criteria
       assigns = { };
 
+      # Default launcher to use
+      menu = "${getExe config.programs.rofi.package} -show drun";
+
       # Sway bars settings blocks
       bars = [ { command = "${getExe pkgs.waybar}"; } ];
 
