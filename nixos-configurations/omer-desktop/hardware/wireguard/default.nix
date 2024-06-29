@@ -18,13 +18,13 @@
     peers = [
       {
         # The base64 public key to the peer
-        publicKey = "+kfPCjoNEateo3jVc9tcduKh6nwQpoKx0/JXxgjHD2c=";
+        publicKey = "KwU9qcRO0eamCxh/iF7pL2RAOOJezHPVqkIeANcS5Wk=";
 
         # List of IP (v4 or v6) addresses with CIDR masks from which this peer is allowed to send incoming traffic and to which outgoing traffic for this peer is directed
         allowedIPs = [ "0.0.0.0/0" ];
 
         # Endpoint IP or hostname of the peer, followed by a colon, and then a port number of the peer
-        endpoint = "190.2.147.7:51820";
+        endpoint = "154.47.25.129:51820";
       }
     ];
   };
