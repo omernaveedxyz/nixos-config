@@ -2,10 +2,10 @@
   imports = [
     ./hardware/bluetooth
     ./hardware/disko
+    ./hardware/graphics
     ./hardware/impermanence
     ./hardware/lanzaboote
     ./hardware/networking
-    ./hardware/opengl
     ./hardware/systemd-boot
     ./hardware/systemd
     ./hardware/virtualisation
