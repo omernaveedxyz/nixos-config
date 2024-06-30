@@ -5,8 +5,10 @@
   ...
 }:
 let
-  inherit (builtins) readDir;
+  inherit (builtins) readDir concatMap;
   inherit (lib) listToAttrs attrNames;
+
+  devices = attrNames (readDir (relativeToRoot "nixos-configurations"));
 in
 {
   services.syncoid = {
@@ -28,20 +30,20 @@ in
     # Syncoid commands to run
     commands =
       listToAttrs (
-        map (device: {
-          name = "syncoid@${device}:${device}/persistent";
-          value = {
-            # Target ZFS dataset
-            target = "syncoid@omer-desktop:omer-vault/${device}";
-          };
-        }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
-        ++ map (device: {
-          name = "syncoid@omer-desktop:omer-vault/${device}";
-          value = {
-            # Target ZFS dataset
-            target = "syncoid@omer-desktop:omer-archive/${device}";
-          };
-        }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
+        concatMap (device: [
+          {
+            name = "syncoid@${device}:${device}/persistent";
+            value = {
+              target = "syncoid@omer-desktop:omer-vault/${device}";
+            };
+          }
+          {
+            name = "syncoid@omer-desktop:omer-vault/${device}";
+            value = {
+              target = "syncoid@omer-desktop:omer-archive/${device}";
+            };
+          }
+        ]) devices
       )
       // {
         "syncoid@omer-desktop:omer-media/root" = {
@@ -57,50 +59,52 @@ in
 
   services.sanoid.datasets =
     listToAttrs (
-      map (name: {
-        name = "omer-vault/${name}";
-        value = {
-          # Whether to automatically prune old snapshots
-          autoprune = true;
+      concatMap (name: [
+        {
+          name = "omer-vault/${name}";
+          value = {
+            # Whether to automatically prune old snapshots
+            autoprune = true;
 
-          # Whether to automatically take snapshots
-          autosnap = false;
+            # Whether to automatically take snapshots
+            autosnap = false;
 
-          # Number of hourly snapshots
-          hourly = 168;
+            # Number of hourly snapshots
+            hourly = 168;
 
-          # Number of daily snapshots
-          daily = 15;
+            # Number of daily snapshots
+            daily = 15;
 
-          # Number of monthly snapshots
-          monthly = 0;
+            # Number of monthly snapshots
+            monthly = 0;
 
-          # Number of yearly snapshots
-          yearly = 0;
-        };
-      }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
-      ++ map (name: {
-        name = "omer-archive/${name}";
-        value = {
-          # Whether to automatically prune old snapshots
-          autoprune = true;
+            # Number of yearly snapshots
+            yearly = 0;
+          };
+        }
+        {
+          name = "omer-archive/${name}";
+          value = {
+            # Whether to automatically prune old snapshots
+            autoprune = true;
 
-          # Whether to automatically take snapshots
-          autosnap = false;
+            # Whether to automatically take snapshots
+            autosnap = false;
 
-          # Number of hourly snapshots
-          hourly = 360;
+            # Number of hourly snapshots
+            hourly = 360;
 
-          # Number of daily snapshots
-          daily = 30;
+            # Number of daily snapshots
+            daily = 30;
 
-          # Number of monthly snapshots
-          monthly = 0;
+            # Number of monthly snapshots
+            monthly = 0;
 
-          # Number of yearly snapshots
-          yearly = 0;
-        };
-      }) (attrNames (readDir (relativeToRoot "nixos-configurations")))
+            # Number of yearly snapshots
+            yearly = 0;
+          };
+        }
+      ]) devices
     )
     // {
       "omer-vault/omer-media" = {

@@ -1,13 +1,11 @@
 {
   modulesPath,
-  config,
   lib,
-  pkgs,
   nixos-hardware,
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkDefault;
 in
 {
   imports = [
@@ -16,33 +14,15 @@ in
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
 
+    ./hardware/boot
     ./hardware/mounts
 
     ./services/sanoid
     ./services/syncoid
   ];
 
-  # The set of kernel modules in the initial ramdisk used during the boot process
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-
-  # List of modules that are always loaded by the initrd
-  boot.initrd.kernelModules = [ ];
-
-  # The set of kernel modules to be loaded in the second stage of the boot process
-  boot.kernelModules = [ "kvm-amd" ];
-
-  # A list of additional packages supplying kernel modules
-  boot.extraModulePackages = [ ];
-
   # Specifies the platform where the NixOS configuration will run
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = mkDefault "x86_64-linux";
 
   # The name of the machine
   networking.hostName = "omer-desktop";
@@ -58,20 +38,5 @@ in
     device = "/dev/nvme0n1";
     secureboot = true;
     impermanence = true;
-  };
-
-  # Modules to help you handle persistent state on systems with ephemeral root storage
-  environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
-    # All files you want to link or bind to persistent storage
-    files = [
-      {
-        file = "/etc/keyfile";
-        parentDirectory = {
-          user = "root";
-          group = "root";
-          mode = "0755";
-        };
-      }
-    ];
   };
 }

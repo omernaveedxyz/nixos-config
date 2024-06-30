@@ -1,6 +1,8 @@
-{ lib, pkgs, ... }: let
+{ lib, pkgs, ... }:
+let
   inherit (lib) getExe;
-in {
+in
+{
   services.greetd = {
     # Whether to enable greetd
     enable = true;
