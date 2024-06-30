@@ -8,7 +8,7 @@ in
     enable = true;
 
     # Greetd configuration
-    settings = rec {
+    settings = {
       default_session = {
         command = "${getExe pkgs.greetd.tuigreet} --time --cmd Hyprland";
         user = "greeter";
