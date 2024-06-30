@@ -1,14 +1,15 @@
-{
+{ lib, pkgs, ... }: let
+  inherit (lib) getExe;
+in {
   services.greetd = {
     # Whether to enable greetd
     enable = true;
 
     # Greetd configuration
     settings = rec {
-      default_session = initial_session;
-      initial_session = {
-        user = "omer";
-        command = "Hyprland";
+      default_session = {
+        command = "${getExe pkgs.greetd.tuigreet} --time --cmd Hyprland";
+        user = "greeter";
       };
     };
   };
