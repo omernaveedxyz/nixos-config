@@ -15,6 +15,7 @@
     ./programs/fuse
     ./programs/nix
     ./programs/pam
+    ./programs/plymouth
     ./programs/sops
     ./programs/users
 
