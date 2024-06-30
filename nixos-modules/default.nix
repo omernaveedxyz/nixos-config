@@ -28,9 +28,6 @@
     ./services/udisks2
   ];
 
-  # List of directories to be symlinked in /run/current-system/sw
-  environment.pathsToLink = [ "/share/bash-completion" ];
-
   # Modify and extend existing Nixpkgs collection
   nixpkgs.overlays = with (import ./overlays); [
     additions
