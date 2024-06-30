@@ -1,7 +1,7 @@
 {
   inputs = {
     # Nix Packages collection & NixOS
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Simplify Nix Flakes with the module system
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -12,7 +12,7 @@
     ez-configs.inputs.flake-parts.follows = "flake-parts";
 
     # Manage a user environment using Nix
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # A `flake-parts` module for colmena deployment tool
@@ -38,7 +38,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # System-wide colorscheming and typography for NixOS
-    stylix.url = "github:danth/stylix/release-24.05";
+    stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
 
@@ -46,7 +46,7 @@
     nur.url = "github:nix-community/nur";
 
     # Configure Neovim with Nix
-    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.home-manager.follows = "home-manager";
   };
