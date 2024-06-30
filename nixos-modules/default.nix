@@ -9,7 +9,6 @@
     ./hardware/systemd-boot
     ./hardware/systemd
     ./hardware/virtualisation
-    ./hardware/zfs
 
     ./programs/dconf
     ./programs/fuse
@@ -26,6 +25,7 @@
     ./services/pipewire
     ./services/sanoid
     ./services/udisks2
+    ./services/zfs
   ];
 
   # Modify and extend existing Nixpkgs collection
