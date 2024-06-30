@@ -40,6 +40,7 @@
     ./services/gammastep
     ./services/gpg-agent
     ./services/hypridle
+    ./services/mpris-proxy
     ./services/swayidle
     ./services/swaync
     ./services/wireplumber
