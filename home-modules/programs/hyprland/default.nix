@@ -196,9 +196,6 @@ in
         # Master split factor, the ratio of master split
         mfact = 0.5;
 
-        # Whether a newly open window should replace the master or join the slaves
-        new_is_master = false;
-
         # Whether a newly open window should be on the top of the stack
         new_on_top = false;
 
