@@ -2,4 +2,4 @@
 /result
 
 # Nix-direnv cache directory
-.direnv/
+/.direnv
