@@ -14,8 +14,8 @@ in
         # Indicates whether this is an account for a "real" user
         isNormalUser = true;
 
-    # The account UID
-    uid = 1000;
+        # The account UID
+        uid = 1000;
 
         # The full path to a file that contains the hash of the user's passwod
         hashedPasswordFile = config.sops.secrets."users/users/omer/hashedPasswordFile".path;
