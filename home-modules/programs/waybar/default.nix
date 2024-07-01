@@ -5,13 +5,10 @@
   ...
 }:
 let
-
   inherit (lib) getExe mkIf;
 
   waybar-module-custom-uptime = pkgs.writeShellScriptBin "waybar-module-custom-uptime" ''
-    ${pkgs.gawk}/bin/awk \
-      '{m=$1/60;h=m/60;printf "%sd %sh %sm",int(h/24),int(h%24),int(m%60)}' \
-      /proc/uptime
+    ${getExe pkgs.gawk} '{m=$1/60;h=m/60;printf "%sd %sh %sm",int(h/24),int(h%24),int(m%60)}' /proc/uptime
   '';
 in
 {
@@ -270,96 +267,96 @@ in
 
     # CSS style of the bar
     style = ''
-            * {
-              font-weight: bold;
-            }
+      * {
+        font-weight: bold;
+      }
 
-            window#waybar > box {
-              margin: 0 4px;
-            }
+      window#waybar > box {
+        margin: 0 4px;
+      }
 
-            window#waybar.empty {
-              background: transparent;
-            }
+      window#waybar.empty {
+        background: transparent;
+      }
 
-            window .modules-left #workspaces button {
-              background: transparent;
-              color: @base03;
-              padding: 0;
-              margin: 6px 4px 6px 0;
-              border-radius: 100%;
-              min-width: 20px;
-              min-height: 20px;
-            }
+      window .modules-left #workspaces button {
+        background: transparent;
+        color: @base03;
+        padding: 0;
+        margin: 6px 4px 6px 0;
+        border-radius: 100%;
+        min-width: 20px;
+        min-height: 20px;
+      }
 
-            .modules-left #workspaces button.focused,
-            .modules-left #workspaces button.active {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-left #workspaces button.focused,
+      .modules-left #workspaces button.active {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-left #workspaces button.urgent {
-              background: transparent;
-              color: @base08;
-            }
+      .modules-left #workspaces button.urgent {
+        background: transparent;
+        color: @base08;
+      }
 
-            .modules-left #window {
-              background: transparent;
-            }
+      .modules-left #window {
+        background: transparent;
+      }
 
-            .modules-right #idle_inhibitor {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-right #idle_inhibitor {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-right #backlight {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-right #backlight {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-right #wireplumber,
-            .modules-right #pulseaudio,
-            .modules-right #sndio {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-right #wireplumber,
+      .modules-right #pulseaudio,
+      .modules-right #sndio {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-right #wireplumber.muted,
-            .modules-right #pulseaudio.muted,
-            .modules-right #sndio.muted {
-              background: transparent;
-            }
+      .modules-right #wireplumber.muted,
+      .modules-right #pulseaudio.muted,
+      .modules-right #sndio.muted {
+        background: transparent;
+      }
 
-            .modules-right #disk {
-                background: transparent;
-      	  color: @base07;
-            }
+      .modules-right #disk {
+          background: transparent;
+      lor: @base07;
+      }
 
-            .modules-right #memory {
-                background: transparent;
-                color: @base07;
-            }
+      .modules-right #memory {
+          background: transparent;
+          color: @base07;
+      }
 
-            .modules-right #cpu {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-right #cpu {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-center #clock {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-center #clock {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-right #upower,
-            .modules-right #battery {
-              background: transparent;
-              color: @base07;
-            }
+      .modules-right #upower,
+      .modules-right #battery {
+        background: transparent;
+        color: @base07;
+      }
 
-            .modules-right #upower.charging,
-            .modules-right #battery.Charging {
-              background: transparent;
-            }
+      .modules-right #upower.charging,
+      .modules-right #battery.Charging {
+        background: transparent;
+      }
     '';
 
     systemd = {
