@@ -12,11 +12,11 @@ in
     # Whether to enable GNU Bourne-Again SHell
     enable = true;
 
-    # Controlling how commands are saved on the history list
-    historyControl = [ "ignoredups" ];
-
     # Whether to enable Bash completion for all interactive Bash shells
     enableCompletion = true;
+
+    # Controlling how commands are saved on the history list
+    historyControl = [ "ignoreboth" ];
 
     # Location of the bash history file
     historyFile = "${config.xdg.dataHome}/bash/history";
