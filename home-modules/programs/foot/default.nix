@@ -9,6 +9,14 @@ in
 
     # Whether to enable Foot terminal server
     server.enable = true;
+
+    # Configuration written to $XDG_CONFIG_HOME/foot/foot.ini
+    settings = {
+      main = {
+	# Padding between border and glyphs, in pixels (subject to output scaling), in the form XxY
+        pad = "4x4";
+      };
+    };
   };
 
   # Environment variables to always set at login
