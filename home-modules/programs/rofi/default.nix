@@ -17,7 +17,7 @@ in
 
     # List of rofi plugins to be installed
     plugins = with pkgs; [
-      # REF: https://github.com/NixOS/nixpkgs/issues/298539
+      # TODO: https://github.com/NixOS/nixpkgs/issues/298539
       (rofi-emoji.override {
         rofi-unwrapped = rofi-wayland-unwrapped;
       })
