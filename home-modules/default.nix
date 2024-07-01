@@ -11,7 +11,6 @@
     ./programs/fzf
     ./programs/git
     ./programs/gpg
-    ./programs/gtk
     ./programs/hyprland
     ./programs/hyprlock
     ./programs/hyprpicker
