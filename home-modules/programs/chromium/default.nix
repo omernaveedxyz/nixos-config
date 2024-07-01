@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
-  inherit (lib) getExe mkIf mkOptionDefault;
+  inherit (lib) mkIf getExe mkOptionDefault;
 in
-{
+mkIf (config._module.args.browser == "chromium") {
   programs.chromium = {
     # Whether to enable Chromium
-    enable = config._module.args.browser == "chromium";
+    enable = true;
 
     # List of Chromium extensions to install
     extensions = [
@@ -14,24 +14,27 @@ in
   };
 
   # Environment variables to always set at login
-  home.sessionVariables = mkIf (config.programs.chromium.enable) {
-    BROWSER = "${getExe config.programs.firefox.package}";
+  home.sessionVariables = {
+    BROWSER = "${getExe config.programs.chromium.package}";
+    PRIVATE_BROWSER = "${getExe config.programs.chromium.package} --incognito";
   };
 
-  wayland.windowManager.sway =
-    mkIf (config.wayland.windowManager.sway.enable && config.programs.chromium.enable)
-      {
+  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
         # Sway configuration options
         config = {
           # An attribute set that assigns a key press to an action using a key symbol
           keybindings = mkOptionDefault {
-            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.chromium.package}";
+            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${config.home.sessionVariables.BROWSER}";
+            "Ctrl+${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${config.home.sessionVariables.PRIVATE_BROWSER}";
           };
         };
       };
 
   # An attribute set that assigns a key press to an action using a key symbol
-  wayland.windowManager.hyprland = mkIf (
-    config.wayland.windowManager.hyprland.enable && config.programs.chromium.enable
-  ) { settings.bind = [ "$Mod Shift, b, exec, ${getExe config.programs.chromium.package}" ]; };
+  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
+    settings.bind = [
+      "$Mod Shift, b, exec, ${config.home.sessionVariables.BROWSER}"
+      "Ctrl $Mod Shift, b, exec, ${config.home.sessionVariables.PRIVATE_BROWSER}"
+    ];
+  };
 }

@@ -6,13 +6,12 @@
 }:
 let
   inherit (lib) mkIf mkOptionDefault getExe;
-in
-{
+in {
   imports = [ nur.hmModules.nur ];
-
+} // mkIf (config._module.args.browser == "firefox") {
   programs.firefox = {
     # Whether to enable Firefox
-    enable = config._module.args.browser == "firefox";
+    enable = true;
 
     # Attribute set of Firefox profiles
     profiles."Default" = {
@@ -1154,30 +1153,27 @@ in
   stylix.targets.firefox.profileNames = [ "Default" ];
 
   # Environment variables to always set at login
-  home.sessionVariables = mkIf (config.programs.firefox.enable) {
+  home.sessionVariables = {
     BROWSER = "${getExe config.programs.firefox.package}";
+    PRIVATE_BROWSER = "${getExe config.programs.firefox.package} --private-window";
   };
 
-  wayland.windowManager.sway =
-    mkIf (config.wayland.windowManager.sway.enable && config.programs.firefox.enable)
-      {
+  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
         # Sway configuration options
         config = {
           # An attribute set that assigns a key press to an action using a key symbol
           keybindings = mkOptionDefault {
-            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package}";
-            "Ctrl+${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${getExe config.programs.firefox.package} --private-window";
+            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${config.home.sessionVariables.BROWSER}";
+            "Ctrl+${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${config.home.sessionVariables.PRIVATE_BROWSER}";
           };
         };
       };
 
   # An attribute set that assigns a key press to an action using a key symbol
-  wayland.windowManager.hyprland =
-    mkIf (config.wayland.windowManager.hyprland.enable && config.programs.firefox.enable)
-      {
+  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
         settings.bind = [
-          "$Mod Shift, b, exec, ${getExe config.programs.firefox.package}"
-          "Ctrl $Mod Shift, b, exec, ${getExe config.programs.firefox.package} --private-window"
+          "$Mod Shift, b, exec, ${config.home.sessionVariables.BROWSER}"
+          "Ctrl $Mod Shift, b, exec, ${config.home.sessionVariables.PRIVATE_BROWSER}"
         ];
       };
 }
