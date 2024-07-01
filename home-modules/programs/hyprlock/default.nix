@@ -19,14 +19,14 @@ mkIf (config.wayland.windowManager.hyprland.enable) {
       background = [
         {
           path = "${config.stylix.image}";
-	  blur_passes = 3;
-	}
+          blur_passes = 3;
+        }
       ];
 
       # Draws a password input field
       input-field = [
         {
-	  monitor = "";
+          monitor = "";
           size = "250, 60";
           outline_thickness = 2;
           dots_size = 0.2;
@@ -48,7 +48,7 @@ mkIf (config.wayland.windowManager.hyprland.enable) {
       # Draws a label
       label = [
         {
-	  monitor = "";
+          monitor = "";
           text = "cmd[update:1000] echo \"$(date +\"%H:%M\")\"";
           color = "rgba(255, 255, 255, 0.6)";
           font_size = "120";
@@ -56,9 +56,9 @@ mkIf (config.wayland.windowManager.hyprland.enable) {
           position = "0, -300";
           halign = "center";
           valign = "top";
-	}
+        }
         {
-	  monitor = "";
+          monitor = "";
           text = "cmd[update:1000] echo \"$(date +\"%A %B %d, %Y\")\"";
           color = "rgba(255, 255, 255, 0.6)";
           font_size = "24";
@@ -66,7 +66,7 @@ mkIf (config.wayland.windowManager.hyprland.enable) {
           position = "0, -500";
           halign = "center";
           valign = "top";
-	}
+        }
       ];
     };
   };

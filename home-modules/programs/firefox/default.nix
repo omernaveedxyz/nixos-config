@@ -6,9 +6,11 @@
 }:
 let
   inherit (lib) mkIf mkOptionDefault getExe;
-in {
+in
+{
   imports = [ nur.hmModules.nur ];
-} // mkIf (config._module.args.browser == "firefox") {
+}
+// mkIf (config._module.args.browser == "firefox") {
   programs.firefox = {
     # Whether to enable Firefox
     enable = true;
@@ -1141,7 +1143,7 @@ in {
         "general.smoothScroll" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
         "ui.key.menuAccessKeyFocuses" = false;
-	"devtools.toolbox.host" = "right";
+        "devtools.toolbox.host" = "right";
       };
     };
   };

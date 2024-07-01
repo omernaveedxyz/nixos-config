@@ -1,6 +1,8 @@
-{ config, lib, ... }: let
+{ config, lib, ... }:
+let
   inherit (lib) getExe;
-in {
+in
+{
   services.swayidle = {
     # Whether to enable idle manager for Wayland
     enable = config.wayland.windowManager.sway.enable;

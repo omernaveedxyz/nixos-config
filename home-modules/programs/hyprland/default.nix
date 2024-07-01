@@ -216,7 +216,7 @@ mkIf (config._module.args.desktop == "hyprland") {
         "$Mod Shift, XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} --set-volume 100 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
         ", XF86AudioMute, exec, ${getExe pkgs.pamixer} --toggle-mute && ( [ \"$(${getExe pkgs.pamixer} --get-mute)\" = \"true\" ] && echo 0 > /run/user/1000/wob.sock ) || ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
 
-	# Browser
+        # Browser
         "$Mod Shift, b, exec, ${config.home.sessionVariables.BROWSER}"
         "Ctrl $Mod Shift, b, exec, ${config.home.sessionVariables.PRIVATE_BROWSER}"
       ];

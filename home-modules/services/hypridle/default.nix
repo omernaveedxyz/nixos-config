@@ -1,6 +1,8 @@
-{ config, lib, ... }: let
+{ config, lib, ... }:
+let
   inherit (lib) getExe;
-in {
+in
+{
   services.hypridle = {
     # Whether to enable Hypridle, Hyprland’s idle daemon
     enable = config._module.args.desktop == "hyprland";

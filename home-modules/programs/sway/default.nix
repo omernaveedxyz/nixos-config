@@ -43,8 +43,8 @@ mkIf (config._module.args.desktop == "sway") {
         # Inner gaps value
         inner = 8;
 
-	# Outer gaps value
-	outer = 4;
+        # Outer gaps value
+        outer = 4;
       };
 
       # An attribute set that defines input modules

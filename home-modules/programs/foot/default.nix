@@ -13,7 +13,7 @@ mkIf (config._module.args.terminal == "foot") {
     # Configuration written to $XDG_CONFIG_HOME/foot/foot.ini
     settings = {
       main = {
-	# Padding between border and glyphs, in pixels (subject to output scaling), in the form XxY
+        # Padding between border and glyphs, in pixels (subject to output scaling), in the form XxY
         pad = "4x4";
       };
     };

@@ -12,10 +12,10 @@ mkIf (config._module.args.terminal == "alacritty") {
       # This section documents the [window] table of the configuration file
       window = {
         # Blank space added around the window in pixels
-	padding = {
-	  x = 4;
-	  y = 4;
-	};
+        padding = {
+          x = 4;
+          y = 4;
+        };
       };
     };
   };

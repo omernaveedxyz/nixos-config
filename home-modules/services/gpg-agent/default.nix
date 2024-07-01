@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
   inherit (lib) mkIf;
-in {
+in
+{
   services.gpg-agent = {
     # Whether to enable gnupg private key agent
     enable = true;
