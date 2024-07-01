@@ -20,6 +20,7 @@
     ./programs/mpv
     ./programs/neovim
     ./programs/nix
+    ./programs/pistol
     ./programs/proton
     ./programs/rofi
     ./programs/ssh
