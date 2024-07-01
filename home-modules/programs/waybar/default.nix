@@ -328,13 +328,13 @@ in
       }
 
       .modules-right #disk {
-          background: transparent;
-      lor: @base07;
+        background: transparent;
+        color: @base07;
       }
 
       .modules-right #memory {
-          background: transparent;
-          color: @base07;
+        background: transparent;
+        color: @base07;
       }
 
       .modules-right #cpu {
