@@ -45,7 +45,7 @@ in
     };
   };
 
-  #
+  # The set of packages to appear in the user environment
   home.packages = with pkgs; [ grim ];
 
   wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
@@ -106,9 +106,7 @@ in
   };
 
   # Environment variables to always set at login
-  home.sessionVariables =
-    mkIf (config.wayland.windowManager.sway.enable || config.wayland.windowManager.hyprland.enable)
-      {
+  home.sessionVariables = {
         SDL_VIDEODRIVER = "wayland";
         _JAVA_AWT_WM_NONREPARENTING = "1";
         QT_QPA_PLATFORM = "wayland";
