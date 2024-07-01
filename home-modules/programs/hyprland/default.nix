@@ -5,12 +5,12 @@
   ...
 }:
 let
-  inherit (lib) getExe;
+  inherit (lib) mkIf getExe;
 in
-{
+mkIf (config._module.args.desktop == "hyprland") {
   wayland.windowManager.hyprland = {
     # Whether to enable Hyprland wayland compositor
-    enable = config._module.args.desktop == "hyprland";
+    enable = true;
 
     # Hyprland configuration written in Nix
     settings = {
@@ -39,98 +39,38 @@ in
         # Enables resizing windows by clicking and dragging on borders and gaps
         resize_on_border = true;
 
-        # Extends the area around the border where you can click and drag on
-        extend_border_grab_area = 15;
-
         # Show a cursor icon when hovering over borders, only used when general:resize_on_border is on
         hover_icon_on_border = true;
       };
 
       decoration = {
         # Rounded corners’ radius
-        rounding = 0;
+        rounding = 4;
 
         # Opacity of active windows
-        active_opacity = 1.0;
+        active_opacity = 0.9;
 
         # Opacity of inactive windows
-        inactive_opacity = 1.0;
+        inactive_opacity = 0.9;
 
         # Opacity of fullscreen windows
-        fullscreen_opacity = 1.0;
-
-        # Enable drop shadows on windows
-        drop_shadow = true;
-
-        # Shadow range
-        shadow_range = 4;
-
-        # In what power to render the falloff
-        shadow_render_power = 3;
-
-        # If true, the shadow will not be rendered behind the window itself, only around it
-        shadow_ignore_window = true;
-
-        # Shadow’s scale
-        shadow_scale = 1.0;
+        fullscreen_opacity = 0.9;
 
         # Enables dimming of inactive windows
-        dim_inactive = false;
-
-        # How much inactive windows should be dimmed
-        dim_strength = 0.5;
-
-        # How much to dim the rest of the screen by when a special workspace is open
-        dim_special = 0.2;
-
-        # How much the `dimaround` window rule should dim by
-        dim_around = 0.4;
+        dim_inactive = true;
       };
 
       decoration.blur = {
         # Enable kawase window background blur
-        enabled = false;
-
-        # Blur size (distance)
-        size = 8;
-
-        # The amount of passes to perform
-        passes = 1;
-
-        # Make the blur layer ignore the opacity of the window
-        ignore_opacity = false;
-
-        # If enabled, floating windows will ignore tiled windows in their blur
-        xray = false;
-
-        # How much noise to apply
-        noise = 1.17e-2;
-
-        # Contrast modulation for blur
-        contrast = 0.8916;
-
-        # Brightness modulation for blur
-        brightness = 0.8172;
-
-        # Increase saturation of blurred colors
-        vibrancy = 0.1696;
-
-        # How strong the effect of vibrancy is on dark areas
-        vibrancy_darkness = 0.0;
-
-        # Whether to blur behind the special workspace
-        special = false;
-
-        # Whether to blur popups
-        popups = false;
+        enabled = true;
       };
 
       animations = {
         # Enable animations
-        enabled = false;
+        enabled = true;
 
         # Enable first launch animation
-        first_launch_animation = false;
+        first_launch_animation = true;
       };
 
       input = {
@@ -196,9 +136,6 @@ in
         # Master split factor, the ratio of master split
         mfact = 0.5;
 
-        # Whether a newly open window should be on the top of the stack
-        new_on_top = false;
-
         # Whether to apply gaps when there is only one window on a workspace
         ## 0 - disabled 
         ## 1 - no border
@@ -212,7 +149,6 @@ in
         # General
         "$Mod, return, exec, ${config.home.sessionVariables.TERMINAL}"
         "$Mod Shift, q, killactive, "
-        "$Mod, d, exec, ${getExe config.programs.rofi.package} -show drun"
         "$Mod Shift, c, exit, "
 
         # Focus
@@ -279,36 +215,16 @@ in
         "$Mod Shift, XF86AudioLowerVolume, exec, ${getExe pkgs.pamixer} --set-volume 0 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
         "$Mod Shift, XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} --set-volume 100 && ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
         ", XF86AudioMute, exec, ${getExe pkgs.pamixer} --toggle-mute && ( [ \"$(${getExe pkgs.pamixer} --get-mute)\" = \"true\" ] && echo 0 > /run/user/1000/wob.sock ) || ${getExe pkgs.pamixer} --get-volume > /run/user/1000/wob.sock"
+
+	# Browser
+        "$Mod Shift, b, exec, ${config.home.sessionVariables.BROWSER}"
+        "Ctrl $Mod Shift, b, exec, ${config.home.sessionVariables.PRIVATE_BROWSER}"
       ];
 
       bindm = [
         # Move/resize windows
         "$Mod, mouse:272, movewindow"
         "$Mod, mouse:273, resizewindow"
-      ];
-
-      bindl = [
-        # Enable/Disable inner-display on lid switch
-        ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
-        ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, preferred, auto, 1'"
-      ];
-
-      windowrulev2 = [
-        "float, title:^(ncpamixer)"
-        "center, title:^(ncpamixer)"
-        "size 50% 50%, title:^(ncpamixer)"
-        "pin, title:^(ncpamixer)"
-        "stayfocused, title:^(ncpamixer)"
-        "suppressevent fullscreen maximize active activatefocus, title:^(ncpamixer)"
-        "dimaround, title:^(ncpamixer)"
-
-        "float, title:^(bashmount)"
-        "center, title:^(bashmount)"
-        "size 50% 50%, title:^(bashmount)"
-        "pin, title:^(bashmount)"
-        "stayfocused, title:^(bashmount)"
-        "suppressevent fullscreen maximize active activatefocus, title:^(bashmount)"
-        "dimaround, title:^(bashmount)"
       ];
     };
   };

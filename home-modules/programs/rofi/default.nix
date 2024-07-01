@@ -24,6 +24,9 @@ in
       {
         # Sway configuration options
         config = {
+          # Default launcher to use
+          menu = "${getExe config.programs.rofi.package} -show drun";
+
           # An attribute set that assigns a key press to an action using a key symbol
           keybindings = mkOptionDefault {
             "${config.wayland.windowManager.sway.config.modifier}+Shift+e" = "exec ${getExe pkgs.rofimoji} --action copy";
@@ -32,7 +35,10 @@ in
       };
 
   # An attribute set that assigns a key press to an action using a key symbol
-  wayland.windowManager.hyprland = mkIf (
-    config.wayland.windowManager.hyprland.enable && config.programs.rofi.enable
-  ) { settings.bind = [ "$Mod Shift, e, exec, ${getExe pkgs.rofimoji} --action copy" ]; };
+  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable && config.programs.rofi.enable) {
+    settings.bind = [
+      "$Mod, d, exec, ${getExe config.programs.rofi.package} -show drun"
+      "$Mod Shift, e, exec, ${getExe pkgs.rofimoji} --action copy"
+    ];
+  };
 }

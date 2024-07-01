@@ -1157,23 +1157,4 @@ in {
     BROWSER = "${getExe config.programs.firefox.package}";
     PRIVATE_BROWSER = "${getExe config.programs.firefox.package} --private-window";
   };
-
-  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
-        # Sway configuration options
-        config = {
-          # An attribute set that assigns a key press to an action using a key symbol
-          keybindings = mkOptionDefault {
-            "${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${config.home.sessionVariables.BROWSER}";
-            "Ctrl+${config.wayland.windowManager.sway.config.modifier}+Shift+b" = "exec ${config.home.sessionVariables.PRIVATE_BROWSER}";
-          };
-        };
-      };
-
-  # An attribute set that assigns a key press to an action using a key symbol
-  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
-        settings.bind = [
-          "$Mod Shift, b, exec, ${config.home.sessionVariables.BROWSER}"
-          "Ctrl $Mod Shift, b, exec, ${config.home.sessionVariables.PRIVATE_BROWSER}"
-        ];
-      };
 }

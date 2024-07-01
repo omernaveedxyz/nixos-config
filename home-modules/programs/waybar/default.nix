@@ -6,7 +6,7 @@
 }:
 let
 
-  inherit (lib) getExe;
+  inherit (lib) getExe mkIf;
 
   waybar-module-custom-uptime = pkgs.writeShellScriptBin "waybar-module-custom-uptime" ''
     ${pkgs.gawk}/bin/awk \
@@ -381,4 +381,54 @@ in
     font-awesome
     nerdfonts
   ];
+
+  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
+    # Sway configuration options
+    config = {
+      # List of commands that should be executed on specific windows
+      window.commands = [
+        {
+          # Swaywm command to execute
+          command = "floating enable, move position center, resize set width 50 ppt height 50 ppt, sticky, fullscreen disable";
+
+          # Criteria of the windows on which command should be executed
+          criteria = {
+            title = "ncpamixer";
+          };
+        }
+        {
+          # Swaywm command to execute
+          command = "floating enable, move position center, resize set width 50 ppt height 50 ppt, sticky, fullscreen disable";
+
+          # Criteria of the windows on which command should be executed
+          criteria = {
+            title = "bashmount";
+          };
+        }
+      ];
+    };
+  };
+
+  # Hyprland configuration written in Nix
+  wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
+    settings = {
+      windowrulev2 = [
+        "float, title:^(ncpamixer)"
+        "center, title:^(ncpamixer)"
+        "size 50% 50%, title:^(ncpamixer)"
+        "pin, title:^(ncpamixer)"
+        "stayfocused, title:^(ncpamixer)"
+        "suppressevent fullscreen maximize active activatefocus, title:^(ncpamixer)"
+        "dimaround, title:^(ncpamixer)"
+
+        "float, title:^(bashmount)"
+        "center, title:^(bashmount)"
+        "size 50% 50%, title:^(bashmount)"
+        "pin, title:^(bashmount)"
+        "stayfocused, title:^(bashmount)"
+        "suppressevent fullscreen maximize active activatefocus, title:^(bashmount)"
+        "dimaround, title:^(bashmount)"
+      ];
+    };
+  };
 }
