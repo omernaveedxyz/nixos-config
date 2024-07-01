@@ -54,13 +54,13 @@ in
     config = {
       # An attribute set that assigns a key press to an action using a key symbol
       keybindings = mkOptionDefault {
-        "${config.wayland.windowManager.sway.config.modifier}+Shift+f" = "exec ${config.home.sessionVariables.TERMINAL} -e lf";
+        "${config.wayland.windowManager.sway.config.modifier}+Shift+f" = "exec ${config.home.sessionVariables.TERMINAL} -e ${getExe config.programs.lf.package}";
       };
     };
   };
 
   # An attribute set that assigns a key press to an action using a key symbol
   wayland.windowManager.hyprland = mkIf (config.wayland.windowManager.hyprland.enable) {
-    settings.bind = [ "$Mod Shift, f, exec, ${config.home.sessionVariables.TERMINAL} -e lf" ];
+    settings.bind = [ "$Mod Shift, f, exec, ${config.home.sessionVariables.TERMINAL} -e ${getExe config.programs.lf.package}" ];
   };
 }
