@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf getExe;
 in
-{
+mkIf (config._module.args.terminal == "kitty") {
   programs.kitty = {
     # Whether to enable Kitty terminal emulator
-    enable = config._module.args.terminal == "kitty";
+    enable = true;
 
     # Configuration written to $XDG_CONFIG_HOME/kitty/kitty.conf
     settings = {
@@ -15,7 +15,7 @@ in
   };
 
   # Environment variables to always set at login
-  home.sessionVariables = mkIf (config.programs.kitty.enable) {
+  home.sessionVariables = {
     TERMINAL = "${getExe config.programs.kitty.package}";
   };
 }

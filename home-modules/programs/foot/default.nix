@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf getExe;
 in
-{
+mkIf (config._module.args.terminal == "foot") {
   programs.foot = {
     # Whether to enable Foot terminal
-    enable = config._module.args.terminal == "foot";
+    enable = true;
 
     # Whether to enable Foot terminal server
     server.enable = true;
@@ -20,7 +20,7 @@ in
   };
 
   # Environment variables to always set at login
-  home.sessionVariables = mkIf (config.programs.foot.enable) {
+  home.sessionVariables = {
     TERMINAL = "${getExe config.programs.foot.package}";
   };
 }

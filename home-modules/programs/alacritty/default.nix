@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf getExe;
 in
-{
+mkIf (config._module.args.terminal == "alacritty") {
   programs.alacritty = {
     # Whether to enable Alacritty
-    enable = config._module.args.terminal == "alacritty";
+    enable = true;
 
     # Configuration written to $XDG_CONFIG_HOME/alacritty/alacritty.toml
     settings = {
@@ -21,7 +21,7 @@ in
   };
 
   # Environment variables to always set at login
-  home.sessionVariables = mkIf (config.programs.alacritty.enable) {
+  home.sessionVariables = {
     TERMINAL = "${getExe config.programs.alacritty.package}";
   };
 }
