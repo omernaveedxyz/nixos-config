@@ -1,5 +1,6 @@
 # List all available commands using Just
-default:
+[private]
+@default:
 	just --list --unsorted
 
 # Update Nix Flake inputs and commit changes
