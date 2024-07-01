@@ -120,7 +120,7 @@ in
           interval = 15;
 
           # The format, how the date and time should be displayed
-          format = "{:%a, %b %d %H:%M}";
+          format = "{:%a %b %d %H:%M}";
         };
 
         # The idle_inhibitor module can inhibit idle behavior such as screen blanking, 

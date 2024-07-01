@@ -2,77 +2,77 @@
 let
   inherit (lib) mkIf getExe;
 in
-{
+mkIf (config.wayland.windowManager.hyprland.enable) {
   programs.hyprlock = {
     # Whether to enable Hyprlock, Hyprland’s GPU-accelerated lock screen utility
-    enable = config._module.args.desktop == "hyprland";
+    enable = true;
 
     # Hyprlock configuration written in Nix
     settings = {
       # Variables in the general category
       general = {
-        # Disables the loading bar on the bottom of the screen while hyprlock is booting up
-        disable_loading_bar = false;
-
-        # Hides the cursor instead of making it visible
-        hide_cursor = false;
-
-        # The amount of seconds for which the lockscreen will unlock on mouse movement
-        grace = 0;
-
-        # Disables the fadein animation
-        no_fade_in = false;
-
-        # Disables the fadeout animation
-        no_fade_out = false;
-
         # Skips validation when no password is provided
         ignore_empty_input = true;
       };
 
       # Draws a background image or fills with color
-      background = [ { path = "${config.stylix.image}"; } ];
+      background = [
+        {
+          path = "${config.stylix.image}";
+	  blur_passes = 3;
+	}
+      ];
 
       # Draws a password input field
       input-field = [
         {
-          size = "600, 50";
-          position = "0, -150";
-          monitor = "";
+	  monitor = "";
+          size = "250, 60";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
           dots_center = true;
+          outer_color = "rgba(0, 0, 0, 0)";
+          inner_color = "rgba(0, 0, 0, 0.75)";
+          font_color = "rgb(200, 200, 200)";
           fade_on_empty = false;
-          font_color = "rgb(202, 211, 245)";
-          inner_color = "rgb(91, 96, 120)";
-          outer_color = "rgb(24, 25, 38)";
-          outline_thickness = 5;
-          placeholder_text = "<span foreground=\"##cad3f5\">Password...</span>";
-          shadow_passes = 2;
+          font_family = "${config.stylix.fonts.sansSerif.name} Bold";
+          placeholder_text = "<i><span foreground=\"##cdd6f4\">Enter Password</span></i>";
+          hide_input = false;
+          position = "0, -120";
+          halign = "center";
+          valign = "center";
         }
       ];
-    };
-  };
 
-  services.hypridle = mkIf (config.services.hypridle.enable) {
-    # Hypridle configuration written in Nix
-    settings = {
-      # Variables in the general category
-      general = {
-        # command to run when receiving a dbus prepare_sleep event
-        before_sleep_cmd = "${getExe config.programs.hyprlock.package}";
-      };
-
-      # Hypridle uses listeners to define actions on idleness
-      listener = [
+      # Draws a label
+      label = [
         {
-          timeout = 600;
-          on-timeout = "${getExe config.programs.hyprlock.package}";
-        }
+	  monitor = "";
+          text = "cmd[update:1000] echo \"$(date +\"%H:%M\")\"";
+          color = "rgba(255, 255, 255, 0.6)";
+          font_size = "120";
+          font_family = "${config.stylix.fonts.sansSerif.name} Bold";
+          position = "0, -300";
+          halign = "center";
+          valign = "top";
+	}
+        {
+	  monitor = "";
+          text = "cmd[update:1000] echo \"$(date +\"%A %B %d, %Y\")\"";
+          color = "rgba(255, 255, 255, 0.6)";
+          font_size = "24";
+          font_family = "${config.stylix.fonts.sansSerif.name} Bold";
+          position = "0, -500";
+          halign = "center";
+          valign = "top";
+	}
       ];
     };
   };
 
   # An attribute set that assigns a key press to an action using a key symbol
-  wayland.windowManager.hyprland = mkIf (
-    config.wayland.windowManager.hyprland.enable && config.programs.firefox.enable
-  ) { settings.bind = [ "$Mod Shift, m, exec, ${getExe config.programs.hyprlock.package}" ]; };
+  wayland.windowManager.hyprland = {
+    settings.bind = [ "$Mod Shift, m, exec, ${getExe config.programs.hyprlock.package}" ];
+  };
 }

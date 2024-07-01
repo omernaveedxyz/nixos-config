@@ -7,10 +7,10 @@
 let
   inherit (lib) mkIf mkOptionDefault getExe;
 in
-{
+mkIf (config.wayland.windowManager.sway.enable) {
   programs.swaylock = {
     # Whether to enable swaylock
-    enable = config.wayland.windowManager.sway.enable;
+    enable = true;
 
     # The swaylock package to use
     package = pkgs.swaylock-effects;
@@ -28,7 +28,7 @@ in
     };
   };
 
-  wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
+  wayland.windowManager.sway = {
     # Sway configuration options
     config = {
       # An attribute set that assigns a key press to an action using a key symbol
@@ -36,23 +36,5 @@ in
         "${config.wayland.windowManager.sway.config.modifier}+Shift+m" = "exec ${getExe config.programs.swaylock.package} -fF";
       };
     };
-  };
-
-  services.swayidle = mkIf (config.services.swayidle.enable) {
-    # Run command on occurrence of a event
-    events = [
-      {
-        event = "before-sleep";
-        command = "${getExe config.programs.swaylock.package} -fF";
-      }
-    ];
-
-    # List of commands to run after idle timeout
-    timeouts = [
-      {
-        timeout = 600;
-        command = "${getExe config.programs.swaylock.package} -fF";
-      }
-    ];
   };
 }
