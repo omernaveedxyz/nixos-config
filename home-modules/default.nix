@@ -3,6 +3,7 @@
     ./programs/alacritty
     ./programs/bash
     ./programs/bashmount
+    ./programs/bat
     ./programs/btop
     ./programs/chromium
     ./programs/direnv
