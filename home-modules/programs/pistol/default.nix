@@ -6,6 +6,6 @@
 
   # Environment variables to always set at login
   home.sessionVariables = {
-    PISTOL_CHROMA_FORMATTER = "terminal16m";
+    PISTOL_CHROMA_FORMATTER = "terminal256";
   };
 }
