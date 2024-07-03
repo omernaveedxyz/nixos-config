@@ -42,6 +42,12 @@
         # Whether to enable indent-o-matic
         enable = true;
       };
+
+      # Git integration for buffers
+      gitsigns = {
+        # Whether to enable gitsigns.nvim
+        enable = true;
+      };
     };
 
     # Autocmd definitions
