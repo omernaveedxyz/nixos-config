@@ -8,7 +8,7 @@
     # ...
     # });
 
-    # REF: https://github.com/NixOS/nixpkgs/issues/292700
+    # TODO: https://github.com/NixOS/nixpkgs/issues/292700
     flameshot = prev.flameshot.overrideAttrs (oldAttrs: {
       src = final.fetchFromGitHub {
         owner = "flameshot-org";
