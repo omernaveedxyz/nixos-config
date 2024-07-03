@@ -18,6 +18,17 @@
     # Alias vimdiff to nvim -d
     vimdiffAlias = true;
 
+    clipboard = {
+      # Sets the register to use for the clipboard
+      register = "unnamedplus";
+
+      # Package(s) to use as the clipboard provider
+      providers.wl-copy = {
+        # Whether to enable wl-copy
+        enable = true;
+      };
+    };
+
     # Configure plugins to install in Nixvim
     plugins = {
       # A blazing fast and easy to configure neovim statusline plugin written in pure lua
