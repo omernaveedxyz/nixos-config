@@ -20,11 +20,16 @@ in
       # List of Firefox add-on packages to install for this profile
       extensions = with config.nur.repos.rycee.firefox-addons; [ ublock-origin ];
 
-      # The default search engine used in the address bar and search bar
-      search.default = "DuckDuckGo";
+      search = {
+        # The default search engine used in the address bar and search bar
+        default = "DuckDuckGo";
 
-      # The default search engine used in the Private Browsing
-      search.privateDefault = "DuckDuckGo";
+        # The default search engine used in the Private Browsing
+        privateDefault = "DuckDuckGo";
+
+        # Whether to force replace the existing search configuration
+        force = true;
+      };
 
       # Attribute set of Firefox preferences
       settings = {
@@ -1148,8 +1153,13 @@ in
     };
   };
 
-  # Path of the source file or directory
-  home.file.".mozilla/firefox/Default/extension-preferences.json".source = ./extension-preferences.json;
+  home.file.".mozilla/firefox/Default/extension-preferences.json" = {
+    # Path of the source file or directory
+    source = ./extension-preferences.json;
+
+    # Whether the target path should be unconditionally replaced by the managed file source
+    force = true;
+  };
 
   # The Firefox profile names to apply styling on
   stylix.targets.firefox.profileNames = [ "Default" ];
