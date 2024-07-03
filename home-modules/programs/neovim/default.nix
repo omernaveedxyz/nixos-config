@@ -43,5 +43,32 @@
         enable = true;
       };
     };
+
+    # Autocmd definitions
+    autoCmd = [
+      {
+        # The event or events to register this autocommand
+        event = "TextYankPost";
+
+        # A textual description of this autocommand
+        desc = "Highlight when yanking (copying) text";
+
+        # The autocommand group name or id to match against
+        group = "highlight-yank";
+
+        # Lua function which is called when this autocommand is triggered
+        callback = {
+          __raw = "function() vim.highlight.on_yank() end";
+        };
+      }
+    ];
+
+    # Autogroup definitions
+    autoGroups = {
+      highlight-yank = {
+        # Clear existing commands if the group already exists
+        clear = true;
+      };
+    };
   };
 }
