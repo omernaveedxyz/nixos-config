@@ -29,6 +29,31 @@
       };
     };
 
+    # The configuration options
+    opts = {
+      # Precede each line with its line number
+      number = true;
+
+      # Show the line number relative to the line with the cursor in front of each line
+      relativenumber = true;
+
+      # The case of normal letters is ignored
+      ignorecase = true;
+
+      # Override the 'ignorecase' option if the search pattern contains upper case characters
+      smartcase = true;
+
+      # When there is a previous search pattern, highlight all its matches
+      hlsearch = false;
+
+      # Minimal number of screen lines to keep above and below the cursor
+      scrolloff = 10;
+
+      # lines longer than the width of the window will wrap and displaying continues on the next line
+      # When off lines will not wrap and only part of long lines will be displayed
+      wrap = false;
+    };
+
     # Configure plugins to install in Nixvim
     plugins = {
       # A blazing fast and easy to configure neovim statusline plugin written in pure lua
