@@ -25,6 +25,12 @@
         # Whether to enable lualine
         enable = true;
       };
+
+      # Dumb automatic fast indentation detection for Neovim written in Lua
+      indent-o-matic = {
+        # Whether to enable indent-o-matic
+        enable = true;
+      };
     };
   };
 }
