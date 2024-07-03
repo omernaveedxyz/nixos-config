@@ -2,10 +2,13 @@
   programs.pistol = {
     # Whether to enable file previewer for terminal file managers
     enable = true;
-  };
 
-  # Environment variables to always set at login
-  home.sessionVariables = {
-    PISTOL_CHROMA_FORMATTER = "terminal256";
+    # Associations written to the Pistol configuration at $XDG_CONFIG_HOME/pistol/pistol.conf
+    associations = [
+      {
+        mime = "text/*";
+        command = "bat --paging=never --color=always --plain %pistol-filename%";
+      }
+    ];
   };
 }
