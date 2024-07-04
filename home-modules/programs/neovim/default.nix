@@ -73,6 +73,20 @@
         # Whether to enable gitsigns.nvim
         enable = true;
       };
+
+      # Quickstart configs for Nvim LSP
+      lsp = {
+        # Whether to enable neovim’s built-in LSP
+        enable = true;
+
+        servers = {
+          # Nix Language server
+          nil-ls = {
+            # Whether to enable nil for Nix
+            enable = true;
+          };
+        };
+      };
     };
 
     # Autocmd definitions
