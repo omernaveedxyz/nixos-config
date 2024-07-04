@@ -80,9 +80,15 @@
         enable = true;
 
         servers = {
-          # Nix Language server
+          # Nix language server
           nil-ls = {
             # Whether to enable nil for Nix
+            enable = true;
+          };
+
+          # Bash language server
+          bashls = {
+            # Whether to enable bashls for bash
             enable = true;
           };
         };
