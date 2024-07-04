@@ -25,6 +25,7 @@
     ./programs/proton
     ./programs/rofi
     ./programs/ssh
+    ./programs/standardnotes
     ./programs/stylix
     ./programs/sway
     ./programs/swaylock
