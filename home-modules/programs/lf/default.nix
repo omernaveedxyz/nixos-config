@@ -46,6 +46,9 @@ in
 
       # Render sixel images in preview
       sixel = true;
+
+      # Sets IFS variable in shell commands
+      ifs = "\\n";
     };
 
     # Script or executable to use to preview files
@@ -53,7 +56,9 @@ in
 
     # Commands to declare
     commands = {
-      trash = "%${pkgs.trash-cli}/bin/trash-put \"$fx\"";
+      mpv = "%${getExe pkgs.mpv} $fx";
+
+      trash = "%${pkgs.trash-cli}/bin/trash-put $fx";
       trash-restore = ''''${{${pkgs.trash-cli}/bin/trash-restore}}'';
       trash-empty = ''''${{${pkgs.trash-cli}/bin/trash-empty}}'';
 
@@ -101,7 +106,7 @@ in
       tar = ''
         ''${{
           mkdir "$1"
-          cp -r "$fx" "$1"
+          cp -r -t "$1" $fx
           tar czf "$1.tar.gz" "$1"
           rm -rf "$1"
         }}
@@ -110,7 +115,7 @@ in
       zip = ''
         ''${{
           mkdir "$1"
-          cp -r "$fx" "$1"
+          cp -r -t "$1" $fx
           ${getExe pkgs.zip} -r "$1.zip" "$1"
           rm -rf "$1"
         }}
