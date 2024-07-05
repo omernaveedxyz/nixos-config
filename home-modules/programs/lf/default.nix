@@ -44,6 +44,51 @@ in
 
     # Script or executable to use to preview files
     previewer.source = "${previewer}/bin/pv.sh";
+
+    # Commands to declare
+    commands = {
+      trash = "%${pkgs.trash-cli}/bin/trash-put \"$fx\"";
+      trash-restore = ''''${{${pkgs.trash-cli}/bin/trash-restore}}'';
+      trash-empty = ''''${{${pkgs.trash-cli}/bin/trash-empty}}'';
+
+      fzf_jump = ''
+        ''${{
+          res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+          if [ -n "$res" ]; then
+            if [ -d "$res" ]; then
+              cmd="cd"
+            else
+              cmd="select"
+            fi
+            res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+            lf -remote "send $id $cmd \"$res\""
+          fi
+        }}
+      '';
+
+      fzf_search = ''
+        ''${{
+          RG_PREFIX="${getExe pkgs.ripgrep} --column --line-number --no-heading --color=always --smart-case "
+          res="$(
+            FZF_DEFAULT_COMMAND="$RG_PREFIX '''" \
+              fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+              --ansi --layout=reverse --header 'Search in files' \
+              | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
+          )"
+          [ -n "$res" ] && lf -remote "send $id select \"$res\""
+        }}
+      '';
+    };
+
+    # Keys to bind
+    keybindings = {
+      "<delete><delete>" = "trash";
+      "<delete>r" = "trash-restore";
+      "<delete>c" = "trash-empty";
+
+      "<c-f>" = ":fzf_jump";
+      "gs" = ":fzf_search";
+    };
   };
 
   # Path of the source file or directory
