@@ -5,7 +5,13 @@
   ...
 }:
 let
-  inherit (lib) getExe mkIf mkOptionDefault;
+  inherit (builtins) elem;
+  inherit (lib)
+    getExe
+    getName
+    mkIf
+    mkOptionDefault
+    ;
   inherit (pkgs) writeShellScriptBin;
 
   previewer = writeShellScriptBin "pv.sh" ''
@@ -78,6 +84,37 @@ in
           [ -n "$res" ] && lf -remote "send $id select \"$res\""
         }}
       '';
+
+      extract = ''
+        ''${{
+          case "$f" in
+            *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf "$f";;
+            *.tar.gz|*.tgz) tar xzvf "$f";;
+            *.tar.xz|*.txz) tar xJvf "$f";;
+            *.zip) ${getExe pkgs.unzip} "$f";;
+            *.rar) ${getExe pkgs.unrar} x "$f";;
+            *.7z) ${getExe pkgs.p7zip} x "$f";;
+          esac
+        }}
+      '';
+
+      tar = ''
+        ''${{
+          mkdir "$1"
+          cp -r "$fx" "$1"
+          tar czf "$1.tar.gz" "$1"
+          rm -rf "$1"
+        }}
+      '';
+
+      zip = ''
+        ''${{
+          mkdir "$1"
+          cp -r "$fx" "$1"
+          ${getExe pkgs.zip} -r "$1.zip" "$1"
+          rm -rf "$1"
+        }}
+      '';
     };
 
     # Keys to bind
@@ -93,6 +130,9 @@ in
 
   # Path of the source file or directory
   xdg.configFile."lf/icons".source = ./icons;
+
+  # Allow installing unfree packages
+  nixpkgs.config.allowUnfreePredicate = pkg: elem (getName pkg) [ "unrar" ];
 
   wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
     # Sway configuration options
