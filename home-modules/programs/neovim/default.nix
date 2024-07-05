@@ -91,6 +91,18 @@
             # Whether to enable bashls for bash
             enable = true;
           };
+
+          # HTML language server
+          html = {
+            # Whether to enable HTML language server
+            enable = true;
+          };
+
+          # CSS language server
+          cssls = {
+            # Whether to enable cssls for CSS
+            enable = true;
+          };
         };
       };
     };
