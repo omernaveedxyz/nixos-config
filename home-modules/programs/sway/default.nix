@@ -107,6 +107,19 @@ mkIf (config._module.args.desktop == "sway") {
         # Whether to show window titlebars
         titlebar = true;
       };
+
+      # An attribute set that assigns applications to workspaces based on criteria
+      assigns = {
+        "10" = [ { title = "^btop$"; } ];
+      };
+
+      # Commands that should be executed at startup
+      startup = [
+        {
+          # Command that will be executed on startup
+          command = "${config.home.sessionVariables.TERMINAL} --title btop -e ${config.programs.btop.package}";
+        }
+      ];
     };
 
     swaynag = {
