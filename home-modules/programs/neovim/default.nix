@@ -93,6 +93,50 @@ in
       smarttab = true;
     };
 
+    # Nixvim keymaps
+    keymaps = [
+      {
+        action = {
+          __raw = "vim.diagnostic.goto_prev";
+        };
+        key = "[d";
+        mode = "n";
+        options = {
+          desc = "Go to previous [D]iagnostic message";
+        };
+      }
+      {
+        action = {
+          __raw = "vim.diagnostic.goto_next";
+        };
+        key = "]d";
+        mode = "n";
+        options = {
+          desc = "Go to next [D]iagnostic message";
+        };
+      }
+      {
+        action = {
+          __raw = "vim.diagnostic.open_float";
+        };
+        key = "<leader>e";
+        mode = "n";
+        options = {
+          desc = "Show diagnostic [E]rror messages";
+        };
+      }
+      {
+        action = {
+          __raw = "vim.diagnostic.setloclist";
+        };
+        key = "<leader>q";
+        mode = "n";
+        options = {
+          desc = "Open diagnostic [Q]uickfix list";
+        };
+      }
+    ];
+
     # Configure plugins to install in Nixvim
     plugins = {
       # A blazing fast and easy to configure neovim statusline plugin written in pure lua
