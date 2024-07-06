@@ -230,6 +230,10 @@ mkIf (config._module.args.desktop == "hyprland") {
         "$Mod, mouse:273, resizewindow"
       ];
 
+      exec-once = [
+        "[workspace 10 silent] ${config.home.sessionVariables.TERMINAL} --title btop -e ${getExe config.programs.btop.package}"
+      ];
+
       plugin = {
         hyprexpo = {
           columns = 3;
