@@ -219,6 +219,9 @@ mkIf (config._module.args.desktop == "hyprland") {
         # Browser
         "$Mod Shift, b, exec, ${config.home.sessionVariables.BROWSER}"
         "Ctrl $Mod Shift, b, exec, ${config.home.sessionVariables.PRIVATE_BROWSER}"
+
+        # Plugins
+        "$Mod, grave, hyprexpo:expo, toggle"
       ];
 
       bindm = [
@@ -226,6 +229,23 @@ mkIf (config._module.args.desktop == "hyprland") {
         "$Mod, mouse:272, movewindow"
         "$Mod, mouse:273, resizewindow"
       ];
+
+      plugin = {
+        hyprexpo = {
+          columns = 3;
+          gap_size = 5;
+          bg_col = "rgb(111111)";
+          workspace_method = "first 1";
+
+          enable_gesture = true;
+          gesture_fingers = 3;
+          gesture_distance = 300;
+          gesture_positive = false;
+        };
+      };
     };
+
+    # List of Hyprland plugins to use
+    plugins = with pkgs; [ hyprlandPlugins.hyprexpo ];
   };
 }
