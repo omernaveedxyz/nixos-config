@@ -1,12 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib) mkIf;
-  inherit (pkgs) writeTextDir;
 in
 {
   services.pipewire = {

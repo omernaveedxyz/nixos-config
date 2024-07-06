@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf getExe mkOptionDefault;
+  inherit (lib) mkIf getExe;
 in
 mkIf (config._module.args.browser == "chromium") {
   programs.chromium = {

@@ -52,6 +52,9 @@
       # lines longer than the width of the window will wrap and displaying continues on the next line
       # When off lines will not wrap and only part of long lines will be displayed
       wrap = false;
+
+      # When and how to draw the signcolumn
+      signcolumn = "yes";
     };
 
     # Configure plugins to install in Nixvim
@@ -134,6 +137,7 @@
           sh = [ "shfmt" ];
           html = [ "prettierd" ];
           css = [ "prettierd" ];
+          json = [ "prettierd" ];
           markdown = [ "prettierd" ];
           "*" = [ "codespell" ];
           "_" = [ "trim_whitespace" ];

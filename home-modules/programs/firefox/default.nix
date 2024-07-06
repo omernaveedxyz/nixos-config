@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkOptionDefault getExe;
+  inherit (lib) mkIf getExe;
 in
 {
   imports = [ nur.hmModules.nur ];
@@ -814,7 +814,7 @@ in
         # Disable page thumbnail collection
         # "browser.pagethumbnails.capturing_disabled" = true; // [HIDDEN PREF]
         # -------------------------------------
-        # Disable Windows native notifications and use app notications instead [FF111+] [WINDOWS]
+        # Disable Windows native notifications and use app notifications instead [FF111+] [WINDOWS]
         # "alerts.useSystemBackend.windows.notificationserver.enabled" = false;
         # -------------------------------------
         # Disable location bar using search

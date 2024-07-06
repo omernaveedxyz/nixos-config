@@ -11,7 +11,7 @@ if [ $# -eq 3 ]; then
 
 	# Function to cleanup temporary directory on exit
 	cleanup() {
-	  rm -rf "$temp"
+		rm -rf "$temp"
 	}
 	trap cleanup EXIT
 
@@ -33,10 +33,10 @@ if [ $# -eq 3 ]; then
 		install -d -m755 "$temp/persistent/etc/ssh"
 
 		# Decrypt SSH keys using sops and store in temporary directory
-		sops --extract '["ssh_host_ed25519_key"]' -d "nixos-configurations/$config/secrets.yaml" > "$temp/etc/ssh/ssh_host_ed25519_key"
-		sops --extract '["ssh_host_ed25519_key.pub"]' -d "nixos-configurations/$config/secrets.yaml" > "$temp/etc/ssh/ssh_host_ed25519_key.pub"
-		sops --extract '["ssh_host_rsa_key"]' -d "nixos-configurations/$config/secrets.yaml" > "$temp/etc/ssh/ssh_host_rsa_key"
-		sops --extract '["ssh_host_rsa_key.pub"]' -d "nixos-configurations/$config/secrets.yaml" > "$temp/etc/ssh/ssh_host_rsa_key.pub"
+		sops --extract '["ssh_host_ed25519_key"]' -d "nixos-configurations/$config/secrets.yaml" >"$temp/etc/ssh/ssh_host_ed25519_key"
+		sops --extract '["ssh_host_ed25519_key.pub"]' -d "nixos-configurations/$config/secrets.yaml" >"$temp/etc/ssh/ssh_host_ed25519_key.pub"
+		sops --extract '["ssh_host_rsa_key"]' -d "nixos-configurations/$config/secrets.yaml" >"$temp/etc/ssh/ssh_host_rsa_key"
+		sops --extract '["ssh_host_rsa_key.pub"]' -d "nixos-configurations/$config/secrets.yaml" >"$temp/etc/ssh/ssh_host_rsa_key.pub"
 
 		chmod 0600 "$temp/etc/ssh/ssh_host_ed25519_key"
 		chmod 0644 "$temp/etc/ssh/ssh_host_ed25519_key.pub"
@@ -53,7 +53,7 @@ if [ $# -eq 3 ]; then
 		install -d -m755 "$temp/persistent/etc"
 
 		# Decrypt SSH keys using sops and store in temporary directory
-		sops --extract '["keyfile"]' -d "nixos-configurations/$device/secrets.yaml" > "$temp/etc/keyfile"
+		sops --extract '["keyfile"]' -d "nixos-configurations/$device/secrets.yaml" >"$temp/etc/keyfile"
 
 		chmod 0600 "$temp/etc/keyfile"
 

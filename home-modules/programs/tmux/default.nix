@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   programs.tmux = {
     # Whether to enable tmux
