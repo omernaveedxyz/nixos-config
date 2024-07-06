@@ -103,6 +103,12 @@
             # Whether to enable cssls for CSS
             enable = true;
           };
+
+          # Markdown language server
+          marksman = {
+            # Whether to enable marksman for Markdown
+            enable = true;
+          };
         };
       };
 
