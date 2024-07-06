@@ -231,12 +231,6 @@ in
         sources = {
           # List of sources by which to format files
           formatting = {
-            # Check code for common misspellings
-            codespell = {
-              # Whether to enable the codespell formatting source for none-ls
-              enable = true;
-            };
-
             # The official (but not yet stable) formatter for Nix code
             nixfmt = {
               # Whether to enable the nixfmt formatting source for none-ls
