@@ -183,6 +183,103 @@ in
         # Whether to enable neovim’s built-in LSP
         enable = true;
 
+        # Lsp keymaps
+        keymaps = {
+          # Extra keymaps to register when an LSP is attached
+          extra = [
+            {
+              action = {
+                __raw = "require('telescope.builtin').lsp_definitions";
+              };
+              key = "gd";
+              options = {
+                desc = "[G]oto [D]efinition";
+              };
+            }
+            {
+              action = {
+                __raw = "require('telescope.builtin').lsp_references";
+              };
+              key = "gr";
+              options = {
+                desc = "[G]oto [R]eferences";
+              };
+            }
+            {
+              action = {
+                __raw = "require('telescope.builtin').lsp_implementations";
+              };
+              key = "gi";
+              options = {
+                desc = "[G]oto [I]mplementation";
+              };
+            }
+            {
+              action = {
+                __raw = "require('telescope.builtin').lsp_type_definitions";
+              };
+              key = "<leader>D";
+              options = {
+                desc = "Type [D]efinition";
+              };
+            }
+            {
+              action = {
+                __raw = "require('telescope.builtin').lsp_document_symbols";
+              };
+              key = "<leader>ds";
+              options = {
+                desc = "[D]ocument [S]ymbols";
+              };
+            }
+            {
+              action = {
+                __raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+              };
+              key = "<leader>ws";
+              options = {
+                desc = "[W]orkspace [S]ymbols";
+              };
+            }
+            {
+              action = {
+                __raw = "vim.lsp.buf.rename";
+              };
+              key = "<leader>rn";
+              options = {
+                desc = "[R]e[n]ame";
+              };
+            }
+            {
+              action = {
+                __raw = "vim.lsp.buf.code_action";
+              };
+              key = "<leader>ca";
+              options = {
+                desc = "[C]ode [A]ction";
+              };
+            }
+            {
+              action = {
+                __raw = "vim.lsp.buf.hover";
+              };
+              key = "K";
+              options = {
+                desc = "Hover Documentation";
+              };
+            }
+            {
+              action = {
+                __raw = "vim.lsp.buf.declaration";
+              };
+              key = "gD";
+              options = {
+                desc = "[G]oto [D]eclaration";
+              };
+            }
+          ];
+        };
+
         servers = {
           # Nix language server
           nil-ls = {
