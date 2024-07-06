@@ -38,6 +38,15 @@ in
       };
     };
 
+    # Global variables
+    globals = {
+      # Define the leader key
+      mapleader = " ";
+
+      # Define the local leader key
+      maplocalleader = " ";
+    };
+
     # The configuration options
     opts = {
       # Precede each line with its line number
