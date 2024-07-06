@@ -115,32 +115,48 @@
         };
       };
 
-      # Lightweight yet powerful formatter plugin for Neovim
-      conform-nvim = {
-        # Whether to enable conform-nvim
+      # Format files automatically
+      lsp-format = {
+        # Whether to enable lsp-format.nvim
+        enable = true;
+      };
+
+      # Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+      none-ls = {
+        # Whether to enable none-ls.nvim
         enable = true;
 
-        # If this is set, Conform will run the formatter on save
-        formatOnSave = {
-          lspFallback = true;
-          timeoutMs = 1000;
-        };
+        # List of sources by which to perform various functions
+        sources = {
+          # List of sources by which to format files
+          formatting = {
+            # Check code for common misspellings
+            codespell = {
+              # Whether to enable the codespell formatting source for none-ls
+              enable = true;
+            };
 
-        # If this is set, Conform will run the formatter asynchronously after save
-        formatAfterSave = {
-          lspFallback = true;
-        };
+            # The official (but not yet stable) formatter for Nix code
+            nixfmt = {
+              # Whether to enable the nixfmt formatting source for none-ls
+              enable = true;
 
-        # Map of filetype to formatters
-        formattersByFt = {
-          nix = [ "nixfmt" ];
-          sh = [ "shfmt" ];
-          html = [ "prettierd" ];
-          css = [ "prettierd" ];
-          json = [ "prettierd" ];
-          markdown = [ "prettierd" ];
-          "*" = [ "codespell" ];
-          "_" = [ "trim_whitespace" ];
+              # Package to use for nixfmt by none-ls
+              package = pkgs.nixfmt-rfc-style;
+            };
+
+            # Prettier, as a daemon, for improved formatting speed
+            prettierd = {
+              # Whether to enable the prettierd formatting source for none-ls
+              enable = true;
+            };
+
+            # A shell formatter (sh/bash/mksh)
+            shfmt = {
+              # Whether to enable the shfmt formatting source for none-ls
+              enable = true;
+            };
+          };
         };
       };
 
@@ -177,14 +193,5 @@
         clear = true;
       };
     };
-
-    # HACK: https://github.com/nix-community/nixvim/issues/1141
-    # Extra packages to be made available to neovim
-    extraPackages = with pkgs; [
-      nixfmt-rfc-style
-      shfmt
-      codespell
-      prettierd
-    ];
   };
 }
