@@ -1,4 +1,13 @@
-{ pkgs, nixvim, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  nixvim,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
 {
   imports = [ nixvim.homeManagerModules.nixvim ];
 
@@ -55,6 +64,9 @@
 
       # When and how to draw the signcolumn
       signcolumn = "yes";
+
+      # Vim automatically saves undo history to an undo file when writing a buffer to a file, and restores undo history from the same file on buffer read
+      undofile = true;
     };
 
     # Configure plugins to install in Nixvim
@@ -194,4 +206,12 @@
       };
     };
   };
+
+  # Files and directories to persistent across ephemeral boots
+  home.persistence."/persistent/home/${config.home.username}" =
+    mkIf (config._module.args.impermanence)
+      {
+        # All directories you want to link or bind to persistent storage
+        directories = [ ".local/state/nvim/undo" ];
+      };
 }
