@@ -155,6 +155,27 @@ in
       gitsigns = {
         # Whether to enable gitsigns.nvim
         enable = true;
+
+        # Options provided to the require('gitsigns').setup function
+        settings = {
+          signs = {
+            add = {
+              text = "+";
+            };
+            change = {
+              text = "~";
+            };
+            delete = {
+              text = "_";
+            };
+            topdelete = {
+              text = "‾";
+            };
+            changedelete = {
+              text = "~";
+            };
+          };
+        };
       };
 
       # Quickstart configs for Nvim LSP
