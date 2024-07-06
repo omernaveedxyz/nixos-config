@@ -192,6 +192,12 @@ in
         # Whether to enable todo-comments
         enable = true;
       };
+
+      # Nvim Treesitter configurations and abstraction layer
+      treesitter = {
+        # Whether to enable tree-sitter syntax highlighting
+        enable = true;
+      };
     };
 
     # Autocmd definitions
