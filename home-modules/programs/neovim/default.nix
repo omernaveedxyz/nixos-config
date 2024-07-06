@@ -1,4 +1,4 @@
-{ nixvim, ... }:
+{ pkgs, nixvim, ... }:
 {
   imports = [ nixvim.homeManagerModules.nixvim ];
 
@@ -105,6 +105,40 @@
           };
         };
       };
+
+      # Lightweight yet powerful formatter plugin for Neovim
+      conform-nvim = {
+        # Whether to enable conform-nvim
+        enable = true;
+
+        # If this is set, Conform will run the formatter on save
+        formatOnSave = {
+          lspFallback = true;
+          timeoutMs = 1000;
+        };
+
+        # If this is set, Conform will run the formatter asynchronously after save
+        formatAfterSave = {
+          lspFallback = true;
+        };
+
+        # Map of filetype to formatters
+        formattersByFt = {
+          nix = [ "nixfmt" ];
+          sh = [ "shfmt" ];
+          html = [ "prettierd" ];
+          css = [ "prettierd" ];
+          markdown = [ "prettierd" ];
+          "*" = [ "codespell" ];
+          "_" = [ "trim_whitespace" ];
+        };
+      };
+
+      # Highlight, list and search todo comments in your projects
+      todo-comments = {
+        # Whether to enable todo-comments
+        enable = true;
+      };
     };
 
     # Autocmd definitions
@@ -133,5 +167,14 @@
         clear = true;
       };
     };
+
+    # TODO: https://github.com/nix-community/nixvim/issues/1141
+    # Extra packages to be made available to neovim
+    extraPackages = with pkgs; [
+      nixfmt-rfc-style
+      shfmt
+      codespell
+      prettierd
+    ];
   };
 }
