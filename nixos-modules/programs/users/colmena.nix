@@ -30,7 +30,7 @@ in
   users.groups.colmena = { };
 
   # Define specific rules to be in the sudoers file
-  # TODO: https://github.com/zhaofengli/colmena/issues/165
+  # HACK: https://github.com/zhaofengli/colmena/issues/165
   security.sudo.extraRules = [
     {
       users = [ "colmena" ];

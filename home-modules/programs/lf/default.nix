@@ -136,7 +136,7 @@ in
   # Path of the source file or directory
   xdg.configFile."lf/icons".source = ./icons;
 
-  # Allow installing unfree packages
+  # Allow installing specific unfree packages
   nixpkgs.config.allowUnfreePredicate = pkg: elem (getName pkg) [ "unrar" ];
 
   wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {

@@ -7,7 +7,13 @@ in
     # Whether to enable Swaync notification daemon
     enable = true;
 
-    # TODO: customize Sway-Notification-Client
+    # TODO: Customize SwayNC
+    # Configuration written to $XDG_CONFIG_HOME/swaync/config.json
+    # settings = { };
+
+    # CSS style of the bar
+    # style = ''
+    # '';
   };
 
   wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {

@@ -11,7 +11,8 @@ in
   # The set of packages to appear in the user environment
   home.packages = [ pkgs.standardnotes ];
 
-  # TODO: https://github.com/standardnotes/forum/issues/3626
+  # HACK: https://github.com/standardnotes/forum/issues/3626
+  # Allow specific insecure packages
   nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
 
   # Files and directories to persistent across ephemeral boots

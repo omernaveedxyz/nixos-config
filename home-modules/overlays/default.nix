@@ -8,7 +8,7 @@
     # ...
     # });
 
-    # TODO: https://github.com/NixOS/nixpkgs/issues/292700
+    # HACK: https://github.com/NixOS/nixpkgs/issues/292700
     flameshot = prev.flameshot.overrideAttrs (oldAttrs: {
       src = final.fetchFromGitHub {
         owner = "flameshot-org";
@@ -23,7 +23,7 @@
       buildInputs = oldAttrs.buildInputs ++ [ final.libsForQt5.kguiaddons ];
     });
 
-    # TODO: https://github.com/NixOS/nixpkgs/pull/296421
+    # HACK: https://github.com/NixOS/nixpkgs/pull/296421
     standardnotes = prev.standardnotes.overrideAttrs (oldAttrs: {
       version = "3.191.0";
       src = final.fetchurl {

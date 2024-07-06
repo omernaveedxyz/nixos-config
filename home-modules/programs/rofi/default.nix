@@ -17,12 +17,13 @@ in
 
     # List of rofi plugins to be installed
     plugins = with pkgs; [
-      # TODO: https://github.com/NixOS/nixpkgs/issues/298539
+      # HACK: https://github.com/NixOS/nixpkgs/issues/298539
       (rofi-emoji.override { rofi-unwrapped = rofi-wayland-unwrapped; })
     ];
 
+    # TODO: Customize Rofi 
     # Name of theme or path to theme file in rasi format or attribute set with theme configuration
-    theme = { }; # TODO: customize Rofi
+    theme = { };
   };
 
   # The set of packages to appear in the user environment

@@ -178,7 +178,7 @@
       };
     };
 
-    # TODO: https://github.com/nix-community/nixvim/issues/1141
+    # HACK: https://github.com/nix-community/nixvim/issues/1141
     # Extra packages to be made available to neovim
     extraPackages = with pkgs; [
       nixfmt-rfc-style
