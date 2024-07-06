@@ -67,6 +67,21 @@ in
 
       # Vim automatically saves undo history to an undo file when writing a buffer to a file, and restores undo history from the same file on buffer read
       undofile = true;
+
+      # Use the appropriate number of spaces to insert a <Tab>
+      expandtab = true;
+
+      # Number of spaces that a <Tab> in the file counts for
+      tabstop = 2;
+
+      # Number of spaces to use for each step of (auto)indent
+      shiftwidth = 2;
+
+      # Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
+      softtabstop = -1;
+
+      # When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'
+      smarttab = true;
     };
 
     # Configure plugins to install in Nixvim
