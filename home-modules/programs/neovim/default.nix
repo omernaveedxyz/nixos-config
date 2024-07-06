@@ -335,6 +335,85 @@ in
         # Whether to enable friendly-snippets
         enable = true;
       };
+
+      # Find, Filter, Preview, Pick
+      telescope = {
+        # Whether to enable telescope.nvim
+        enable = true;
+
+        # Extensions to enable for Telescope
+        extensions = {
+          # Whether to enable the fzf-native telescope extension
+          fzf-native.enable = true;
+
+          # Whether to enable the ui-select telescope extension
+          ui-select.enable = true;
+        };
+
+        # Keymaps for telescope
+        keymaps = {
+          "<leader>sh" = {
+            action = "help_tags";
+            options = {
+              desc = "[S]earch [H]elp";
+            };
+          };
+          "<leader>sk" = {
+            action = "keymaps";
+            options = {
+              desc = "[S]earch [K]eymaps";
+            };
+          };
+          "<leader>sf" = {
+            action = "find_files";
+            options = {
+              desc = "[S]earch [F]iles";
+            };
+          };
+          "<leader>ss" = {
+            action = "builtin";
+            options = {
+              desc = "[S]earch [S]elect Telescope";
+            };
+          };
+          "<leader>sw" = {
+            action = "grep_string";
+            options = {
+              desc = "[S]earch current [W]ord";
+            };
+          };
+          "<leader>sg" = {
+            action = "live_grep";
+            options = {
+              desc = "[S]earch by [G]rep";
+            };
+          };
+          "<leader>sd" = {
+            action = "diagnostics";
+            options = {
+              desc = "[S]earch [D]iagnostics";
+            };
+          };
+          "<leader>sr" = {
+            action = "resume";
+            options = {
+              desc = "[S]earch [R]esume";
+            };
+          };
+          "<leader>s." = {
+            action = "oldfiles";
+            options = {
+              desc = "[S]earch Recent Files (\".\" for repeat)";
+            };
+          };
+          "<leader><leader>" = {
+            action = "buffers";
+            options = {
+              desc = "[ ] Find existing buffers";
+            };
+          };
+        };
+      };
     };
 
     # Autocmd definitions
