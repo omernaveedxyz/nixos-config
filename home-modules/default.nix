@@ -18,6 +18,7 @@
     ./programs/impermanence
     ./programs/kitty
     ./programs/lf
+    ./programs/monero
     ./programs/mpv
     ./programs/neovim
     ./programs/nix
