@@ -49,6 +49,10 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.home-manager.follows = "home-manager";
+
+    # NixOS MicroVMs
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -66,6 +70,7 @@
       stylix,
       nur,
       nixvim,
+      microvm,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -92,6 +97,7 @@
             stylix
             nur
             nixvim
+            microvm
             ;
           relativeToRoot = nixpkgs.lib.path.append ./.;
         };
