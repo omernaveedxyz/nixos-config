@@ -66,14 +66,12 @@ in
   # Modules to help you handle persistent state on systems with ephemeral root storage
   environment.persistence."/persistent" = mkIf (config._module.args.impermanence) {
     # All directories you want to link or bind to persistent storage
-    directories = [
-      {
-        directory = "/var/lib/microvms";
-        user = "root";
-        group = "root";
-        mode = "0755";
-      }
-    ];
+    directories = map (microvm: {
+      directory = "/var/lib/microvms/${microvm}/persistent";
+      user = "root";
+      group = "root";
+      mode = "0755";
+    }) (attrNames config.microvm.vms);
   };
 
   # Specify encrypted sops secret to access
