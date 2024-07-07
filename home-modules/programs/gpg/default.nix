@@ -40,7 +40,11 @@ in
       ++ (map (name: {
         source = relativeToRoot "nixos-configurations/${name}/pubkey.asc";
         trust = 1;
-      }) (attrNames (readDir (relativeToRoot "nixos-configurations"))));
+      }) (attrNames (readDir (relativeToRoot "nixos-configurations"))))
+      ++ (map (name: {
+        source = relativeToRoot "microvm-configurations/${name}/pubkey.asc";
+        trust = 1;
+      }) (attrNames (readDir (relativeToRoot "microvm-configurations"))));
   };
 
   # Files and directories to persistent across ephemeral boots

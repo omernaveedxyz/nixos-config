@@ -15,6 +15,7 @@ in
     nixos-hardware.nixosModules.common-pc-ssd
 
     ./hardware/boot
+    ./hardware/microvm
     ./hardware/mounts
 
     ./services/sanoid
