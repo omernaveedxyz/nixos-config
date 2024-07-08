@@ -15,6 +15,7 @@ let
     attrNames
     mkIf
     concatMap
+    stringAfter
     ;
 
   # Function to generate attribute set of microvm configurations given vm names
@@ -108,8 +109,31 @@ in
       name = "/var/lib/microvms/${microvm}/persistent/etc/ssh";
       value = {
         device = "/run/secrets/${microvm}";
-        options = [ "bind" ];
+        depends = [ "/var/lib/microvms/${microvm}/persistent" ];
+        fsType = "none";
+        options = [
+          "bind"
+          "ro"
+        ];
       };
+    }) (attrNames config.microvm.vms)
+  );
+
+  # A set of shell script fragments that are executed when a NixOS system configuration is activated
+  system.activationScripts = listToAttrs (
+    map (microvm: {
+      name = "remount_${microvm}_ssh_bind_mount";
+      value = stringAfter [ "setupSecrets" ] ''
+        if ${pkgs.systemd}/bin/systemctl is-active --quiet microvm@${microvm}.service && ${pkgs.util-linux}/bin/mountpoint --quiet /var/lib/microvms/${microvm}/persistent/etc/ssh; then
+          ${pkgs.systemd}/bin/systemctl stop microvm@${microvm}.service
+          umount /var/lib/microvms/${microvm}/persistent/etc/ssh
+          mount -o bind,ro /run/secrets/${microvm} /var/lib/microvms/${microvm}/persistent/etc/ssh
+          ${pkgs.systemd}/bin/systemctl start microvm@${microvm}.service
+        elif ${pkgs.util-linux}/bin/mountpoint --quiet /var/lib/microvms/${microvm}/persistent/etc/ssh; then
+          umount /var/lib/microvms/${microvm}/persistent/etc/ssh
+          mount -o bind,ro /run/secrets/${microvm} /var/lib/microvms/${microvm}/persistent/etc/ssh
+        fi
+      '';
     }) (attrNames config.microvm.vms)
   );
 }
