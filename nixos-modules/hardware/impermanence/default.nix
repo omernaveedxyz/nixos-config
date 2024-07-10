@@ -10,7 +10,7 @@ let
   inherit (lib) mkIf mkBefore;
 
   wipeScript = ''
-    DATE="$(date +%F_%H:%M:%S)"
+    DATE="$(date +%FT%T.%2N)"
     zfs rename "${config.networking.hostName}/root" "${config.networking.hostName}/root_$DATE"
     zfs clone "${config.networking.hostName}/root_$DATE@blank" "${config.networking.hostName}/root"
     zfs promote "${config.networking.hostName}/root"
@@ -33,13 +33,12 @@ let
     DATASETS=$(zfs list -t filesystem \
                         -d 2 \
                         -o name \
-                        -s creation \
+                        -s name \
                         -H "${config.networking.hostName}/root" \
               | tail -n+2)
     for dataset in $DATASETS; do
       NOW="$(date +%s)"
-      THEN="$(date --date="$(echo "$dataset" | cut -d / -f 3 | tr '_' ' ')" \
-                    +%s)"
+      THEN="$(date --date="$(echo "$dataset" | cut -d / -f 3 | tr '_' ' ')" +%s)"
       DIFF="$(((NOW - THEN) / (60*60*24)))"
       if [[ $DIFF -gt 7 ]]; then
         zfs destroy "$dataset"
