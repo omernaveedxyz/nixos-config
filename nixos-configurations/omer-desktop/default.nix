@@ -18,6 +18,9 @@ in
     ./hardware/microvm
     ./hardware/mounts
 
+    ./programs/acme
+
+    ./services/nginx
     ./services/sanoid
     ./services/syncoid
   ];

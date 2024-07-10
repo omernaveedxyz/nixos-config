@@ -51,7 +51,10 @@ in
   imports = [ microvm.nixosModules.host ];
 
   # Define MicroVMs to run on the system
-  microvm.vms = mkMicrovms [ "vm-xmrig" ];
+  microvm.vms = mkMicrovms [
+    "vm-xmrig"
+    "vm-miniflux"
+  ];
 
   # Rules for creation, deletion and cleaning of volatile and temporary files automatically
   systemd.tmpfiles.rules = map (
@@ -125,10 +128,10 @@ in
       name = "remount_${microvm}_ssh_bind_mount";
       value = stringAfter [ "setupSecrets" ] ''
         if ${pkgs.systemd}/bin/systemctl is-active --quiet microvm@${microvm}.service && ${pkgs.util-linux}/bin/mountpoint --quiet /var/lib/microvms/${microvm}/persistent/etc/ssh; then
-          ${pkgs.systemd}/bin/systemctl stop microvm@${microvm}.service
+          ${pkgs.systemd}/bin/systemctl stop --quiet microvm@${microvm}.service || true
           umount /var/lib/microvms/${microvm}/persistent/etc/ssh
           mount -o bind,ro /run/secrets/${microvm} /var/lib/microvms/${microvm}/persistent/etc/ssh
-          ${pkgs.systemd}/bin/systemctl start microvm@${microvm}.service
+          ${pkgs.systemd}/bin/systemctl start --quiet microvm@${microvm}.service || true
         elif ${pkgs.util-linux}/bin/mountpoint --quiet /var/lib/microvms/${microvm}/persistent/etc/ssh; then
           umount /var/lib/microvms/${microvm}/persistent/etc/ssh
           mount -o bind,ro /run/secrets/${microvm} /var/lib/microvms/${microvm}/persistent/etc/ssh
