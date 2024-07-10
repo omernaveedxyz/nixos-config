@@ -195,6 +195,9 @@ in
 
           # Command to execute when clicked on the module
           on-click = "${config.home.sessionVariables.TERMINAL} --title bashmount -e ${getExe pkgs.bashmount}";
+
+          # The interval (in seconds) in which the information gets polled
+          interval = 60;
         };
 
         # The memory module displays the current RAM and swap utilization
