@@ -52,7 +52,7 @@ in
     };
 
     # Script or executable to use to preview files
-    previewer.source = "${previewer}/bin/pv.sh";
+    previewer.source = "${getExe previewer}";
 
     # Commands to declare
     commands = {

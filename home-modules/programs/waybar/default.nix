@@ -140,7 +140,7 @@ in
         # The uptime module displays the total uptime of the system
         "custom/uptime" = {
           # The path to a script which executes and outputs
-          exec = "${waybar-module-custom-uptime}/bin/waybar-module-custom-uptime";
+          exec = "${getExe waybar-module-custom-uptime}";
 
           # The format, how information should be displayed
           format = "{}   ";
@@ -201,7 +201,7 @@ in
           format = "{} 󱛟 ";
 
           # The path to a script which executes and outputs
-          exec = "${waybar-module-custom-disk}/bin/waybar-module-custom-disk";
+          exec = "${getExe waybar-module-custom-disk}";
 
           # Command to execute when clicked on the module
           on-click = "${config.home.sessionVariables.TERMINAL} --title bashmount -e ${getExe pkgs.bashmount}";
