@@ -10,6 +10,10 @@ let
   waybar-module-custom-uptime = pkgs.writeShellScriptBin "waybar-module-custom-uptime" ''
     ${getExe pkgs.gawk} '{m=$1/60;h=m/60;printf "%sd %sh %sm",int(h/24),int(h%24),int(m%60)}' /proc/uptime
   '';
+
+  waybar-module-custom-disk = pkgs.writeShellScriptBin "waybar-module-custom-disk" ''
+    ${pkgs.zfs}/bin/zpool list -H $(${pkgs.nettools}/bin/hostname) | ${getExe pkgs.gawk} '{print $3 "iB / " $2 "iB"}'
+  '';
 in
 {
   programs.waybar = {
@@ -186,12 +190,18 @@ in
 
           # Command to execute when clicked on the module
           on-click = "${config.home.sessionVariables.TERMINAL} --title ncpamixer -e ${getExe pkgs.ncpamixer}";
+
+          # Command to execute when you right clicked on the module
+          on-click-right = "${config.home.sessionVariables.TERMINAL} --title bluetoothctl -e ${pkgs.bluez}/bin/bluetoothctl";
         };
 
         # The disk module tracks the usage of filesystems and partitions
         "custom/disk" = {
+          # The format, how information should be displayed
+          format = "{} 󱛟 ";
+
           # The path to a script which executes and outputs
-          exec = "${pkgs.zfs}/bin/zpool list -H $(${pkgs.nettools}/bin/hostname) | ${getExe pkgs.gawk} '{print $3 \"iB / \" $2 \"iB 󱛟 \"}'";
+          exec = "${waybar-module-custom-disk}/bin/waybar-module-custom-disk";
 
           # Command to execute when clicked on the module
           on-click = "${config.home.sessionVariables.TERMINAL} --title bashmount -e ${getExe pkgs.bashmount}";
@@ -420,6 +430,14 @@ in
         "stayfocused, title:^(ncpamixer)"
         "suppressevent fullscreen maximize active activatefocus, title:^(ncpamixer)"
         "dimaround, title:^(ncpamixer)"
+
+        "float, title:^(bluetoothctl)"
+        "center, title:^(bluetoothctl)"
+        "size 50% 50%, title:^(bluetoothctl)"
+        "pin, title:^(bluetoothctl)"
+        "stayfocused, title:^(bluetoothctl)"
+        "suppressevent fullscreen maximize active activatefocus, title:^(bluetoothctl)"
+        "dimaround, title:^(bluetoothctl)"
 
         "float, title:^(bashmount)"
         "center, title:^(bashmount)"
