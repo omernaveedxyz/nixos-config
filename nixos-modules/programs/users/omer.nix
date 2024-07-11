@@ -24,7 +24,8 @@ in
         extraGroups =
           [ "wheel" ]
           ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
-          ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" ];
+          ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" ]
+          ++ optionals config.programs.adb.enable [ "adbusers" ];
 
         # A list of files each containing one OpenSSH public key that should be
         # added to the user's authorized keys

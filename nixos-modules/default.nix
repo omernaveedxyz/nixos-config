@@ -10,6 +10,7 @@
     ./hardware/systemd
     ./hardware/virtualisation
 
+    ./programs/adb
     ./programs/dconf
     ./programs/fuse
     ./programs/nix
