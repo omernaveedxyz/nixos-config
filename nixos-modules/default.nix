@@ -1,3 +1,9 @@
+{ lib, ... }:
+let
+  inherit (lib) attrValues;
+
+  nixosModules = import ./modules;
+in
 {
   imports = [
     ./hardware/bluetooth
@@ -27,7 +33,7 @@
     ./services/sanoid
     ./services/udisks2
     ./services/zfs
-  ];
+  ] ++ attrValues nixosModules;
 
   # Modify and extend existing Nixpkgs collection
   nixpkgs.overlays = with (import ./overlays); [
