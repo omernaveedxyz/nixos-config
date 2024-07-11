@@ -1,3 +1,9 @@
+{ lib, ... }:
+let
+  inherit (lib) attrValues;
+
+  homeManagerModules = import ./modules;
+in
 {
   imports = [
     ./programs/alacritty
@@ -49,7 +55,7 @@
     ./services/wireplumber
     ./services/wob
     ./services/xdg-portals
-  ];
+  ] ++ attrValues homeManagerModules;
 
   # Modify and extend existing Nixpkgs collection
   nixpkgs.overlays = with (import ./overlays); [

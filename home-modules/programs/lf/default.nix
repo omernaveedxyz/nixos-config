@@ -5,13 +5,7 @@
   ...
 }:
 let
-  inherit (builtins) elem;
-  inherit (lib)
-    getExe
-    getName
-    mkIf
-    mkOptionDefault
-    ;
+  inherit (lib) getExe mkIf mkOptionDefault;
   inherit (pkgs) writeShellScriptBin;
 
   previewer = writeShellScriptBin "pv.sh" ''
@@ -137,7 +131,7 @@ in
   xdg.configFile."lf/icons".source = ./icons;
 
   # Allow installing specific unfree packages
-  nixpkgs.config.allowUnfreePredicate = pkg: elem (getName pkg) [ "unrar" ];
+  allowedUnfree = [ "unrar" ];
 
   wayland.windowManager.sway = mkIf (config.wayland.windowManager.sway.enable) {
     # Sway configuration options
