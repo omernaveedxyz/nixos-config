@@ -517,6 +517,11 @@ in
           };
         };
       };
+
+      markdown-preview = {
+        # Whether to enable markdown-preview.nvim
+        enable = true;
+      };
     };
 
     # Autocmd definitions
