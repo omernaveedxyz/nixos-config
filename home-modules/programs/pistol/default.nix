@@ -9,6 +9,10 @@
         mime = "text/*";
         command = "bat --paging=never --color=always --plain %pistol-filename%";
       }
+      {
+        mime = "application/javascript";
+        command = "bat --paging=never --color=always --plain %pistol-filename%";
+      }
     ];
   };
 }
