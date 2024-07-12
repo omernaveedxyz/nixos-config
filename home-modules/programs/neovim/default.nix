@@ -310,6 +310,18 @@ in
             # Whether to enable marksman for Markdown
             enable = true;
           };
+
+          # Typescript language server
+          tsserver = {
+            # Whether to enable tsserver for TypeScript
+            enable = true;
+          };
+
+          # Javascript/Typescript langauge server
+          eslint = {
+            # Whether to enable Enable eslint
+            enable = true;
+          };
         };
       };
 
