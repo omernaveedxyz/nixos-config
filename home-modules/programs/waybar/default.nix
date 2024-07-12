@@ -29,9 +29,6 @@ in
         # Bar position, can be top,bottom,left,right
         position = "top";
 
-        # Height to be used by the bar if possible, leave blank for a dynamic value
-        height = 32;
-
         # Modules that will be displayed on the left
         modules-left = [
           "${config._module.args.desktop}/workspaces"
@@ -289,7 +286,7 @@ in
       }
 
       window#waybar.empty {
-        background: transparent;
+        background: alpha(@base00, 0.5);
       }
 
       window .modules-left #workspaces button {
