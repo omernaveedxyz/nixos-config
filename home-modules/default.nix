@@ -7,6 +7,7 @@ in
 {
   imports = [
     ./programs/alacritty
+    ./programs/android-studio
     ./programs/bash
     ./programs/bashmount
     ./programs/bat
