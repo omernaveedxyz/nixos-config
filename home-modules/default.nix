@@ -44,6 +44,7 @@ in
     ./programs/xdg
     ./programs/yt-dlp
     ./programs/yubikey
+    ./programs/zathura
 
     ./services/clipman
     ./services/flameshot
