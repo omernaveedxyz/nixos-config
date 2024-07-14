@@ -1,4 +1,22 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) getExe;
+
+  radarr-create-movies-directory = pkgs.writeShellScriptBin "radarr-create-movies-directory" ''
+    if [ ! -d /mnt/media/Movies ]; then
+      ${pkgs.coreutils}/bin/mkdir -p /mnt/media/Movies
+      ${pkgs.coreutils}/bin/chown -R radarr:radarr /mnt/media/Movies
+      ${pkgs.coreutils}/bin/chmod -R 0775 /mnt/media/Movies
+      ${pkgs.acl}/bin/setfacl -R -d -m u::rwx,g::rwx,o::rx /mnt/media/Movies
+      ${pkgs.coreutils}/bin/chmod -R g+s /mnt/media/Movies
+    fi
+  '';
+in
 {
   services.radarr = {
     # Whether to enable Radarr
@@ -44,5 +62,25 @@
         mode = "0700";
       }
     ];
+  };
+
+  systemd.services.radarr-create-shows-directory = {
+    # Description of this unit used in systemd messages and progress indicators
+    description = "Radarr - Create Movies Directory";
+
+    # If the specified units are started at the same time as this unit, delay this unit until they have started
+    after = [ "mnt-media.mount" ];
+
+    # Start the specified units when this unit is started, and stop this unit when the specified units are stopped or fail
+    requires = [ "mnt-media.mount" ];
+
+    # Units that want (i.e. depend on) this unit
+    wantedBy = [ "multi-user.target" ];
+
+    # Each attribute in this set specifies an option in the [Service] section of the unit
+    serviceConfig = {
+      type = "simple";
+      ExecStart = getExe radarr-create-movies-directory;
+    };
   };
 }
