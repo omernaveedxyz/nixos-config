@@ -12,11 +12,14 @@ let
   inherit (builtins) readFile;
   inherit (lib)
     listToAttrs
+    attrValues
     attrNames
     mkIf
     concatMap
     stringAfter
     ;
+
+  microvmModules = import (relativeToRoot "microvm-modules/modules");
 
   # Function to generate attribute set of microvm configurations given vm names
   mkMicrovms =
@@ -41,7 +44,7 @@ let
 
           # The configuration for the MicroVM
           config = {
-            imports = [ (relativeToRoot "microvm-configurations/${hostname}") ];
+            imports = [ (relativeToRoot "microvm-configurations/${hostname}") ] ++ attrValues microvmModules;
           };
         };
       }) microvms
@@ -54,6 +57,7 @@ in
   microvm.vms = mkMicrovms [
     "vm-xmrig"
     "vm-miniflux"
+    "vm-jellyfin"
   ];
 
   # Rules for creation, deletion and cleaning of volatile and temporary files automatically
@@ -139,4 +143,7 @@ in
       '';
     }) (attrNames config.microvm.vms)
   );
+
+  # Allow specific unfree packages
+  allowedUnfree = [ "unrar" ];
 }

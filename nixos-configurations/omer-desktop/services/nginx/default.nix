@@ -52,6 +52,36 @@ in
           proxyPass = "http://localhost:8234";
         };
       };
+      "jellyfin.omernaveed.dev" = mkVirtualHost {
+        locations."/" = {
+          proxyPass = "http://localhost:8096";
+        };
+      };
+      "prowlarr.omernaveed.dev" = mkVirtualHost {
+        locations."/" = {
+          proxyPass = "http://localhost:9696";
+        };
+      };
+      "radarr.omernaveed.dev" = mkVirtualHost {
+        locations."/" = {
+          proxyPass = "http://localhost:7878";
+        };
+      };
+      "sonarr.omernaveed.dev" = mkVirtualHost {
+        locations."/" = {
+          proxyPass = "http://localhost:8989";
+        };
+      };
+      "qbittorrent.omernaveed.dev" = mkVirtualHost {
+        locations."/" = {
+          proxyPass = "http://localhost:8282";
+        };
+      };
+      "sabnzbd.omernaveed.dev" = mkVirtualHost {
+        locations."/" = {
+          proxyPass = "http://localhost:8080";
+        };
+      };
     };
   };
 

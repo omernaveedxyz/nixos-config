@@ -4,6 +4,7 @@ keys:
   - &omer-laptop 130f3d4eb9a45c073fcd85278cdb01cb9aa61fc8
   - &vm-xmrig 9bb630ed8cdbcd4aa35b3846d98e6e8d5c8f688c
   - &vm-miniflux 81549209908333a36d66df18144e43fb9bf1a256
+  - &vm-jellyfin dafad8de91f782440ff5d46f277a544c92b037d8
 creation_rules:
   - path_regex: nixos-configurations/omer-desktop/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -47,9 +48,17 @@ creation_rules:
           - *omer-desktop
           - *omer-laptop
           - *vm-miniflux
+  - path_regex: microvm-configurations/vm-jellyfin/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+          - *omer
+          - *omer-desktop
+          - *omer-laptop
+          - *vm-jellyfin
   - path_regex: microvm-modules/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - pgp:
           - *omer
           - *vm-xmrig
           - *vm-miniflux
+          - *vm-jellyfin

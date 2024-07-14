@@ -26,3 +26,7 @@ enroll-fido2 PARTITION DEVICE="auto":
 # Load GnuPG private key stubs
 enroll-gnupg:
 	sh ./scripts/enroll-gnupg.sh
+
+# Create directories for Jellyfin
+setup-jellyfin:
+	sh ./scripts/setup-jellyfin.sh
