@@ -17,6 +17,7 @@ in
     ./hardware/boot
     ./hardware/microvm
     ./hardware/mounts
+    ./hardware/wireguard
 
     ./programs/acme
 
