@@ -49,7 +49,7 @@ in
     virtualHosts = {
       "miniflux.omernaveed.dev" = mkVirtualHost {
         locations."/" = {
-          proxyPass = "http://localhost:8080";
+          proxyPass = "http://localhost:8234";
         };
       };
     };

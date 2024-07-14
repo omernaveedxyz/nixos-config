@@ -25,7 +25,7 @@ in
       POLLING_FREQUENCY = "5";
 
       # Override LISTEN_ADDR to 0.0.0.0:$PORT (Automatic configuration for PaaS)
-      PORT = "8080";
+      PORT = "8234";
 
       # Base URL to generate HTML links and base path for cookies
       BASE_URL = "https://miniflux.omernaveed.dev";
