@@ -20,7 +20,7 @@ in
           ".bitmonero"
           ".shared-ringdb"
           ".config/monero-project"
-          "Monero"
+          ".monero"
         ];
       };
 }
