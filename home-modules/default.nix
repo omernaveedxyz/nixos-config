@@ -41,6 +41,7 @@ in
     ./programs/vimiv
     ./programs/virt-manager
     ./programs/waybar
+    ./programs/waypipe
     ./programs/xdg
     ./programs/yt-dlp
     ./programs/yubikey
