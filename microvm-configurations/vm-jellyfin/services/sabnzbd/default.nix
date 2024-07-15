@@ -5,8 +5,8 @@ let
   update-sabnzbd-whitelist = pkgs.writeShellScriptBin "update-sabnzbd-whitelist" ''
     if [ -f /var/lib/sabnzbd/sabnzbd.ini ]; then
       if ! ${getExe pkgs.gnugrep} -Fxq "host = 0.0.0.0" /var/lib/sabnzbd/sabnzbd.ini || ! ${getExe pkgs.gnugrep} -Fxq "host_whitelist = sabnzbd.omernaveed.dev" /var/lib/sabnzbd/sabnzbd.ini; then
-        ${getExe pkgs.gnused} -i 's/host = .*/host = 0.0.0.0/' /var/lib/sabnzbd/sabnzbd.ini
-        ${getExe pkgs.gnused} -i 's/host_whitelist = .*/host_whitelist = sabnzbd.omernaveed.dev/' /var/lib/sabnzbd/sabnzbd.ini
+        ${getExe pkgs.gnused} -i '0,/host = .*/s/host = .*/host = 0.0.0.0/' /var/lib/sabnzbd/sabnzbd.ini
+        ${getExe pkgs.gnused} -i '0,/host_whitelist = .*/s/host_whitelist = .*/host_whitelist = sabnzbd.omernaveed.dev/' /var/lib/sabnzbd/sabnzbd.ini
         ${pkgs.systemd}/bin/systemctl restart sabnzbd.service
       fi
     fi
