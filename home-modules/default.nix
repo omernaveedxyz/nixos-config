@@ -14,6 +14,7 @@ in
     ./programs/btop
     ./programs/chromium
     ./programs/direnv
+    ./programs/electrum
     ./programs/firefox
     ./programs/foot
     ./programs/fzf
