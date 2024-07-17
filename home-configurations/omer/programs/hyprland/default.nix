@@ -48,13 +48,13 @@ mkIf (config._module.args.desktop == "hyprland") {
         rounding = 4;
 
         # Opacity of active windows
-        active_opacity = 0.9;
+        active_opacity = 1.0;
 
         # Opacity of inactive windows
-        inactive_opacity = 0.9;
+        inactive_opacity = 1.0;
 
         # Opacity of fullscreen windows
-        fullscreen_opacity = 0.9;
+        fullscreen_opacity = 1.0;
 
         # Enables dimming of inactive windows
         dim_inactive = false;
@@ -233,6 +233,8 @@ mkIf (config._module.args.desktop == "hyprland") {
       exec-once = [
         "[workspace 10 silent] ${config.home.sessionVariables.TERMINAL} --title btop -e ${getExe config.programs.btop.package}"
       ];
+
+      windowrulev2 = [ "opacity 0.9, title:^(${config._module.args.terminal})" ];
 
       plugin = {
         hyprexpo = {
