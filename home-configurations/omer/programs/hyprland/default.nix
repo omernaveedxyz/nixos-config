@@ -234,8 +234,6 @@ mkIf (config._module.args.desktop == "hyprland") {
         "[workspace 10 silent] ${config.home.sessionVariables.TERMINAL} --title btop -e ${getExe config.programs.btop.package}"
       ];
 
-      windowrulev2 = [ "opacity 0.9, title:^(${config._module.args.terminal})" ];
-
       plugin = {
         hyprexpo = {
           columns = 3;

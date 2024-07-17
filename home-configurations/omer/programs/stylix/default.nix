@@ -22,5 +22,10 @@
       # The cursor size
       size = 24;
     };
+
+    opacity = {
+      # The opacity of the windows of terminals
+      terminal = 0.9;
+    };
   };
 }
