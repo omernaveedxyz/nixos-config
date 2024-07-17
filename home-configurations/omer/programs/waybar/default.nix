@@ -286,7 +286,7 @@ in
       }
 
       window#waybar.empty {
-        background: alpha(@base00, 0.5);
+        background: alpha(@base00, 0.0);
       }
 
       window .modules-left #workspaces button {
