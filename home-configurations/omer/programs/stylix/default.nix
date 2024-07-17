@@ -6,11 +6,11 @@
     # Whether to enable stylix
     enable = true;
 
-    # Use this option to force a light or dark theme
-    polarity = "dark";
-
     # Wallpaper image
-    image = ./wallpaper.png;
+    image = ./wallpaper.jpg;
+
+    # Base16 color scheme
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
     cursor = {
       # Package providing the cursor theme
