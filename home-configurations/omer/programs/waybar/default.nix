@@ -319,6 +319,11 @@ in
         color: @base07;
       }
 
+      .modules-right #custom-uptime {
+        background: transparent;
+        color: @base07;
+      }
+
       .modules-right #backlight {
         background: transparent;
         color: @base07;
@@ -337,7 +342,7 @@ in
         background: transparent;
       }
 
-      .modules-right #disk {
+      .modules-right #custom-disk {
         background: transparent;
         color: @base07;
       }
