@@ -52,6 +52,6 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [ ".local/share/gnupg" ];
+        directories = config._module.args.relativeToHome [ config.programs.gpg.homedir ];
       };
 }

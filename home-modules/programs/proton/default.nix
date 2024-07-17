@@ -19,9 +19,9 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [
-          ".config/Proton Mail"
-          ".config/Proton Pass"
+        directories = config._module.args.relativeToHome [
+          "${config.xdg.configHome}/Proton Mail"
+          "${config.xdg.configHome}/Proton Pass"
         ];
       };
 }

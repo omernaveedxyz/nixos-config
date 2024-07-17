@@ -16,10 +16,10 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [
+        directories = config._module.args.relativeToHome [
           ".bitmonero"
           ".shared-ringdb"
-          ".config/monero-project"
+          "${config.xdg.configHome}/monero-project"
           ".monero"
         ];
       };

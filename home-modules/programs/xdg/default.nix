@@ -1,6 +1,5 @@
 { config, lib, ... }:
 let
-  inherit (builtins) replaceStrings;
   inherit (lib) mkIf;
 in
 {
@@ -22,7 +21,7 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = map (name: replaceStrings [ "${config.home.homeDirectory}/" ] [ "" ] name) (
+        directories = config._module.args.relativeToHome (
           with config.xdg.userDirs;
           [
             desktop

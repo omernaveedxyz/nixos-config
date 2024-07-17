@@ -16,6 +16,6 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [ ".electrum" ];
+        directories = config._module.args.relativeToHome [ ".electrum" ];
       };
 }

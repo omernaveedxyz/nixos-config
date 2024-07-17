@@ -19,12 +19,14 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [
-          ".config/.android"
-          ".config/Google"
+        directories = config._module.args.relativeToHome [
+          "${config.xdg.configHome}/.android"
+          "${config.xdg.configHome}/Google"
         ];
 
         # All files you want to link or bind to persistent storage
-        files = [ ".local/share/Google/consentOptions/accepted" ];
+        files = config._module.args.relativeToHome [
+          "${config.xdg.dataHome}/Google/consentOptions/accepted"
+        ];
       };
 }

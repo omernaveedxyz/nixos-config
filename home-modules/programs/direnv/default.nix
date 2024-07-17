@@ -19,6 +19,6 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [ ".local/share/direnv" ];
+        directories = config._module.args.relativeToHome [ "${config.xdg.dataHome}/direnv" ];
       };
 }
