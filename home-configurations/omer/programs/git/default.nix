@@ -1,9 +1,8 @@
-{ config, lib, ... }:
-let
-  inherit (lib) mkIf;
-in
 {
-  programs.git = mkIf (config.programs.git.enable) {
+  programs.git = {
+    # Whether to enable Git
+    enable = true;
+
     # Default user email to use
     userEmail = "me@omernaveed.dev";
 
