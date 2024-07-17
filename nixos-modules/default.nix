@@ -1,42 +1,40 @@
 { lib, ... }:
 let
   inherit (lib) attrValues;
-
-  nixosModules = import ./modules;
 in
 {
   imports = [
-    ./common/hardware/bluetooth
-    ./common/hardware/disko
-    ./common/hardware/graphics
-    ./common/hardware/impermanence
-    ./common/hardware/lanzaboote
-    ./common/hardware/networking
-    ./common/hardware/systemd-boot
-    ./common/hardware/systemd
-    ./common/hardware/virtualisation
+    ./hardware/bluetooth
+    ./hardware/disko
+    ./hardware/graphics
+    ./hardware/impermanence
+    ./hardware/lanzaboote
+    ./hardware/networking
+    ./hardware/systemd-boot
+    ./hardware/systemd
+    ./hardware/virtualisation
 
-    ./common/programs/adb
-    ./common/programs/dconf
-    ./common/programs/fuse
-    ./common/programs/nix
-    ./common/programs/pam
-    ./common/programs/plymouth
-    ./common/programs/sops
-    ./common/programs/users
+    ./programs/adb
+    ./programs/dconf
+    ./programs/fuse
+    ./programs/nix
+    ./programs/pam
+    ./programs/plymouth
+    ./programs/sops
+    ./programs/users
 
-    ./common/services/dbus
-    ./common/services/greetd
-    ./common/services/openssh
-    ./common/services/pcscd
-    ./common/services/pipewire
-    ./common/services/sanoid
-    ./common/services/udisks2
-    ./common/services/zfs
-  ] ++ attrValues nixosModules;
+    ./services/dbus
+    ./services/greetd
+    ./services/openssh
+    ./services/pcscd
+    ./services/pipewire
+    ./services/sanoid
+    ./services/udisks2
+    ./services/zfs
+  ] ++ attrValues (import ./_modules);
 
   # Modify and extend existing Nixpkgs collection
-  nixpkgs.overlays = with (import ./overlays); [
+  nixpkgs.overlays = with (import ./_overlays); [
     additions
     modifications
   ];

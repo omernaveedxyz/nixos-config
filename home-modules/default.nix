@@ -1,14 +1,12 @@
 { lib, ... }:
 let
   inherit (lib) attrValues;
-
-  homeManagerModules = import ./modules;
 in
 {
-  imports = attrValues homeManagerModules;
+  imports = attrValues (import ./_modules);
 
   # Modify and extend existing Nixpkgs collection
-  nixpkgs.overlays = with (import ./overlays); [
+  nixpkgs.overlays = with (import ./_overlays); [
     additions
     modifications
   ];

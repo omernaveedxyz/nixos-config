@@ -67,6 +67,6 @@
 
   # Specify encrypted sops secret to access
   sops.secrets."networking/wg-quick/interfaces/wg0/privateKeyFile" = {
-    sopsFile = ../../../secrets.yaml;
+    sopsFile = ../../secrets.yaml;
   };
 }

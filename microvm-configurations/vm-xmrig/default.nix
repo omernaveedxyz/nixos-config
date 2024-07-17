@@ -3,8 +3,8 @@
   imports = [
     (relativeToRoot "microvm-modules")
 
-    ./common/hardware/wireguard
+    ./hardware/wireguard
 
-    ./common/services/xmrig
+    ./services/xmrig
   ];
 }

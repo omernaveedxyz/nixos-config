@@ -3,7 +3,7 @@
   # Wireguard interfaces
   networking.wg-quick.interfaces.wg0 = {
     # Whether to bring up this interface automatically during boot
-    autostart = false;
+    autostart = true;
 
     # The IP addresses of the interface
     address = [ "10.2.0.2/32" ];
@@ -25,6 +25,7 @@
       # Forbid anything else which doesn't go through wireguard VPN on
       # ipV4 and ipV6
       ${pkgs.iptables}/bin/iptables -A OUTPUT \
+        ! -d 10.0.2.0/24 \
         ! -o wg0 \
         -m mark ! --mark $(wg show wg0 fwmark) \
         -m addrtype ! --dst-type LOCAL \
@@ -54,39 +55,19 @@
     peers = [
       {
         # The base64 public key to the peer
-        publicKey = "KwU9qcRO0eamCxh/iF7pL2RAOOJezHPVqkIeANcS5Wk=";
+        publicKey = "gU9CLkRxLUarj9+MtswvE/2Tvclx32w5aoSYeY3eEX8=";
 
         # List of IP (v4 or v6) addresses with CIDR masks from which this peer is allowed to send incoming traffic and to which outgoing traffic for this peer is directed
         allowedIPs = [ "0.0.0.0/0" ];
 
         # Endpoint IP or hostname of the peer, followed by a colon, and then a port number of the peer
-        endpoint = "154.47.25.129:51820";
+        endpoint = "163.5.171.2:51820";
       }
     ];
   };
 
-  # Define specific rules to be in the sudoers file
-  security.sudo.extraRules = [
-    {
-      # The groups / GIDs this rule should apply for
-      groups = [ "wheel" ];
-
-      # The commands for which the rule should apply
-      commands = [
-        {
-          command = "${pkgs.systemd}/bin/systemctl start wg-quick-wg0.service";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "${pkgs.systemd}/bin/systemctl stop wg-quick-wg0.service";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
   # Specify encrypted sops secret to access
   sops.secrets."networking/wg-quick/interfaces/wg0/privateKeyFile" = {
-    sopsFile = ../../../secrets.yaml;
+    sopsFile = ../../secrets.yaml;
   };
 }

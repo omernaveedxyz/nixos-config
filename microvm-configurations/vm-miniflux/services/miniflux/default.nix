@@ -56,6 +56,6 @@ in
 
   # Specify encrypted sops secret to access
   sops.secrets."services/miniflux/adminCredentialsFile" = {
-    sopsFile = ../../../secrets.yaml;
+    sopsFile = ../../secrets.yaml;
   };
 }

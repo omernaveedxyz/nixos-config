@@ -46,7 +46,7 @@ in
 
   # Specify encrypted sops secret to access
   sops.secrets."security/acme/default/environmentFile" = {
-    sopsFile = ../../../secrets.yaml;
+    sopsFile = ../../secrets.yaml;
     owner = "acme";
     group = "acme";
   };

@@ -1,21 +1,19 @@
 { lib, hostname, ... }:
 let
   inherit (lib) attrValues;
-
-  microvmModules = import ./modules;
 in
 {
   imports = [
-    ./common/hardware/microvm
+    ./hardware/microvm
 
-    ./common/programs/sops
-  ] ++ attrValues microvmModules;
+    ./programs/sops
+  ] ++ attrValues (import ./_modules);
 
   # The name of the machine
   networking.hostName = hostname;
 
   # Modify and extend existing Nixpkgs collection
-  nixpkgs.overlays = with (import ./overlays); [
+  nixpkgs.overlays = with (import ./_overlays); [
     additions
     modifications
   ];
