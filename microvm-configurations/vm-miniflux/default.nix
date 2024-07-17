@@ -3,7 +3,7 @@
   imports = [
     (relativeToRoot "microvm-modules")
 
-    ./services/miniflux
-    ./services/postgresql
+    ./common/services/miniflux
+    ./common/services/postgresql
   ];
 }

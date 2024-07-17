@@ -12,14 +12,11 @@ let
   inherit (builtins) readFile;
   inherit (lib)
     listToAttrs
-    attrValues
     attrNames
     mkIf
     concatMap
     stringAfter
     ;
-
-  microvmModules = import (relativeToRoot "microvm-modules/modules");
 
   # Function to generate attribute set of microvm configurations given vm names
   mkMicrovms =
@@ -44,7 +41,7 @@ let
 
           # The configuration for the MicroVM
           config = {
-            imports = [ (relativeToRoot "microvm-configurations/${hostname}") ] ++ attrValues microvmModules;
+            imports = [ (relativeToRoot "microvm-configurations/${hostname}") ];
           };
         };
       }) microvms

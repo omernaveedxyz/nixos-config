@@ -1,13 +1,24 @@
-{ hostname, ... }:
+{ lib, hostname, ... }:
+let
+  inherit (lib) attrValues;
+
+  microvmModules = import ./modules;
+in
 {
   imports = [
-    ./hardware/microvm
+    ./common/hardware/microvm
 
-    ./programs/sops
-  ];
+    ./common/programs/sops
+  ] ++ attrValues microvmModules;
 
   # The name of the machine
   networking.hostName = hostname;
+
+  # Modify and extend existing Nixpkgs collection
+  nixpkgs.overlays = with (import ./overlays); [
+    additions
+    modifications
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

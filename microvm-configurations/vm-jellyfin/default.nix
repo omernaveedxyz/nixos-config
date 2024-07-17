@@ -3,14 +3,14 @@
   imports = [
     (relativeToRoot "microvm-modules")
 
-    ./hardware/mounts
-    ./hardware/wireguard
+    ./common/hardware/mounts
+    ./common/hardware/wireguard
 
-    ./services/jellyfin
-    ./services/prowlarr
-    ./services/qbittorrent
-    ./services/radarr
-    ./services/sabnzbd
-    ./services/sonarr
+    ./common/services/jellyfin
+    ./common/services/prowlarr
+    ./common/services/qbittorrent
+    ./common/services/radarr
+    ./common/services/sabnzbd
+    ./common/services/sonarr
   ];
 }

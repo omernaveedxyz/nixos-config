@@ -6,33 +6,33 @@ let
 in
 {
   imports = [
-    ./hardware/bluetooth
-    ./hardware/disko
-    ./hardware/graphics
-    ./hardware/impermanence
-    ./hardware/lanzaboote
-    ./hardware/networking
-    ./hardware/systemd-boot
-    ./hardware/systemd
-    ./hardware/virtualisation
+    ./common/hardware/bluetooth
+    ./common/hardware/disko
+    ./common/hardware/graphics
+    ./common/hardware/impermanence
+    ./common/hardware/lanzaboote
+    ./common/hardware/networking
+    ./common/hardware/systemd-boot
+    ./common/hardware/systemd
+    ./common/hardware/virtualisation
 
-    ./programs/adb
-    ./programs/dconf
-    ./programs/fuse
-    ./programs/nix
-    ./programs/pam
-    ./programs/plymouth
-    ./programs/sops
-    ./programs/users
+    ./common/programs/adb
+    ./common/programs/dconf
+    ./common/programs/fuse
+    ./common/programs/nix
+    ./common/programs/pam
+    ./common/programs/plymouth
+    ./common/programs/sops
+    ./common/programs/users
 
-    ./services/dbus
-    ./services/greetd
-    ./services/openssh
-    ./services/pcscd
-    ./services/pipewire
-    ./services/sanoid
-    ./services/udisks2
-    ./services/zfs
+    ./common/services/dbus
+    ./common/services/greetd
+    ./common/services/openssh
+    ./common/services/pcscd
+    ./common/services/pipewire
+    ./common/services/sanoid
+    ./common/services/udisks2
+    ./common/services/zfs
   ] ++ attrValues nixosModules;
 
   # Modify and extend existing Nixpkgs collection

@@ -14,8 +14,8 @@ in
     nixos-hardware.nixosModules.dell-xps-15-7590
     nixos-hardware.nixosModules.common-gpu-nvidia-disable
 
-    ./hardware/boot
-    ./hardware/wireguard
+    ./common/hardware/boot
+    ./common/hardware/wireguard
   ];
 
   # Specifies the platform where the NixOS configuration will run

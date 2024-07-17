@@ -14,16 +14,16 @@ in
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
 
-    ./hardware/boot
-    ./hardware/microvm
-    ./hardware/mounts
-    ./hardware/wireguard
+    ./common/hardware/boot
+    ./common/hardware/microvm
+    ./common/hardware/mounts
+    ./common/hardware/wireguard
 
-    ./programs/acme
+    ./common/programs/acme
 
-    ./services/nginx
-    ./services/sanoid
-    ./services/syncoid
+    ./common/services/nginx
+    ./common/services/sanoid
+    ./common/services/syncoid
   ];
 
   # Specifies the platform where the NixOS configuration will run
