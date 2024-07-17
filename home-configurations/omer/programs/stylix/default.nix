@@ -7,7 +7,7 @@
     enable = true;
 
     # Wallpaper image
-    image = ./wallpaper.jpg;
+    image = ./wallpaper.png;
 
     # Base16 color scheme
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
