@@ -57,7 +57,7 @@ mkIf (config._module.args.desktop == "hyprland") {
         fullscreen_opacity = 0.9;
 
         # Enables dimming of inactive windows
-        dim_inactive = true;
+        dim_inactive = false;
       };
 
       decoration.blur = {
