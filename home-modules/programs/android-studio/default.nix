@@ -19,6 +19,12 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = [ ".config/.android" ];
+        directories = [
+          ".config/.android"
+          ".config/Google"
+        ];
+
+        # All files you want to link or bind to persistent storage
+        files = [ ".local/share/Google/consentOptions/accepted" ];
       };
 }
