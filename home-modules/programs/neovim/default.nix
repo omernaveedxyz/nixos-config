@@ -552,6 +552,6 @@ in
     mkIf (config._module.args.impermanence)
       {
         # All directories you want to link or bind to persistent storage
-        directories = config._module.args.relativeToHome [ "${config.xdg.dataHome}/nvim/undo" ];
+        directories = config._module.args.relativeToHome [ "${config.xdg.stateHome}/nvim/undo" ];
       };
 }

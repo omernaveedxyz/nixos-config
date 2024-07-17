@@ -22,11 +22,7 @@ in
         directories = config._module.args.relativeToHome [
           "${config.xdg.configHome}/.android"
           "${config.xdg.configHome}/Google"
-        ];
-
-        # All files you want to link or bind to persistent storage
-        files = config._module.args.relativeToHome [
-          "${config.xdg.dataHome}/Google/consentOptions/accepted"
+          "${config.xdg.dataHome}/Google"
         ];
       };
 }
