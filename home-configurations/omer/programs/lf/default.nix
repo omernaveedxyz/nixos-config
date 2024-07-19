@@ -51,6 +51,7 @@ in
     # Commands to declare
     commands = {
       mpv = "%${getExe pkgs.mpv} $fx";
+      vimiv = "%${getExe pkgs.vimiv-qt} $fx";
 
       trash = "%${pkgs.trash-cli}/bin/trash-put $fx";
       trash-restore = ''''${{${pkgs.trash-cli}/bin/trash-restore}}'';
