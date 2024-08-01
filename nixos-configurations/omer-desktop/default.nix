@@ -29,9 +29,6 @@ in
   # Specifies the platform where the NixOS configuration will run
   nixpkgs.hostPlatform = mkDefault "x86_64-linux";
 
-  # The name of the machine
-  networking.hostName = "omer-desktop";
-
   # The 32-bit host ID of the machine, formatted as 8 hexadecimal characters
   networking.hostId = "001aa168";
 
