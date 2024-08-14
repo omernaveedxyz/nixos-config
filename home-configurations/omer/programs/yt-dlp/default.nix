@@ -14,15 +14,6 @@
       # Number of fragments of a dash/hlsnative video that should be downloaded
       concurrent-fragments = 8;
 
-      # Number of retries (default is 10), or "infinite"
-      retries = "infinite";
-
-      # Number of times to retry on file access error
-      file-access-retries = "infinite";
-
-      # Number of retries for a fragment
-      fragment-retries = "infinite";
-
       # Output filename template; see "OUTPUT TEMPLATE" for details
       output = "~/Videos/%(title)s.%(ext)s";
 
@@ -40,9 +31,6 @@
 
       # Embed  metadata  to the video file
       embed-metadata = true;
-
-      # Number of retries for known extractor errors
-      extractor-retries = "infinite";
     };
   };
 }
