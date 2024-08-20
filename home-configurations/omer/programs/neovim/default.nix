@@ -322,6 +322,12 @@ in
             # Whether to enable Enable eslint
             enable = true;
           };
+
+          # Golang language server
+          gopls = {
+            # Whether to enable gopls for Go
+            enable = true;
+          };
         };
       };
 
