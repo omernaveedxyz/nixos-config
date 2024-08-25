@@ -328,6 +328,12 @@ in
             # Whether to enable gopls for Go
             enable = true;
           };
+
+          # OCaml language server
+          ocamllsp = {
+            # Whether to enable ocamllsp for OCaml
+            enable = true;
+          };
         };
       };
 
