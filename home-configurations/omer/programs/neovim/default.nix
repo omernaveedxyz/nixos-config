@@ -334,6 +334,12 @@ in
             # Whether to enable ocamllsp for OCaml
             enable = true;
           };
+
+          # Rust language server
+          rust-analyzer = {
+            # Whether to enable rust-analyzer for Rust
+            enable = true;
+          };
         };
       };
 
