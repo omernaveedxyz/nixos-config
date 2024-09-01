@@ -16,10 +16,7 @@ in
     package = pkgs.rofi-wayland;
 
     # List of rofi plugins to be installed
-    plugins = with pkgs; [
-      # HACK: https://github.com/NixOS/nixpkgs/issues/298539
-      (rofi-emoji.override { rofi-unwrapped = rofi-wayland-unwrapped; })
-    ];
+    plugins = with pkgs; [ rofi-emoji-wayland ];
 
     # TODO: Customize Rofi 
     # Name of theme or path to theme file in rasi format or attribute set with theme configuration
