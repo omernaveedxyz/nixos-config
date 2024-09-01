@@ -5,12 +5,13 @@
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) hiPrio mkIf;
 in
 {
   # The set of packages to appear in the user environment
   home.packages = with pkgs; [
-    protonmail-desktop
+    # HACK: https://github.com/nix-community/home-manager/issues/5599
+    (hiPrio protonmail-desktop)
     proton-pass
   ];
 
