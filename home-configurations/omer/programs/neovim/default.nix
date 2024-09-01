@@ -339,6 +339,12 @@ in
           rust-analyzer = {
             # Whether to enable rust-analyzer for Rust
             enable = true;
+
+            # Whether to install cargo
+            installCargo = true;
+
+            # Whether to install rustc
+            installRustc = true;
           };
         };
       };
