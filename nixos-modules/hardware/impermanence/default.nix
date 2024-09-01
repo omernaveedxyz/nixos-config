@@ -116,6 +116,16 @@ in
     # x-gvfs-hide on all bind mounts
     hideMounts = true;
 
+    # All directories you want to link or bind to persistent storage
+    directories = [
+      {
+        directory = "/var/lib/nixos";
+        user = "root";
+        group = "root";
+        mode = "0755";
+      }
+    ];
+
     # All files you want to link or bind to persistent storage
     files = [
       {
