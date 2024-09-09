@@ -352,6 +352,12 @@ in
             # Whether to enable svelte language server for Svelte
             enable = true;
           };
+
+          # TailwindCSS langauge server
+          tailwindcss = {
+            # Whether to enable tailwindcss language server for tailwindcss
+            enable = true;
+          };
         };
       };
 
