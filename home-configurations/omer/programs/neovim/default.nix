@@ -346,6 +346,12 @@ in
             # Whether to install rustc
             installRustc = true;
           };
+
+          # Svelte langauge server
+          svelte = {
+            # Whether to enable svelte language server for Svelte
+            enable = true;
+          };
         };
       };
 
